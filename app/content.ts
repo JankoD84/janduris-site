@@ -3,146 +3,92 @@ export const profile = {
   title: "QA Automation Engineer & Release Quality Builder",
   message:
     "I help teams reduce release risk through QA automation, test strategy, CI/CD quality checks, and AI-assisted engineering tools.",
-  trustLine:
-    "4+ years in QA · Automation focus · Founder mindset · Building Dulvarn",
+  proofLine:
+    "4+ years in QA · SolarWinds → Flowio → Baťa · Building Dulvarn · Python / Robot Framework automation focus",
   email: "duris.janko@gmail.com",
   linkedin: "https://www.linkedin.com/in/jduris/",
 };
 
 export const navigation = [
-  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
-  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
+  { label: "Websites", href: "#websites" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
-export const credibility = [
-  "4+ years in QA",
-  "Current QA Engineer at Baťa",
-  "Started IT career at SolarWinds",
-  "Python / Robot Framework automation focus",
-  "Building Dulvarn release quality tools",
-];
-
-export const about = [
-  "I’m Janko, a QA engineer with 4+ years of experience in software testing. My IT career started with a Software Development Academy tester course and continued with my first QA Engineer role at SolarWinds.",
-  "Since then, I’ve worked across enterprise software, broker web applications and e-commerce/internal business platforms. My focus is moving deeper into QA automation, release quality, CI/CD quality checks and AI-assisted engineering workflows.",
-  "I currently work as a QA Engineer at Baťa and build Dulvarn — a release control system designed to help teams understand release risk before shipping.",
-];
-
-export const services = [
+export const signalBar = [
   {
-    title: "QA Automation",
+    title: "QA Foundation",
     description:
-      "Building and improving practical UI/API automation workflows with Python, Robot Framework, Selenium and Playwright basics. Focus on regression coverage, test stability and maintainable test suites.",
+      "4+ years across enterprise software, broker web apps and e-commerce platforms.",
+  },
+  {
+    title: "Automation Direction",
+    description:
+      "Python, Robot Framework, Selenium, Playwright basics, API testing and CI test workflows.",
   },
   {
     title: "Release Quality",
     description:
-      "Helping teams understand release risk before shipping by looking at test results, CI/CD signals, PR scope, regression impact and go/no-go decision support.",
+      "Risk-based QA, regression planning, release validation and go/no-go thinking.",
+  },
+  {
+    title: "Product Builder",
+    description:
+      "Building Dulvarn, QA audit tools, internal systems and web products.",
+  },
+];
+
+export const about = [
+  "I’m Janko, a QA engineer with 4+ years of experience in software testing. My IT career started with a Software Development Academy tester course and continued with my first major QA Engineer role at SolarWinds.",
+  "Since then, I’ve worked across enterprise software, broker web applications and e-commerce/internal business platforms. I’m now focused on QA automation, release quality, CI/CD quality checks and AI-assisted engineering workflows.",
+  "I currently work as a QA Engineer at Baťa and build Dulvarn — a release control system designed to help teams understand release risk before shipping.",
+];
+
+export const capabilities = [
+  {
+    title: "Manual & Exploratory QA",
+    description:
+      "Real testing mindset, edge cases, regression thinking, bug reporting, acceptance criteria and practical QA workflows.",
+  },
+  {
+    title: "Test Automation",
+    description:
+      "Python, Robot Framework, Selenium, Playwright basics, API testing and maintainable regression automation.",
+  },
+  {
+    title: "Release Risk Analysis",
+    description:
+      "Reviewing PR scope, test signals, CI/CD status, risky changes, regression impact and release readiness.",
   },
   {
     title: "QA Process Improvement",
     description:
-      "Improving QA workflows through better test strategy, clearer acceptance criteria, stronger bug reports, exploratory testing and risk-based regression planning.",
+      "Cleaner test strategy, better test cases, stronger bug reports, test planning and risk-based validation.",
   },
   {
-    title: "AI-Assisted QA & Engineering",
+    title: "Internal Tools & Web Apps",
     description:
-      "Using AI tools to speed up analysis, documentation, test design, internal tooling, debugging and engineering workflows without replacing human judgment.",
-  },
-];
-
-export const skills = [
-  {
-    category: "QA & Testing",
-    items: [
-      "Manual testing",
-      "Exploratory testing",
-      "Regression testing",
-      "E-commerce testing",
-      "Internal business platform testing",
-      "Bug reporting",
-      "Test cases",
-      "Acceptance criteria",
-      "QA workflows",
-      "Risk-based testing",
-      "Release validation",
-    ],
+      "Building practical tools with Next.js, FastAPI, PostgreSQL, Redis, Docker, Vercel, Cloudflare and Hetzner VPS.",
   },
   {
-    category: "Automation",
-    items: [
-      "Python",
-      "Robot Framework",
-      "Selenium",
-      "Playwright basics",
-      "API testing",
-      "Test data handling",
-      "Regression automation",
-      "CI test runs",
-      "Test stability",
-      "Maintainable test suites",
-    ],
-  },
-  {
-    category: "Engineering Stack",
-    items: [
-      "FastAPI",
-      "Next.js",
-      "PostgreSQL",
-      "Redis",
-      "Docker",
-      "GitHub",
-      "Vercel",
-      "Cloudflare",
-      "Hetzner VPS",
-      "Linux / Fedora / Ubuntu",
-      "API integrations",
-      "Stripe basics",
-      "Webhooks",
-    ],
-  },
-  {
-    category: "AI / Internal Tools",
-    items: [
-      "AI-assisted engineering",
-      "Prompt-driven development",
-      "Local LLM testing",
-      "Ollama",
-      "Multi-agent workflows",
-      "Autonomous agent systems",
-      "QA intelligence tooling",
-      "Release decision support",
-      "Documentation automation",
-    ],
-  },
-  {
-    category: "Product / Founder",
-    items: [
-      "Dulvarn",
-      "Wildcode Studio",
-      "Release control",
-      "QA audits",
-      "QA templates",
-      "B2B SaaS thinking",
-      "Internal dev hub",
-      "Product roadmap thinking",
-      "Monetization planning",
-    ],
+    title: "AI-Assisted Engineering",
+    description:
+      "Using AI, local LLMs, Ollama and agent workflows for analysis, documentation, debugging, planning and internal automation.",
   },
 ];
 
 export const workHistory = [
   {
-    title: "QA Engineer — Baťa / Bata Group",
+    title: "QA Engineer",
+    company: "Baťa / Bata Group",
     date: "Jan 2025 – Present",
     location: "Zlín, Czechia · Hybrid",
+    status: "Current",
     description:
-      "Current QA role focused on ensuring the quality and reliability of e-commerce and internal business platforms. Work includes manual testing, QA workflows, release validation, bug reporting and a growing focus on automation with Python and Robot Framework.",
+      "Current QA role focused on the quality and reliability of e-commerce and internal business platforms. Work includes manual testing, QA workflows, release validation, bug reporting and a growing automation focus with Python and Robot Framework.",
     highlights: [
       "E-commerce QA",
       "Internal business platform testing",
@@ -150,11 +96,21 @@ export const workHistory = [
       "Bug reporting and release validation",
       "Python and Robot Framework automation focus",
     ],
+    skills: [
+      "Manual QA",
+      "Regression testing",
+      "E-commerce QA",
+      "Robot Framework",
+      "Python",
+      "Bug reporting",
+    ],
   },
   {
-    title: "Manual Tester — Flowio",
+    title: "Manual Tester",
+    company: "Flowio",
     date: "Feb 2024 – Jan 2025",
     location: "Slovakia · Hybrid",
+    status: "QA role",
     description:
       "Manual testing role focused on a web application for a broker company. Work included test case writing, PostgreSQL-related validation, manual testing, bug reporting and regression checks.",
     highlights: [
@@ -165,13 +121,22 @@ export const workHistory = [
       "Bug reporting",
       "Regression checks",
     ],
+    skills: [
+      "Manual testing",
+      "Test cases",
+      "PostgreSQL",
+      "Regression testing",
+      "Bug reporting",
+    ],
   },
   {
-    title: "QA Engineer — SolarWinds",
+    title: "QA Engineer",
+    company: "SolarWinds",
     date: "Jan 2022 – Jan 2024",
     location: "Brno, Czechia · Hybrid",
+    status: "First QA role",
     description:
-      "First major IT/QA role after completing tester training. Worked as a QA Engineer in an enterprise software environment, building a strong practical foundation in QA workflows, SQL, test execution, bug reporting and software quality processes.",
+      "First major IT/QA role after completing tester training. Worked in an enterprise software environment and built a strong practical foundation in QA workflows, SQL, test execution, bug reporting and software quality processes.",
     highlights: [
       "First professional IT/QA role",
       "Enterprise software QA",
@@ -181,23 +146,36 @@ export const workHistory = [
       "Bug reporting",
       "QA process foundation",
     ],
-  },
-  {
-    title: "Freelance — Self-employed",
-    date: "Dec 2021 – Mar 2022",
-    location: "Trnava Region, Slovakia",
-    description:
-      "Short freelance period focused on Linux desktop and technical support-style work while transitioning into IT and software testing.",
-    highlights: [
-      "Linux Desktop",
-      "Technical troubleshooting",
-      "Early IT transition period",
+    skills: [
+      "SQL",
+      "ADO pipelines",
+      "QA workflows",
+      "Manual testing",
+      "Regression testing",
+      "Bug reporting",
     ],
   },
   {
-    title: "Technology Specialist — Lignofer s.r.o.",
+    title: "Freelance",
+    company: "Self-employed",
+    date: "Dec 2021 – Mar 2022",
+    location: "Trnava Region, Slovakia",
+    status: "Transition",
+    description:
+      "Short freelance period focused on Linux desktop and technical troubleshooting while transitioning into IT and software testing.",
+    highlights: [
+      "Linux desktop",
+      "Technical troubleshooting",
+      "Early IT transition period",
+    ],
+    skills: ["Linux Desktop", "Troubleshooting", "Technical support"],
+  },
+  {
+    title: "Technology Specialist",
+    company: "Lignofer s.r.o.",
     date: "Jun 2017 – Dec 2021",
     location: "Trnava Region, Slovakia",
+    status: "Pre-IT",
     description:
       "Pre-IT technical role that helped build practical technical thinking, responsibility, process awareness and hands-on problem solving before moving into software quality assurance.",
     highlights: [
@@ -205,6 +183,11 @@ export const workHistory = [
       "Practical problem solving",
       "Process awareness",
       "Responsibility before IT career transition",
+    ],
+    skills: [
+      "Technical problem solving",
+      "Process awareness",
+      "Practical technical work",
     ],
   },
 ];
@@ -230,103 +213,294 @@ export const education = [
     date: "Sep 2000 – May 2005",
     description:
       "Technical secondary education that supported practical technical thinking before the later transition into IT and Quality Assurance.",
-    skills: [
-      "Technical education",
-      "Engineering-oriented thinking",
-      "Practical technical foundation",
-    ],
+    skills: [],
   },
 ];
-
-export const projectBridge =
-  "After building a practical QA foundation in enterprise, web and e-commerce environments, I started building Dulvarn — a release control and QA intelligence system focused on helping teams make safer release decisions.";
 
 export const projects = [
   {
     title: "Dulvarn — Release Control & QA Intelligence",
+    status: "Beta",
     description:
-      "A B2B release quality system designed to help teams understand release risk before shipping. Dulvarn focuses on PR signals, CI/test results, QA workflows, guard gates and clear release decisions.",
-    tags: ["Release control", "QA intelligence", "CI/CD", "GitHub", "B2B SaaS", "QA workflows"],
+      "A B2B release quality system designed to help teams understand release risk before shipping. It connects QA thinking, CI/CD signals, GitHub workflows, guard gates and human-reviewed release decisions.",
     proof: [
-      "Product thinking",
       "QA domain expertise",
       "Release risk modeling",
+      "Product thinking",
       "Full-stack SaaS building",
       "Founder mindset",
+    ],
+    tags: [
+      "Next.js",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "GitHub",
+      "CI/CD",
+      "QA workflows",
+      "Release Control",
+    ],
+  },
+  {
+    title: "Dulvarn Tools — Productized QA Workflows",
+    status: "Beta",
+    description:
+      "Practical QA tools and templates for release risk scoring, GitHub QA gates, audit workflows and QA process improvement.",
+    proof: [
+      "Turning QA knowledge into products",
+      "Practical deliverables",
+      "Monetization thinking",
+      "Tooling mindset",
+    ],
+    tags: [
+      "QA Audits",
+      "Templates",
+      "GitHub Actions",
+      "Release Risk",
+      "Productized Services",
     ],
   },
   {
     title: "Wildcode Studio — Internal Builder Hub",
+    status: "Internal",
     description:
-      "An internal development hub for software experiments, automation tools, infrastructure, AI workflows and product prototypes.",
-    tags: ["Internal tools", "automation", "product development", "infrastructure", "AI workflows"],
+      "Internal development hub for experiments, automation tools, infrastructure, AI workflows, product prototypes and operational documentation.",
     proof: [
-      "Ability to build and organize technical systems",
-      "Practical product experimentation",
-      "Tooling mindset",
-      "Dev workflow design",
+      "Engineering organization",
+      "Internal systems thinking",
+      "Infrastructure ownership",
+      "Product experimentation",
+    ],
+    tags: [
+      "Internal Tools",
+      "Infrastructure",
+      "Docs",
+      "Automation",
+      "Product Development",
     ],
   },
   {
-    title: "QA Audit Tools — Practical Release Risk Reviews",
+    title: "Autonomous Agent System / Multi-Agent AI",
+    status: "Internal",
     description:
-      "Templates, workflows and review structures for finding release risks, weak test coverage, missing QA signals and process gaps before production releases.",
-    tags: ["QA audit", "release risk", "test coverage", "templates", "process review"],
+      "Internal AI and agent workflow systems used for experimentation with task execution, approvals, workflow orchestration, security review, documentation and AI-assisted engineering.",
     proof: [
-      "QA consulting mindset",
-      "Ability to turn QA experience into practical deliverables",
-      "Business-oriented quality thinking",
+      "AI-assisted engineering",
+      "Workflow orchestration thinking",
+      "Backend/API experimentation",
+      "Human-in-the-loop governance",
+    ],
+    tags: [
+      "FastAPI",
+      "Agents",
+      "Workflows",
+      "Local LLMs",
+      "Ollama",
+      "Automation",
+      "Governance",
     ],
   },
   {
-    title: "Automation Portfolio — Practical QA Automation Examples",
+    title: "Automation Portfolio",
+    status: "In progress",
     description:
-      "Selected automation examples focused on maintainable test design, regression checks, UI/API testing and real QA workflows using Python, Robot Framework, Selenium and Playwright basics.",
-    tags: ["Python", "Robot Framework", "Selenium", "Playwright", "API testing", "regression"],
+      "Selected automation examples focused on practical QA workflows, regression checks, UI/API testing and maintainable test design.",
     proof: [
-      "Automation direction",
-      "Technical QA growth",
-      "Practical testing mindset",
+      "Automation growth",
+      "QA engineering direction",
+      "Test design thinking",
+      "Practical regression mindset",
+    ],
+    tags: [
+      "Python",
+      "Robot Framework",
+      "Selenium",
+      "Playwright",
+      "API Testing",
+      "Regression",
+    ],
+  },
+];
+
+export const websites = [
+  {
+    title: "Dulvarn",
+    url: "https://www.dulvarn.com/",
+    type: "B2B SaaS / Release quality platform",
+    status: "Live",
+    description:
+      "Release risk control for QA and engineering teams. Focused on PR signals, CI/CD status, regression impact, human-reviewed release decisions and practical QA workflows.",
+    proof: [
+      "SaaS product thinking",
+      "QA domain expertise",
+      "Release control positioning",
+      "Full-stack product building",
+    ],
+    tags: ["Dulvarn", "Release Control", "QA Intelligence", "CI/CD", "SaaS"],
+  },
+  {
+    title: "Dulvarn Tools",
+    url: "https://tools.dulvarn.com/",
+    type: "QA tools / Templates / Productized workflows",
+    status: "Beta",
+    description:
+      "A product layer for practical QA tools, release risk scoring, GitHub QA gates, templates and audit workflows.",
+    proof: [
+      "Ability to productize QA knowledge",
+      "Practical tooling mindset",
+      "Monetizable QA deliverables",
+      "Release risk and QA audit thinking",
+    ],
+    tags: [
+      "QA Tools",
+      "GitHub Actions",
+      "Release Risk",
+      "Templates",
+      "Audit Workflows",
     ],
   },
   {
-    title: "AI-Assisted Engineering Workflows",
+    title: "Wildcode Infrastructure Docs",
+    url: "https://docs.wildcode.studio/",
+    type: "Infrastructure documentation / Runbooks",
+    status: "Live",
     description:
-      "Experiments with local LLMs, Ollama, multi-agent workflows and AI-assisted development systems for debugging, documentation, planning and internal automation.",
-    tags: ["AI-assisted engineering", "Ollama", "local LLMs", "multi-agent workflows", "automation"],
+      "Technical documentation and runbooks for Wildcode Studio infrastructure, environments and operational workflows.",
     proof: [
-      "Modern engineering workflow awareness",
-      "Ability to test and evaluate AI tooling",
-      "Internal automation thinking",
+      "Documentation discipline",
+      "Infrastructure ownership",
+      "Runbook thinking",
+      "Operational responsibility",
+    ],
+    tags: ["Docs", "Infrastructure", "Runbooks", "Wildcode", "Operations"],
+  },
+  {
+    title: "Personal Website",
+    url: "https://janduris.vercel.app/",
+    type: "Personal portfolio / QA founder profile",
+    status: "Live",
+    description:
+      "A focused personal website presenting QA experience, automation direction, projects, websites and release quality work.",
+    proof: [
+      "Personal positioning",
+      "Frontend deployment",
+      "Clear technical communication",
+      "Vercel-based delivery",
+    ],
+    tags: ["Next.js", "Vercel", "Portfolio", "Personal Brand"],
+  },
+];
+
+export const skills = [
+  {
+    category: "QA & Testing",
+    practicalUse:
+      "Finding bugs, validating releases, improving test coverage and helping teams ship with fewer surprises.",
+    capabilities: [
+      "Manual testing",
+      "Exploratory testing",
+      "Regression testing",
+      "E-commerce QA",
+      "Internal business platform testing",
+      "Bug reporting",
+      "Test cases",
+      "Acceptance criteria",
+      "QA workflows",
+      "Risk-based testing",
+      "Release validation",
+    ],
+  },
+  {
+    category: "Automation",
+    practicalUse:
+      "Building regression checks, reducing repeated manual work and making test suites easier to maintain.",
+    capabilities: [
+      "Python",
+      "Robot Framework",
+      "Selenium",
+      "Playwright basics",
+      "API testing",
+      "Test data handling",
+      "Regression automation",
+      "CI test runs",
+      "Test stability",
+      "Maintainable test suites",
+    ],
+  },
+  {
+    category: "Engineering Stack",
+    practicalUse:
+      "Building and deploying small products, internal tools, SaaS prototypes and QA-focused web applications.",
+    capabilities: [
+      "FastAPI",
+      "Next.js",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "GitHub",
+      "Vercel",
+      "Cloudflare",
+      "Hetzner VPS",
+      "Linux / Fedora / Ubuntu",
+      "API integrations",
+      "Stripe basics",
+      "Webhooks",
+    ],
+  },
+  {
+    category: "AI / Internal Tools",
+    practicalUse:
+      "Using AI as a practical accelerator for analysis, documentation, debugging, planning and internal workflow automation.",
+    capabilities: [
+      "AI-assisted engineering",
+      "Prompt-driven development",
+      "Local LLM testing",
+      "Ollama",
+      "Multi-agent workflows",
+      "Autonomous agent systems",
+      "QA intelligence tooling",
+      "Release decision support",
+      "Documentation automation",
+    ],
+  },
+  {
+    category: "Product / Founder",
+    practicalUse:
+      "Turning real QA problems into tools, workflows, templates and productized services.",
+    capabilities: [
+      "Dulvarn",
+      "Wildcode Studio",
+      "Release control",
+      "QA audits",
+      "QA templates",
+      "B2B SaaS thinking",
+      "Internal dev hub",
+      "Product roadmap thinking",
+      "Monetization planning",
     ],
   },
 ];
 
 export const proofOfWork = [
   {
-    title: "QA practice",
+    title: "Real QA background",
     description:
-      "Real QA background from manual testing, regression, exploratory testing and e-commerce quality work.",
+      "Enterprise software, broker web application and e-commerce/internal platform QA experience.",
   },
   {
-    title: "Automation growth",
+    title: "Automation direction",
     description:
-      "Moving deeper into Python, Robot Framework, Selenium, Playwright basics and API testing.",
+      "Growing automation practice with Python, Robot Framework, Selenium, Playwright basics, API testing and CI test workflows.",
   },
   {
     title: "Product building",
     description:
-      "Building Dulvarn and QA audit tools around real release quality problems.",
+      "Dulvarn, Dulvarn Tools and Wildcode systems show the ability to turn QA problems into working products and tools.",
   },
   {
     title: "Engineering ownership",
     description:
-      "Working with Next.js, FastAPI, PostgreSQL, Redis, Docker, Vercel, Cloudflare, Hetzner VPS and Linux-based workflows.",
-  },
-  {
-    title: "AI-assisted workflow",
-    description:
-      "Using AI and local LLMs as engineering accelerators for analysis, documentation, debugging and planning.",
+      "Hands-on work with web apps, APIs, databases, deployment, infrastructure, documentation and AI-assisted workflows.",
   },
 ];
 
@@ -336,5 +510,5 @@ export const buildingToward = [
   "Practical QA tooling",
   "CI/CD quality checks",
   "AI-assisted QA workflows",
-  "Smaller, useful tools shipped faster",
+  "Smaller useful tools shipped faster",
 ];
