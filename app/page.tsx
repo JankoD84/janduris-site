@@ -72,12 +72,9 @@ export default function Home() {
               >
                 See Projects
               </a>
-              <a
-                href="#contact"
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-emerald-200/20 px-5 py-3 text-sm font-semibold text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08]"
-              >
-                Contact Me
-              </a>
+<div className="sm:ml-2">
+                <ContactIconGroup />
+              </div>
             </div>
           </div>
 
@@ -265,9 +262,8 @@ export default function Home() {
           <p className="mt-5 max-w-2xl leading-7 text-muted">
             I’m open to relevant QA automation, release quality, product QA and practical audit conversations.
           </p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            <ContactLink href={"mailto:" + profile.email} label="Email" value={profile.email} />
-            <ContactLink href={profile.linkedin} label="LinkedIn" value="linkedin.com/in/jduris" />
+          <div className="mt-8">
+            <ContactIconGroup />
           </div>
         </div>
       </section>
@@ -440,22 +436,106 @@ function StatusBadge({
   );
 }
 
-function ContactLink({
-  href,
-  label,
-  value,
+function ContactIconGroup() {
+  const links = [
+    {
+      label: "Email Janko",
+      href: "mailto:" + profile.email,
+      icon: <EmailIcon />,
+    },
+    {
+      label: "Open LinkedIn profile",
+      href: profile.linkedin,
+      icon: <LinkedInIcon />,
+      external: true,
+    },
+    {
+      label: "Open GitHub profile",
+      href: profile.github,
+      icon: <GitHubIcon />,
+      external: true,
+    },
+    {
+      label: "Call Janko",
+      href: "tel:" + profile.phone,
+      icon: <PhoneIcon />,
+    },
+  ];
+
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      {links.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          aria-label={link.label}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noreferrer" : undefined}
+          className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50"
+        >
+          {link.icon}
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function IconSvg({
+  children,
 }: Readonly<{
-  href: string;
-  label: string;
-  value: string;
+  children: React.ReactNode;
 }>) {
   return (
-    <a
-      href={href}
-      className="rounded-lg border border-white/10 bg-black/16 p-4 transition hover:border-white/24 hover:bg-white/[0.05]"
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-8 w-8"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <span className="block text-sm font-medium text-sky-200">{label}</span>
-      <span className="mt-1 block break-words text-sm text-slate-200">{value}</span>
-    </a>
+      {children}
+    </svg>
+  );
+}
+
+function EmailIcon() {
+  return (
+    <IconSvg>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
+    </IconSvg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <IconSvg>
+      <path d="M7 10v8" />
+      <path d="M7 7.2v.1" />
+      <path d="M11 18v-8" />
+      <path d="M11 13.5c0-2.2 1.2-3.5 3.1-3.5 1.8 0 2.9 1.2 2.9 3.5V18" />
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+    </IconSvg>
+  );
+}
+
+function GitHubIcon() {
+  return (
+    <IconSvg>
+      <path d="M9 19c-4 1.2-4-2-5.5-2.4" />
+      <path d="M15 22v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6A4.6 4.6 0 0 0 18.7 7c.1-.4.6-1.9-.2-3.5 0 0-1.1-.3-3.5 1.3a12.1 12.1 0 0 0-6 0C6.6 3.2 5.5 3.5 5.5 3.5 4.7 5.1 5.2 6.6 5.3 7A4.6 4.6 0 0 0 4 10.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22" />
+    </IconSvg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <IconSvg>
+      <rect x="7" y="2" width="10" height="20" rx="2" />
+      <path d="M11 18h2" />
+    </IconSvg>
   );
 }

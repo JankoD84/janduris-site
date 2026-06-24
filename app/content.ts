@@ -5,8 +5,10 @@ export const profile = {
     "I help teams reduce release risk through QA automation, test strategy, CI/CD quality checks, and AI-assisted engineering tools.",
   proofLine:
     "4+ years in QA · SolarWinds → Flowio → Baťa · Building Dulvarn · Python / Robot Framework automation focus",
-  email: "duris.janko@gmail.com",
+  email: "duris.janko@tutanota.com",
   linkedin: "https://www.linkedin.com/in/jduris/",
+  github: "https://github.com/JankoD84/",
+  phone: "+420608118364",
 };
 
 export const navigation = [
