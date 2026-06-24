@@ -319,9 +319,9 @@ export function ContactIconGroup() {
     { label: "Call Janko", href: "tel:" + profile.phone, icon: <PhoneIcon /> },
   ];
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-start sm:gap-3">
+    <div className="grid grid-cols-4 items-center justify-center gap-2.5 sm:gap-3">
       {links.map((link) => (
-        <a key={link.label} href={link.href} aria-label={link.label} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:min-w-12">
+        <a key={link.label} href={link.href} aria-label={link.label} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50">
           {link.icon}
         </a>
       ))}

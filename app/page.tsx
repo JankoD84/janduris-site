@@ -18,11 +18,15 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/80 sm:text-sm sm:tracking-[0.28em]">{profile.name}</p>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.04] tracking-tight text-ink sm:mt-5 sm:text-5xl lg:text-7xl">{profile.title}</h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:mt-7 sm:text-lg sm:leading-8 lg:text-xl">{profile.message}</p>
-            <div className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:items-center sm:gap-3">
-              <Link href="/proof" className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto">View Proof of Work</Link>
-              <Link href="/projects" className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/16 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto">Explore Projects</Link>
-              <Link href="/cv" className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-sky-300/18 px-5 py-3 text-sm font-semibold text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.07] focus:outline-none focus:ring-2 focus:ring-sky-300/45 sm:min-h-12 sm:w-auto">View CV</Link>
-              <div className="mt-1 flex justify-center sm:ml-2 sm:mt-0"><ContactIconGroup /></div>
+            <div className="mt-7 flex max-w-3xl flex-col gap-3 sm:mt-10 lg:flex-row lg:items-start">
+              <div className="grid w-full gap-2.5 sm:grid-cols-3 lg:flex-1">
+                <Link href="/proof" className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-center text-sm font-semibold leading-tight text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50">View Proof of Work</Link>
+                <Link href="/projects" className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-white/16 px-5 py-3 text-center text-sm font-semibold leading-tight text-white transition hover:border-white/30 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-sky-300/50">Explore Projects</Link>
+                <Link href="/cv" className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-sky-300/18 px-5 py-3 text-center text-sm font-semibold leading-tight text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.07] focus:outline-none focus:ring-2 focus:ring-sky-300/45">View CV</Link>
+              </div>
+              <div className="flex justify-center lg:justify-start">
+                <ContactIconGroup />
+              </div>
             </div>
           </div>
           <ReleaseSignalCard />
