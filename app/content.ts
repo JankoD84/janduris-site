@@ -16,13 +16,13 @@ export const profile = {
 };
 
 export const navigation = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Proof", href: "#featured-proof" },
-  { label: "Projects", href: "#projects" },
-  { label: "Websites", href: "#websites" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Work", href: "/work" },
+  { label: "Proof", href: "/proof" },
+  { label: "Projects", href: "/projects" },
+  { label: "Websites", href: "/websites" },
+  { label: "Skills", href: "/skills" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const releaseSignal = {
