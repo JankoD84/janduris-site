@@ -345,22 +345,23 @@ export default function Home() {
 }
 
 function HeroWallRevealAnimation() {
-  const columns = 14;
-  const rows = 3;
+  const columns = 20;
+  const rows = 4;
+  const shots = [38, 43, 48, 53, 58, 63];
+  const fireTimes = [0.82, 1.48, 2.14, 2.8, 3.46, 4.12];
+  const impactOffset = 0.44;
   const brickCount = columns * rows;
-  const shotCount = 6;
   const bricks = Array.from({ length: brickCount }, (_, index) => {
     const column = index % columns;
-    const shot = Math.min(shotCount - 1, Math.max(0, Math.floor((column / columns) * shotCount)));
+    const row = Math.floor(index / columns);
+    const shot = Math.min(shots.length - 1, Math.max(0, Math.floor((column / columns) * shots.length)));
 
     return {
       id: index,
       shot,
-      delay: 1.05 + shot * 0.55 + (index % rows) * 0.05,
+      delay: fireTimes[shot] + impactOffset + row * 0.035 + (column % 2) * 0.025,
     };
   });
-
-  const shots = [18, 31, 45, 58, 72, 84];
 
   return (
     <div aria-hidden="true" className="hero-wall-reveal mx-auto w-full max-w-5xl overflow-hidden py-1 sm:py-2">
@@ -375,7 +376,7 @@ function HeroWallRevealAnimation() {
               style={
                 {
                   "--break-delay": `${brick.delay}s`,
-                  "--break-x": `${(brick.shot - 2.5) * 0.4}rem`,
+                  "--break-x": `${(brick.shot - 2.5) * 0.22}rem`,
                 } as CSSProperties
               }
             />
@@ -383,18 +384,41 @@ function HeroWallRevealAnimation() {
         </div>
 
         <div className="hero-wall-reveal__shots">
-          {shots.map((left, index) => (
-            <span
-              key={left}
-              className="hero-wall-reveal__shot"
-              style={
-                {
-                  "--shot-left": `${left}%`,
-                  "--shot-delay": `${0.72 + index * 0.55}s`,
-                } as CSSProperties
-              }
-            />
-          ))}
+          {shots.map((left, index) => {
+            const impactDelay = fireTimes[index] + impactOffset;
+
+            return (
+              <span key={left} className="hero-wall-reveal__shot-group">
+                <span
+                  className="hero-wall-reveal__shot"
+                  style={
+                    {
+                      "--shot-left": `${left}%`,
+                      "--shot-delay": `${fireTimes[index]}s`,
+                    } as CSSProperties
+                  }
+                />
+                <span
+                  className="hero-wall-reveal__impact"
+                  style={
+                    {
+                      "--shot-left": `${left}%`,
+                      "--impact-delay": `${impactDelay}s`,
+                    } as CSSProperties
+                  }
+                />
+                <span
+                  className="hero-wall-reveal__fragments"
+                  style={
+                    {
+                      "--shot-left": `${left}%`,
+                      "--impact-delay": `${impactDelay}s`,
+                    } as CSSProperties
+                  }
+                />
+              </span>
+            );
+          })}
         </div>
 
         <div className="hero-wall-reveal__shooter">
