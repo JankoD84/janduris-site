@@ -20,6 +20,16 @@ export const navigation = [
   { label: "Contact", href: "#contact" },
 ];
 
+export const releaseSignal = {
+  repository: "dulvarn-core",
+  ciChecks: "Passed",
+  coverage: "84%",
+  risk: "Medium",
+  decision: "Conditional GO",
+  pipeline: ["PR", "CI", "Tests", "Risk", "Decision"],
+  badges: ["Passed", "Medium Risk", "Conditional GO"],
+};
+
 export const signalBar = [
   {
     title: "QA Foundation",

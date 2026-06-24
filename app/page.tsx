@@ -6,6 +6,7 @@ import {
   navigation,
   profile,
   projects,
+  releaseSignal,
   proofOfWork,
   signalBar,
   skills,
@@ -18,13 +19,15 @@ const sectionEyebrow =
 const sectionTitle =
   "mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl";
 const cardClass =
-  "rounded-lg border border-line bg-white/[0.045] p-6 shadow-soft backdrop-blur";
+  "rounded-lg border border-white/12 bg-slate-950/45 p-6 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055] hover:shadow-[0_24px_90px_rgba(56,189,248,0.12)]";
 const tagClass =
-  "rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200";
+  "rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200 transition hover:border-sky-300/20 hover:bg-sky-300/[0.08]";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden">
+    <main className="relative min-h-screen overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.14),transparent_28rem),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.1),transparent_26rem)]" />
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:44px_44px]" />
       <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
           <a href="#home" className="text-sm font-semibold tracking-wide text-ink">
@@ -61,40 +64,31 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#work"
+                href="#proof"
                 className="inline-flex min-h-12 items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
               >
-                View Work
+                View Proof of Work
               </a>
               <a
                 href="#projects"
                 className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/16 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.06]"
               >
-                See Projects
+                Explore Projects
               </a>
-<div className="sm:ml-2">
+              <div className="sm:ml-2">
                 <ContactIconGroup />
               </div>
             </div>
           </div>
 
-          <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-5 shadow-soft">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-200">
-              Current signal
-            </p>
-            <div className="mt-5 space-y-4 text-sm text-slate-200">
-              <Metric label="Role" value="QA Engineer at Baťa" />
-              <Metric label="Focus" value="Automation + release quality" />
-              <Metric label="Building" value="Dulvarn release control" />
-            </div>
-          </div>
+          <ReleaseSignalCard />
         </div>
 
         <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {signalBar.map((item) => (
             <article
               key={item.title}
-              className="rounded-lg border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-200"
+              className="rounded-lg border border-white/10 bg-slate-950/45 p-4 text-sm text-slate-200 backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055]"
             >
               <h2 className="font-semibold text-ink">{item.title}</h2>
               <p className="mt-2 leading-6 text-muted">{item.description}</p>
@@ -106,7 +100,8 @@ export default function Home() {
       <Section id="about" eyebrow="About" title="Practical QA experience, now pointed at release quality.">
         <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
           <div className={cardClass}>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
+            <StatusRail labels={["QA", "CI", "RISK", "GO"]} />
+            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
               Positioning
             </p>
             <p className="mt-4 text-2xl font-semibold leading-9 text-ink">
@@ -126,8 +121,9 @@ export default function Home() {
       <Section id="capabilities" eyebrow="Capability Snapshot" title="The useful parts of QA, automation, and engineering brought together.">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((capability, index) => (
-            <article key={capability.title} className={cardClass + " min-h-48"}>
-              <p className="text-sm font-semibold text-sky-200">0{index + 1}</p>
+            <article key={capability.title} className={cardClass + " min-h-48 overflow-hidden"}>
+              <StatusRail labels={["TEST", "CHECK", "READY"]} />
+              <p className="mt-5 text-sm font-semibold text-sky-200">0{index + 1}</p>
               <h3 className="mt-3 text-xl font-semibold text-ink">{capability.title}</h3>
               <p className="mt-3 leading-7 text-muted">{capability.description}</p>
             </article>
@@ -145,7 +141,8 @@ export default function Home() {
                 </p>
                 <p className="mt-3 text-sm text-muted">{item.location}</p>
               </div>
-              <div className={cardClass + " relative"}>
+              <div className={cardClass + " relative overflow-hidden"}>
+                <StatusRail labels={["QA", "REGRESSION", "VALIDATE"]} />
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="text-sm font-medium uppercase tracking-[0.18em] text-emerald-200">
@@ -192,8 +189,9 @@ export default function Home() {
       <Section id="skills" eyebrow="Skills Matrix" title="What these skills are useful for in real work.">
         <div className="grid gap-4 lg:grid-cols-5">
           {skills.map((group) => (
-            <article key={group.category} className={cardClass + " lg:p-5"}>
-              <h3 className="text-lg font-semibold text-ink">{group.category}</h3>
+            <article key={group.category} className={cardClass + " overflow-hidden lg:p-5"}>
+              <StatusRail labels={["CAPABILITY", "USE"]} />
+              <h3 className="mt-5 text-lg font-semibold text-ink">{group.category}</h3>
               <p className="mt-3 text-sm leading-6 text-muted">{group.practicalUse}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {group.capabilities.map((item) => (
@@ -222,7 +220,7 @@ export default function Home() {
       </Section>
 
       <Section id="direction" eyebrow="Current Direction" title="Focused growth, shipped as useful tools.">
-        <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-6 sm:p-8">
+        <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-6 shadow-soft transition duration-200 hover:border-sky-300/35 hover:bg-sky-300/[0.085] sm:p-8">
           <p className="max-w-3xl text-lg leading-8 text-muted">
             My current focus is becoming stronger as a QA Automation Engineer / SDET-oriented engineer while building practical release quality tools through Dulvarn.
           </p>
@@ -297,11 +295,78 @@ function Section({
   );
 }
 
-function Metric({ label, value }: Readonly<{ label: string; value: string }>) {
+function ReleaseSignalCard() {
   return (
-    <div className="border-t border-white/10 pt-4 first:border-t-0 first:pt-0">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200/80">{label}</p>
-      <p className="mt-1 font-medium text-ink">{value}</p>
+    <aside className="rounded-lg border border-sky-300/20 bg-slate-950/65 p-5 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_24px_90px_rgba(56,189,248,0.14)]">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-300/80">
+            Visual concept
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold text-ink">Release Signal</h2>
+        </div>
+        <StatusBadge label={releaseSignal.decision} tone="emerald" />
+      </div>
+      <div className="mt-5 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-300">
+        {releaseSignal.pipeline.map((step, index) => (
+          <div key={step} className="flex items-center gap-2">
+            <span className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5">{step}</span>
+            {index < releaseSignal.pipeline.length - 1 ? (
+              <span className="text-sky-300/60">→</span>
+            ) : null}
+          </div>
+        ))}
+      </div>
+      <div className="mt-6 space-y-3 text-sm">
+        <SignalRow label="Repository" value={releaseSignal.repository} />
+        <SignalRow label="CI Checks" value={releaseSignal.ciChecks} tone="emerald" />
+        <SignalRow label="Test Coverage" value={releaseSignal.coverage} />
+        <SignalRow label="Risk Level" value={releaseSignal.risk} tone="amber" />
+        <SignalRow label="Decision" value={releaseSignal.decision} tone="emerald" />
+      </div>
+      <div className="mt-5 flex flex-wrap gap-2">
+        {releaseSignal.badges.map((badge) => (
+          <span key={badge} className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200">
+            {badge}
+          </span>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function SignalRow({
+  label,
+  value,
+  tone = "default",
+}: Readonly<{
+  label: string;
+  value: string;
+  tone?: "default" | "emerald" | "amber";
+}>) {
+  const valueClass =
+    tone === "emerald"
+      ? "text-emerald-200"
+      : tone === "amber"
+        ? "text-amber-200"
+        : "text-slate-100";
+
+  return (
+    <div className="flex items-center justify-between gap-4 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2">
+      <span className="text-muted">{label}</span>
+      <span className={"font-medium " + valueClass}>{value}</span>
+    </div>
+  );
+}
+
+function StatusRail({ labels }: Readonly<{ labels: string[] }>) {
+  return (
+    <div className="-mx-2 -mt-2 mb-1 flex flex-wrap gap-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-sky-200/70">
+      {labels.map((label) => (
+        <span key={label} className="rounded border border-white/10 bg-black/20 px-2 py-1">
+          {label}
+        </span>
+      ))}
     </div>
   );
 }
@@ -362,7 +427,8 @@ function ProjectCard({
   };
 }>) {
   return (
-    <article className={cardClass + " flex flex-col"}>
+    <article className={cardClass + " flex flex-col overflow-hidden"}>
+      <StatusRail labels={["PRODUCT", "SYSTEM", "QA"]} />
       <div className="flex flex-wrap items-start justify-between gap-3">
         <h3 className="max-w-xl text-xl font-semibold text-ink">{item.title}</h3>
         <StatusBadge label={item.status} />
@@ -391,7 +457,7 @@ function WebsiteCard({
   };
 }>) {
   return (
-    <article className="rounded-lg border border-emerald-200/15 bg-emerald-300/[0.045] p-6 shadow-soft">
+    <article className="rounded-lg border border-emerald-200/15 bg-emerald-300/[0.045] p-6 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.065] hover:shadow-[0_24px_90px_rgba(16,185,129,0.13)]">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-emerald-200">{item.type}</p>
