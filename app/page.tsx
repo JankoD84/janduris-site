@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 
 import {
   about,
@@ -89,7 +89,7 @@ export default function Home() {
         className="relative mx-auto w-full max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:min-h-[88vh] md:px-8 lg:px-10 lg:pt-28"
       >
         <div className="absolute inset-x-4 top-20 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent sm:inset-x-6 sm:top-24" />
-        <ShiftRightQaAnimation />
+        <HeroWallRevealAnimation />
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-10">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/80 sm:text-sm sm:tracking-[0.28em]">
@@ -344,39 +344,62 @@ export default function Home() {
   );
 }
 
-function ShiftRightQaAnimation() {
-  const blocks = [
-    { label: "PR", tone: "sky", step: "self-end" },
-    { label: "CI", tone: "sky", step: "self-end" },
-    { label: "TEST", tone: "sky", step: "self-center" },
-    { label: "BUG", tone: "amber", step: "self-center" },
-    { label: "RISK", tone: "amber", step: "self-start" },
-    { label: "GO", tone: "emerald", step: "self-start" },
-    { label: "PROD", tone: "emerald", step: "self-start" },
-  ];
+function HeroWallRevealAnimation() {
+  const columns = 14;
+  const rows = 3;
+  const brickCount = columns * rows;
+  const shotCount = 6;
+  const bricks = Array.from({ length: brickCount }, (_, index) => {
+    const column = index % columns;
+    const shot = Math.min(shotCount - 1, Math.max(0, Math.floor((column / columns) * shotCount)));
+
+    return {
+      id: index,
+      shot,
+      delay: 1.05 + shot * 0.55 + (index % rows) * 0.05,
+    };
+  });
+
+  const shots = [18, 31, 45, 58, 72, 84];
 
   return (
-    <div aria-hidden="true" className="shift-qa-wrap mx-auto w-full max-w-5xl overflow-hidden py-2 sm:py-3">
-      <div className="shift-qa-stage relative flex h-[78px] items-center justify-center rounded-lg border border-white/[0.055] bg-slate-950/[0.24] px-3 sm:h-[112px] sm:px-6">
-        <div className="absolute inset-x-4 top-1/2 h-px bg-gradient-to-r from-transparent via-sky-300/18 to-transparent" />
-        <div className="relative flex h-[54px] max-w-full items-center gap-1.5 sm:h-[78px] sm:gap-2.5">
-          {blocks.map((block) => (
-            <div
-              key={block.label}
-              className={
-                "shift-qa-block " +
-                block.step +
-                " " +
-                (block.tone === "emerald"
-                  ? "shift-qa-block--emerald"
-                  : block.tone === "amber"
-                    ? "shift-qa-block--amber"
-                    : "shift-qa-block--sky")
+    <div aria-hidden="true" className="hero-wall-reveal mx-auto w-full max-w-5xl overflow-hidden py-1 sm:py-2">
+      <div className="hero-wall-reveal__stage">
+        <p className="hero-wall-reveal__message">Where others shift-left, we shift-right.</p>
+
+        <div className="hero-wall-reveal__wall" style={{ "--brick-columns": columns } as CSSProperties}>
+          {bricks.map((brick) => (
+            <span
+              key={brick.id}
+              className="hero-wall-reveal__brick"
+              style={
+                {
+                  "--break-delay": `${brick.delay}s`,
+                  "--break-x": `${(brick.shot - 2.5) * 0.4}rem`,
+                } as CSSProperties
               }
-            >
-              {block.label}
-            </div>
+            />
           ))}
+        </div>
+
+        <div className="hero-wall-reveal__shots">
+          {shots.map((left, index) => (
+            <span
+              key={left}
+              className="hero-wall-reveal__shot"
+              style={
+                {
+                  "--shot-left": `${left}%`,
+                  "--shot-delay": `${0.72 + index * 0.55}s`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+
+        <div className="hero-wall-reveal__shooter">
+          <span className="hero-wall-reveal__barrel" />
+          <span className="hero-wall-reveal__base" />
         </div>
       </div>
     </div>
