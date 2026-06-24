@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import {
   about,
   buildingToward,
@@ -15,67 +19,109 @@ import {
 } from "./content";
 
 const sectionEyebrow =
-  "text-sm font-medium uppercase tracking-[0.22em] text-sky-300/80";
+  "text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]";
 const sectionTitle =
-  "mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl";
+  "mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl";
 const cardClass =
-  "rounded-lg border border-white/12 bg-slate-950/45 p-6 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055] hover:shadow-[0_24px_90px_rgba(56,189,248,0.12)]";
+  "rounded-lg border border-white/12 bg-slate-950/45 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055] hover:shadow-[0_24px_90px_rgba(56,189,248,0.12)] sm:p-6";
 const tagClass =
-  "rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200 transition hover:border-sky-300/20 hover:bg-sky-300/[0.08]";
+  "max-w-full break-words rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-200 transition hover:border-sky-300/20 hover:bg-sky-300/[0.08] sm:px-3 sm:text-sm";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="relative min-h-screen overflow-x-hidden">
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.14),transparent_28rem),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.1),transparent_26rem)]" />
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:44px_44px]" />
-      <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
-        <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-          <a href="#home" className="text-sm font-semibold tracking-wide text-ink">
-            Janko Ďuriš
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px] sm:opacity-[0.18] sm:[background-size:44px_44px]" />
+      <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-slate-950/82 backdrop-blur-xl">
+        <nav className="relative mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 md:px-8 lg:px-10">
+          <a
+            href="#home"
+            className="text-sm font-semibold tracking-wide text-ink focus:outline-none focus:ring-2 focus:ring-sky-300/50"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="sm:hidden">JD</span>
+            <span className="hidden sm:inline">Janko Ďuriš</span>
           </a>
-          <div className="flex flex-wrap justify-end gap-x-4 gap-y-2 text-sm text-muted sm:gap-x-6">
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] focus:outline-none focus:ring-2 focus:ring-sky-300/50 md:hidden"
+          >
+            <span className="sr-only">Menu</span>
+            <span className="flex h-5 w-5 flex-col justify-center gap-1.5" aria-hidden="true">
+              <span className="h-0.5 w-5 rounded bg-current" />
+              <span className="h-0.5 w-5 rounded bg-current" />
+              <span className="h-0.5 w-5 rounded bg-current" />
+            </span>
+          </button>
+          <div className="hidden items-center justify-end gap-x-6 text-sm text-muted md:flex">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-sky-100">
+              <a key={item.href} href={item.href} className="transition hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300/50">
                 {item.label}
               </a>
             ))}
           </div>
+          {isMenuOpen ? (
+            <div className="absolute left-4 right-4 top-[calc(100%+0.5rem)] rounded-lg border border-white/12 bg-slate-950/95 p-2 shadow-soft backdrop-blur-xl md:hidden">
+              {navigation.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block rounded-md px-3 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.06] hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300/50"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          ) : null}
         </nav>
       </header>
 
       <section
         id="home"
-        className="relative mx-auto flex min-h-[92vh] w-full max-w-6xl flex-col justify-center px-6 pb-16 pt-32 sm:px-8 lg:px-10"
+        className="relative mx-auto flex w-full max-w-6xl flex-col justify-center px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:min-h-[88vh] md:px-8 lg:px-10 lg:pt-32"
       >
-        <div className="absolute inset-x-6 top-24 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+        <div className="absolute inset-x-4 top-20 h-px sm:inset-x-6 sm:top-24 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-10">
           <div className="max-w-3xl">
-            <p className="mb-5 inline-flex rounded-full border border-sky-300/20 bg-sky-300/10 px-4 py-2 text-sm font-medium text-sky-100">
+            <div className="mb-4 flex flex-wrap gap-2 sm:hidden">
+              {["4+ years in QA", "SolarWinds → Flowio → Baťa", "Building Dulvarn", "Python / Robot Framework"].map((item) => (
+                <span key={item} className="rounded-md border border-sky-300/20 bg-sky-300/10 px-2.5 py-1.5 text-xs font-medium text-sky-100">
+                  {item}
+                </span>
+              ))}
+            </div>
+            <p className="mb-5 hidden max-w-3xl rounded-full border border-sky-300/20 bg-sky-300/10 px-4 py-2 text-sm font-medium text-sky-100 sm:inline-flex">
               {profile.proofLine}
             </p>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-sky-300/80">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/80 sm:text-sm sm:tracking-[0.28em]">
               {profile.name}
             </p>
-            <h1 className="mt-5 text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl">
+            <h1 className="mt-4 text-4xl font-semibold leading-[1.04] tracking-tight text-ink sm:mt-5 sm:text-5xl lg:text-7xl">
               {profile.title}
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:mt-7 sm:text-lg sm:leading-8 lg:text-xl">
               {profile.message}
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:items-center sm:gap-3">
               <a
                 href="#proof"
-                className="inline-flex min-h-12 items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto"
               >
                 View Proof of Work
               </a>
               <a
                 href="#projects"
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/16 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.06]"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/16 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto"
               >
                 Explore Projects
               </a>
-              <div className="sm:ml-2">
+              <div className="mt-1 flex justify-center sm:ml-2 sm:mt-0">
                 <ContactIconGroup />
               </div>
             </div>
@@ -84,11 +130,11 @@ export default function Home() {
           <ReleaseSignalCard />
         </div>
 
-        <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
           {signalBar.map((item) => (
             <article
               key={item.title}
-              className="rounded-lg border border-white/10 bg-slate-950/45 p-4 text-sm text-slate-200 backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055]"
+              className="rounded-lg border border-white/10 bg-slate-950/45 p-3 text-sm text-slate-200 backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055] sm:p-4"
             >
               <h2 className="font-semibold text-ink">{item.title}</h2>
               <p className="mt-2 leading-6 text-muted">{item.description}</p>
@@ -104,12 +150,12 @@ export default function Home() {
             <p className="mt-5 text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
               Positioning
             </p>
-            <p className="mt-4 text-2xl font-semibold leading-9 text-ink">
+            <p className="mt-4 text-xl font-semibold leading-8 text-ink sm:text-2xl sm:leading-9">
               QA engineer, automation learner, product builder.
             </p>
           </div>
           <div className={cardClass}>
-            <div className="space-y-5 leading-8 text-muted">
+            <div className="space-y-4 text-sm leading-7 text-muted sm:space-y-5 sm:text-base sm:leading-8">
               {about.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -124,22 +170,22 @@ export default function Home() {
             <article key={capability.title} className={cardClass + " min-h-48 overflow-hidden"}>
               <StatusRail labels={["TEST", "CHECK", "READY"]} />
               <p className="mt-5 text-sm font-semibold text-sky-200">0{index + 1}</p>
-              <h3 className="mt-3 text-xl font-semibold text-ink">{capability.title}</h3>
-              <p className="mt-3 leading-7 text-muted">{capability.description}</p>
+              <h3 className="mt-3 text-lg font-semibold text-ink sm:text-xl">{capability.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{capability.description}</p>
             </article>
           ))}
         </div>
       </Section>
 
       <Section id="work" eyebrow="Work Experience" title="A QA path from enterprise software to e-commerce release quality.">
-        <div className="space-y-6">
+        <div className="space-y-5 sm:space-y-6">
           {workHistory.map((item) => (
-            <article key={item.company + item.date} className="grid gap-4 md:grid-cols-[17rem_minmax(0,1fr)]">
-              <div className="md:pr-10 md:text-right">
+            <article key={item.company + item.date} className="grid gap-3 md:grid-cols-[15rem_minmax(0,1fr)] lg:grid-cols-[17rem_minmax(0,1fr)]">
+              <div className="md:pr-8 md:text-right lg:pr-10">
                 <p className="inline-flex rounded-md border border-sky-300/20 bg-sky-300/10 px-3 py-1.5 text-sm font-medium text-sky-100">
                   {item.date}
                 </p>
-                <p className="mt-3 text-sm text-muted">{item.location}</p>
+                <p className="mt-2 text-sm text-muted sm:mt-3">{item.location}</p>
               </div>
               <div className={cardClass + " relative overflow-hidden"}>
                 <StatusRail labels={["QA", "REGRESSION", "VALIDATE"]} />
@@ -148,13 +194,13 @@ export default function Home() {
                     <p className="text-sm font-medium uppercase tracking-[0.18em] text-emerald-200">
                       {item.status}
                     </p>
-                    <h3 className="mt-2 text-2xl font-semibold text-ink">
+                    <h3 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">
                       {item.title} — {item.company}
                     </h3>
                   </div>
                 </div>
-                <p className="mt-4 leading-7 text-muted">{item.description}</p>
-                <div className="mt-6 grid gap-5 lg:grid-cols-2">
+                <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
+                <div className="mt-5 grid gap-5 lg:mt-6 lg:grid-cols-2">
                   <div>
                     <p className="text-sm font-semibold text-sky-200">Highlights</p>
                     <BulletList items={item.highlights} color="sky" />
@@ -193,7 +239,7 @@ export default function Home() {
               <StatusRail labels={["CAPABILITY", "USE"]} />
               <h3 className="mt-5 text-lg font-semibold text-ink">{group.category}</h3>
               <p className="mt-3 text-sm leading-6 text-muted">{group.practicalUse}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
                 {group.capabilities.map((item) => (
                   <span key={item} className={tagClass}>
                     {item}
@@ -206,14 +252,14 @@ export default function Home() {
       </Section>
 
       <Section id="proof" eyebrow="Proof of Work" title="QA practice, automation, release quality and product building.">
-        <p className="mb-8 max-w-3xl text-lg leading-8 text-muted">
+        <p className="mb-6 max-w-3xl text-base leading-7 text-muted sm:mb-8 sm:text-lg sm:leading-8">
           My work sits at the intersection of QA practice, automation, release quality and product building.
         </p>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {proofOfWork.map((item) => (
             <article key={item.title} className={cardClass}>
               <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
-              <p className="mt-3 leading-7 text-muted">{item.description}</p>
+              <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
             </article>
           ))}
         </div>
@@ -221,7 +267,7 @@ export default function Home() {
 
       <Section id="direction" eyebrow="Current Direction" title="Focused growth, shipped as useful tools.">
         <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-6 shadow-soft transition duration-200 hover:border-sky-300/35 hover:bg-sky-300/[0.085] sm:p-8">
-          <p className="max-w-3xl text-lg leading-8 text-muted">
+          <p className="max-w-3xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             My current focus is becoming stronger as a QA Automation Engineer / SDET-oriented engineer while building practical release quality tools through Dulvarn.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
@@ -237,11 +283,11 @@ export default function Home() {
       <Section id="education" eyebrow="Education" title="Training and technical foundation.">
         <div className="grid gap-4 md:grid-cols-2">
           {education.map((item) => (
-            <article key={item.school} className="rounded-lg border border-white/10 bg-white/[0.035] p-5">
+            <article key={item.school} className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] p-4 sm:p-5">
               <p className="text-sm font-medium text-sky-200">{item.date}</p>
               <h3 className="mt-2 text-xl font-semibold text-ink">{item.school}</h3>
               <p className="mt-1 text-sm text-slate-300">{item.program}</p>
-              <p className="mt-4 leading-7 text-muted">{item.description}</p>
+              <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
               {item.skills.length > 0 ? <TagList items={item.skills} /> : null}
             </article>
           ))}
@@ -250,17 +296,17 @@ export default function Home() {
 
       <section
         id="contact"
-        className="mx-auto w-full max-w-6xl px-6 py-20 sm:px-8 lg:px-10"
+        className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-8 lg:px-10 lg:py-20"
       >
-        <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-8 sm:p-10">
+        <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-5 sm:p-8 lg:p-10">
           <p className={sectionEyebrow}>Contact</p>
           <h2 className={sectionTitle}>
             Interested in QA automation, release quality, or practical QA audits?
           </h2>
-          <p className="mt-5 max-w-2xl leading-7 text-muted">
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-muted sm:text-base">
             I’m open to relevant QA automation, release quality, product QA and practical audit conversations.
           </p>
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <ContactIconGroup />
           </div>
         </div>
@@ -285,8 +331,8 @@ function Section({
   children: React.ReactNode;
 }>) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 py-16 sm:px-8 lg:px-10">
-      <div className="mb-9 max-w-3xl">
+    <section id={id} className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-10 sm:px-6 sm:py-14 md:px-8 md:scroll-mt-24 lg:px-10 lg:py-16">
+      <div className="mb-6 max-w-3xl sm:mb-9">
         <p className={sectionEyebrow}>{eyebrow}</p>
         <h2 className={sectionTitle}>{title}</h2>
       </div>
@@ -297,27 +343,27 @@ function Section({
 
 function ReleaseSignalCard() {
   return (
-    <aside className="rounded-lg border border-sky-300/20 bg-slate-950/65 p-5 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_24px_90px_rgba(56,189,248,0.14)]">
-      <div className="flex items-start justify-between gap-4">
+    <aside className="w-full overflow-hidden rounded-lg border border-sky-300/20 bg-slate-950/65 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_24px_90px_rgba(56,189,248,0.14)] sm:p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-300/80">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-sky-300/80 sm:text-xs sm:tracking-[0.24em]">
             Visual concept
           </p>
-          <h2 className="mt-2 text-2xl font-semibold text-ink">Release Signal</h2>
+          <h2 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">Release Signal</h2>
         </div>
         <StatusBadge label={releaseSignal.decision} tone="emerald" />
       </div>
-      <div className="mt-5 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-300">
+      <div className="mt-4 flex flex-wrap items-center gap-1.5 text-xs font-medium text-slate-300 sm:mt-5 sm:gap-2">
         {releaseSignal.pipeline.map((step, index) => (
           <div key={step} className="flex items-center gap-2">
-            <span className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5">{step}</span>
+            <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1.5 sm:px-2.5">{step}</span>
             {index < releaseSignal.pipeline.length - 1 ? (
               <span className="text-sky-300/60">→</span>
             ) : null}
           </div>
         ))}
       </div>
-      <div className="mt-6 space-y-3 text-sm">
+      <div className="mt-4 space-y-2.5 text-sm sm:mt-6 sm:space-y-3">
         <SignalRow label="Repository" value={releaseSignal.repository} />
         <SignalRow label="CI Checks" value={releaseSignal.ciChecks} tone="emerald" />
         <SignalRow label="Test Coverage" value={releaseSignal.coverage} />
@@ -326,7 +372,7 @@ function ReleaseSignalCard() {
       </div>
       <div className="mt-5 flex flex-wrap gap-2">
         {releaseSignal.badges.map((badge) => (
-          <span key={badge} className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200">
+          <span key={badge} className="max-w-full break-words rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-200 sm:px-3 sm:text-sm">
             {badge}
           </span>
         ))}
@@ -352,7 +398,7 @@ function SignalRow({
         : "text-slate-100";
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2">
+    <div className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2">
       <span className="text-muted">{label}</span>
       <span className={"font-medium " + valueClass}>{value}</span>
     </div>
@@ -361,7 +407,7 @@ function SignalRow({
 
 function StatusRail({ labels }: Readonly<{ labels: string[] }>) {
   return (
-    <div className="-mx-2 -mt-2 mb-1 flex flex-wrap gap-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-sky-200/70">
+    <div className="-mx-1 -mt-1 mb-1 flex flex-wrap gap-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-sky-200/70 sm:-mx-2 sm:-mt-2 sm:text-[0.65rem] sm:tracking-[0.18em]">
       {labels.map((label) => (
         <span key={label} className="rounded border border-white/10 bg-black/20 px-2 py-1">
           {label}
@@ -430,10 +476,10 @@ function ProjectCard({
     <article className={cardClass + " flex flex-col overflow-hidden"}>
       <StatusRail labels={["PRODUCT", "SYSTEM", "QA"]} />
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <h3 className="max-w-xl text-xl font-semibold text-ink">{item.title}</h3>
+        <h3 className="max-w-xl break-words text-lg font-semibold text-ink sm:text-xl">{item.title}</h3>
         <StatusBadge label={item.status} />
       </div>
-      <p className="mt-4 leading-7 text-muted">{item.description}</p>
+      <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
       <div className="mt-6 border-t border-white/10 pt-5">
         <p className="text-sm font-semibold text-sky-200">What it shows</p>
         <BulletList items={item.proof} />
@@ -457,20 +503,20 @@ function WebsiteCard({
   };
 }>) {
   return (
-    <article className="rounded-lg border border-emerald-200/15 bg-emerald-300/[0.045] p-6 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.065] hover:shadow-[0_24px_90px_rgba(16,185,129,0.13)]">
+    <article className="overflow-hidden rounded-lg border border-emerald-200/15 bg-emerald-300/[0.045] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.065] hover:shadow-[0_24px_90px_rgba(16,185,129,0.13)] sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-emerald-200">{item.type}</p>
-          <h3 className="mt-2 text-2xl font-semibold text-ink">{item.title}</h3>
+          <h3 className="mt-2 break-words text-xl font-semibold text-ink sm:text-2xl">{item.title}</h3>
         </div>
         <StatusBadge label={item.status} tone="emerald" />
       </div>
-      <p className="mt-4 leading-7 text-muted">{item.description}</p>
+      <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
       <a
         href={item.url}
         target="_blank"
         rel="noreferrer"
-        className="mt-5 inline-flex rounded-md border border-emerald-200/20 px-3 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08]"
+        className="mt-5 inline-flex max-w-full rounded-md border border-emerald-200/20 px-3 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-200/40"
       >
         Visit site
       </a>
@@ -529,7 +575,7 @@ function ContactIconGroup() {
   ];
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-2.5 sm:justify-start sm:gap-3">
       {links.map((link) => (
         <a
           key={link.label}
@@ -537,7 +583,7 @@ function ContactIconGroup() {
           aria-label={link.label}
           target={link.external ? "_blank" : undefined}
           rel={link.external ? "noreferrer" : undefined}
-          className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:min-w-12"
         >
           {link.icon}
         </a>
@@ -555,7 +601,7 @@ function IconSvg({
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-8 w-8"
+      className="h-7 w-7 sm:h-8 sm:w-8"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
