@@ -139,10 +139,9 @@ export default function Home() {
       </Section>
 
       <Section id="work" eyebrow="Work Experience" title="A QA path from enterprise software to e-commerce release quality.">
-        <div className="relative space-y-6 before:absolute before:bottom-0 before:left-4 before:top-0 before:w-px before:bg-white/12 md:before:left-[9.5rem]">
-          {workHistory.map((item, index) => (
-            <article key={item.company + item.date} className="relative grid gap-4 pl-12 md:grid-cols-[17rem_minmax(0,1fr)] md:pl-0">
-              <div className="absolute left-2 top-2 h-5 w-5 rounded-full border border-sky-300/50 bg-slate-950 shadow-[0_0_0_6px_rgba(14,17,23,1)] md:left-[8.9rem]" />
+        <div className="space-y-6">
+          {workHistory.map((item) => (
+            <article key={item.company + item.date} className="grid gap-4 md:grid-cols-[17rem_minmax(0,1fr)]">
               <div className="md:pr-10 md:text-right">
                 <p className="inline-flex rounded-md border border-sky-300/20 bg-sky-300/10 px-3 py-1.5 text-sm font-medium text-sky-100">
                   {item.date}
@@ -159,9 +158,6 @@ export default function Home() {
                       {item.title} — {item.company}
                     </h3>
                   </div>
-                  <span className="rounded-md border border-white/10 bg-black/20 px-3 py-1.5 text-sm text-slate-300">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                 </div>
                 <p className="mt-4 leading-7 text-muted">{item.description}</p>
                 <div className="mt-6 grid gap-5 lg:grid-cols-2">

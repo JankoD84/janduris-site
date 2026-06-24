@@ -170,26 +170,6 @@ export const workHistory = [
     ],
     skills: ["Linux Desktop", "Troubleshooting", "Technical support"],
   },
-  {
-    title: "Technology Specialist",
-    company: "Lignofer s.r.o.",
-    date: "Jun 2017 – Dec 2021",
-    location: "Trnava Region, Slovakia",
-    status: "Pre-IT",
-    description:
-      "Pre-IT technical role that helped build practical technical thinking, responsibility, process awareness and hands-on problem solving before moving into software quality assurance.",
-    highlights: [
-      "Technical specialist background",
-      "Practical problem solving",
-      "Process awareness",
-      "Responsibility before IT career transition",
-    ],
-    skills: [
-      "Technical problem solving",
-      "Process awareness",
-      "Practical technical work",
-    ],
-  },
 ];
 
 export const education = [
