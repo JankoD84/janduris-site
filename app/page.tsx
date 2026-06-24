@@ -84,10 +84,10 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative mx-auto flex w-full max-w-6xl flex-col justify-center px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:min-h-[88vh] md:px-8 lg:px-10 lg:pt-32"
+        className="relative mx-auto w-full max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:min-h-[88vh] md:px-8 lg:px-10 lg:pt-28"
       >
         <div className="absolute inset-x-4 top-20 h-px sm:inset-x-6 sm:top-24 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-10">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-10">
           <div className="max-w-3xl">
             <div className="mb-5 grid grid-cols-2 gap-2 sm:mb-6 lg:grid-cols-4">
               {profile.proofItems.map((item) => (
