@@ -4,24 +4,33 @@ export const profile = {
   message:
     "I help teams reduce release risk through QA automation, test strategy, CI/CD quality checks, and AI-assisted engineering tools.",
   trustLine:
-    "Manual QA background · Automation focus · Founder mindset · Building Dulvarn",
+    "4+ years in QA · Automation focus · Founder mindset · Building Dulvarn",
   email: "duris.janko@gmail.com",
   linkedin: "https://www.linkedin.com/in/jduris/",
 };
 
 export const navigation = [
   { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
+  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const credibility = [
-  "3+ years in QA",
+  "4+ years in QA",
   "Current QA Engineer at Baťa",
+  "Started IT career at SolarWinds",
   "Python / Robot Framework automation focus",
   "Building Dulvarn release quality tools",
+];
+
+export const about = [
+  "I’m Janko, a QA engineer with 4+ years of experience in software testing. My IT career started with a Software Development Academy tester course and continued with my first QA Engineer role at SolarWinds.",
+  "Since then, I’ve worked across enterprise software, broker web applications and e-commerce/internal business platforms. My focus is moving deeper into QA automation, release quality, CI/CD quality checks and AI-assisted engineering workflows.",
+  "I currently work as a QA Engineer at Baťa and build Dulvarn — a release control system designed to help teams understand release risk before shipping.",
 ];
 
 export const services = [
@@ -130,54 +139,107 @@ export const skills = [
 export const workHistory = [
   {
     title: "QA Engineer — Baťa / Bata Group",
+    date: "Jan 2025 – Present",
+    location: "Zlín, Czechia · Hybrid",
     description:
-      "Current QA role focused on e-commerce and internal business platforms. Work includes manual testing, QA workflows, release validation, bug reporting and a growing focus on automation with Python and Robot Framework.",
+      "Current QA role focused on ensuring the quality and reliability of e-commerce and internal business platforms. Work includes manual testing, QA workflows, release validation, bug reporting and a growing focus on automation with Python and Robot Framework.",
     highlights: [
       "E-commerce QA",
       "Internal business platform testing",
       "Manual and regression testing",
       "Bug reporting and release validation",
-      "Automation growth with Python and Robot Framework",
+      "Python and Robot Framework automation focus",
     ],
   },
   {
-    title: "QA Background — 3+ Years",
+    title: "Manual Tester — Flowio",
+    date: "Feb 2024 – Jan 2025",
+    location: "Slovakia · Hybrid",
     description:
-      "Practical QA background built on manual testing, exploratory testing, regression checks, bug reporting, test scenarios and QA process improvement.",
+      "Manual testing role focused on a web application for a broker company. Work included test case writing, PostgreSQL-related validation, manual testing, bug reporting and regression checks.",
     highlights: [
-      "Manual QA foundation",
-      "Regression testing",
-      "Exploratory testing",
-      "Test case design",
-      "QA process thinking",
-      "Transition toward automation",
+      "Web application testing",
+      "Manual testing",
+      "Test case writing",
+      "PostgreSQL validation",
+      "Bug reporting",
+      "Regression checks",
     ],
   },
   {
-    title: "Founder / Builder — Dulvarn",
+    title: "QA Engineer — SolarWinds",
+    date: "Jan 2022 – Jan 2024",
+    location: "Brno, Czechia · Hybrid",
     description:
-      "Building Dulvarn as a release control and QA intelligence SaaS focused on helping teams make safer release decisions using signals from PRs, CI, tests, QA workflows and release risk analysis.",
+      "First major IT/QA role after completing tester training. Worked as a QA Engineer in an enterprise software environment, building a strong practical foundation in QA workflows, SQL, test execution, bug reporting and software quality processes.",
     highlights: [
-      "Release risk analysis",
-      "QA intelligence",
-      "GitHub-first product thinking",
-      "GO / CONDITIONAL GO / NO-GO decision support",
-      "B2B SaaS product development",
+      "First professional IT/QA role",
+      "Enterprise software QA",
+      "SQL",
+      "Azure DevOps / ADO pipelines",
+      "Manual and regression testing",
+      "Bug reporting",
+      "QA process foundation",
     ],
   },
   {
-    title: "Wildcode Studio",
+    title: "Freelance — Self-employed",
+    date: "Dec 2021 – Mar 2022",
+    location: "Trnava Region, Slovakia",
     description:
-      "Internal builder hub for software experiments, automation tools, product development, infrastructure and engineering workflows.",
+      "Short freelance period focused on Linux desktop and technical support-style work while transitioning into IT and software testing.",
     highlights: [
-      "Internal tools",
-      "Product experiments",
-      "Automation workflows",
-      "VPS / deployment work",
-      "AI-assisted engineering systems",
+      "Linux Desktop",
+      "Technical troubleshooting",
+      "Early IT transition period",
+    ],
+  },
+  {
+    title: "Technology Specialist — Lignofer s.r.o.",
+    date: "Jun 2017 – Dec 2021",
+    location: "Trnava Region, Slovakia",
+    description:
+      "Pre-IT technical role that helped build practical technical thinking, responsibility, process awareness and hands-on problem solving before moving into software quality assurance.",
+    highlights: [
+      "Technical specialist background",
+      "Practical problem solving",
+      "Process awareness",
+      "Responsibility before IT career transition",
     ],
   },
 ];
+
+export const education = [
+  {
+    school: "Software Development Academy",
+    program: "Software tester / Quality Assurance",
+    date: "Nov 2021 – Mar 2022",
+    description:
+      "Testing-focused training that started Janko's transition into IT. Covered software testing fundamentals, Quality Assurance basics, test case writing, MySQL and practical tester preparation.",
+    skills: [
+      "Quality Assurance",
+      "Software testing fundamentals",
+      "Test cases",
+      "MySQL",
+      "Testing mindset",
+    ],
+  },
+  {
+    school: "ZSPŠ Trnava",
+    program: "Technical / engineering-oriented education",
+    date: "Sep 2000 – May 2005",
+    description:
+      "Technical secondary education that supported practical technical thinking before the later transition into IT and Quality Assurance.",
+    skills: [
+      "Technical education",
+      "Engineering-oriented thinking",
+      "Practical technical foundation",
+    ],
+  },
+];
+
+export const projectBridge =
+  "After building a practical QA foundation in enterprise, web and e-commerce environments, I started building Dulvarn — a release control and QA intelligence system focused on helping teams make safer release decisions.";
 
 export const projects = [
   {

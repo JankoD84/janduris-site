@@ -1,8 +1,11 @@
 import {
+  about,
   buildingToward,
   credibility,
+  education,
   navigation,
   profile,
+  projectBridge,
   projects,
   proofOfWork,
   services,
@@ -69,7 +72,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {credibility.map((item) => (
             <div
               key={item}
@@ -80,6 +83,16 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Section id="about" eyebrow="About" title="QA engineer with a practical release-quality path.">
+        <div className={cardClass}>
+          <div className="space-y-5 text-lg leading-8 text-muted">
+            {about.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       <Section id="help" eyebrow="What I Can Help With" title="Practical quality work for teams that ship.">
         <div className="grid gap-4 md:grid-cols-2">
@@ -116,8 +129,10 @@ export default function Home() {
         <div className="grid gap-4 lg:grid-cols-2">
           {workHistory.map((item) => (
             <article key={item.title} className={cardClass}>
-              <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
-              <p className="mt-3 leading-7 text-muted">{item.description}</p>
+              <p className="text-sm font-medium text-sky-200">{item.date}</p>
+              <h3 className="mt-2 text-xl font-semibold text-ink">{item.title}</h3>
+              <p className="mt-1 text-sm text-slate-300">{item.location}</p>
+              <p className="mt-4 leading-7 text-muted">{item.description}</p>
               <ul className="mt-5 space-y-2 text-sm text-slate-200">
                 {item.highlights.map((highlight) => (
                   <li key={highlight} className="flex gap-2">
@@ -131,7 +146,31 @@ export default function Home() {
         </div>
       </Section>
 
+      <Section id="education" eyebrow="Education" title="Training and technical foundation behind the QA path.">
+        <div className="grid gap-4 md:grid-cols-2">
+          {education.map((item) => (
+            <article key={item.school} className={cardClass}>
+              <p className="text-sm font-medium text-sky-200">{item.date}</p>
+              <h3 className="mt-2 text-xl font-semibold text-ink">{item.school}</h3>
+              <p className="mt-1 text-sm text-slate-300">{item.program}</p>
+              <p className="mt-4 leading-7 text-muted">{item.description}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {item.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-slate-200"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
       <Section id="projects" eyebrow="Projects" title="Proof-oriented projects around QA, automation, and product building.">
+        <p className="mb-8 max-w-3xl text-lg leading-8 text-muted">{projectBridge}</p>
         <div className="grid gap-4 md:grid-cols-2">
           {projects.map((project) => (
             <article key={project.title} className={`${cardClass} flex flex-col`}>
