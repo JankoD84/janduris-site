@@ -18,6 +18,7 @@ export const profile = {
 export const navigation = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
+  { label: "Proof", href: "#featured-proof" },
   { label: "Projects", href: "#projects" },
   { label: "Websites", href: "#websites" },
   { label: "Skills", href: "#skills" },
@@ -56,6 +57,22 @@ export const signalBar = [
     title: "Product Builder",
     description:
       "Building Dulvarn, QA audit tools, internal systems and web products.",
+  },
+];
+
+export const featuredProof = [
+  {
+    title: "QA Experience",
+    description: "4+ years across SolarWinds, Flowio and Baťa.",
+  },
+  {
+    title: "Product Builder",
+    description: "Building Dulvarn, Dulvarn Tools and Wildcode systems.",
+  },
+  {
+    title: "Automation Direction",
+    description:
+      "Python, Robot Framework, Selenium, Playwright basics, API testing and CI/CD quality checks.",
   },
 ];
 
@@ -230,15 +247,13 @@ export const projects = [
   {
     title: "Dulvarn — Release Control & QA Intelligence",
     status: "Beta",
-    description:
-      "A B2B release quality system designed to help teams understand release risk before shipping. It connects QA thinking, CI/CD signals, GitHub workflows, guard gates and human-reviewed release decisions.",
-    proof: [
-      "QA domain expertise",
-      "Release risk modeling",
-      "Product thinking",
-      "Full-stack SaaS building",
-      "Founder mindset",
-    ],
+    url: "https://www.dulvarn.com/",
+    problem:
+      "Teams often ship with scattered QA signals, unclear release risk and too much decision-making hidden in chat or habit.",
+    built:
+      "A release quality system for PR signals, CI/CD status, QA guard gates, regression impact and human-reviewed release decisions.",
+    proves:
+      "QA domain expertise, release risk modeling, product thinking, full-stack SaaS building and founder ownership.",
     tags: [
       "Next.js",
       "FastAPI",
@@ -253,14 +268,13 @@ export const projects = [
   {
     title: "Dulvarn Tools — Productized QA Workflows",
     status: "Beta",
-    description:
+    url: "https://tools.dulvarn.com/",
+    problem:
+      "QA improvements are often useful but hard to package into repeatable audits, templates and lightweight workflows.",
+    built:
       "Practical QA tools and templates for release risk scoring, GitHub QA gates, audit workflows and QA process improvement.",
-    proof: [
-      "Turning QA knowledge into products",
-      "Practical deliverables",
-      "Monetization thinking",
-      "Tooling mindset",
-    ],
+    proves:
+      "The ability to turn QA knowledge into products, practical deliverables, monetizable workflows and useful tooling.",
     tags: [
       "QA Audits",
       "Templates",
@@ -272,14 +286,13 @@ export const projects = [
   {
     title: "Wildcode Studio — Internal Builder Hub",
     status: "Internal",
-    description:
-      "Internal development hub for experiments, automation tools, infrastructure, AI workflows, product prototypes and operational documentation.",
-    proof: [
-      "Engineering organization",
-      "Internal systems thinking",
-      "Infrastructure ownership",
-      "Product experimentation",
-    ],
+    url: "https://docs.wildcode.studio/",
+    problem:
+      "Experiments, infrastructure notes and product ideas need a reliable place to become maintainable systems instead of loose files.",
+    built:
+      "An internal development hub for experiments, automation tools, infrastructure, AI workflows, product prototypes and operational documentation.",
+    proves:
+      "Engineering organization, internal systems thinking, infrastructure ownership and disciplined product experimentation.",
     tags: [
       "Internal Tools",
       "Infrastructure",
@@ -291,14 +304,12 @@ export const projects = [
   {
     title: "Autonomous Agent System / Multi-Agent AI",
     status: "Internal",
-    description:
-      "Internal AI and agent workflow systems used for experimentation with task execution, approvals, workflow orchestration, security review, documentation and AI-assisted engineering.",
-    proof: [
-      "AI-assisted engineering",
-      "Workflow orchestration thinking",
-      "Backend/API experimentation",
-      "Human-in-the-loop governance",
-    ],
+    problem:
+      "AI-assisted engineering needs structure, approvals and review paths before it can support real development work responsibly.",
+    built:
+      "Internal AI and agent workflow systems for task execution, approvals, orchestration, security review, documentation and engineering support.",
+    proves:
+      "AI-assisted engineering, workflow orchestration, backend/API experimentation and human-in-the-loop governance.",
     tags: [
       "FastAPI",
       "Agents",
@@ -312,14 +323,12 @@ export const projects = [
   {
     title: "Automation Portfolio",
     status: "In progress",
-    description:
-      "Selected automation examples focused on practical QA workflows, regression checks, UI/API testing and maintainable test design.",
-    proof: [
-      "Automation growth",
-      "QA engineering direction",
-      "Test design thinking",
-      "Practical regression mindset",
-    ],
+    problem:
+      "Automation skill is easiest to trust when it is shown through practical, readable examples tied to real QA workflows.",
+    built:
+      "Selected automation examples focused on regression checks, UI/API testing, maintainable test design and practical QA workflows.",
+    proves:
+      "Automation growth, QA engineering direction, test design thinking and a practical regression mindset.",
     tags: [
       "Python",
       "Robot Framework",

@@ -7,6 +7,7 @@ import {
   buildingToward,
   capabilities,
   education,
+  featuredProof,
   navigation,
   profile,
   projects,
@@ -23,7 +24,7 @@ const sectionEyebrow =
 const sectionTitle =
   "mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl";
 const cardClass =
-  "rounded-lg border border-white/[0.08] bg-slate-950/38 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.048] hover:shadow-[0_22px_70px_rgba(56,189,248,0.09)] sm:p-6";
+  "rounded-lg border border-white/[0.065] bg-slate-950/34 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.045] hover:shadow-[0_22px_70px_rgba(56,189,248,0.08)] sm:p-6";
 const tagClass =
   "max-w-full break-words rounded-md border border-white/[0.07] bg-white/[0.035] px-2.5 py-1.5 text-xs text-slate-200 transition hover:border-sky-300/18 hover:bg-sky-300/[0.06] sm:px-3 sm:text-sm";
 
@@ -110,10 +111,10 @@ export default function Home() {
             </p>
             <div className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:items-center sm:gap-3">
               <a
-                href="#proof"
+                href="#featured-proof"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto"
               >
-                View Proof of Work
+                View Featured Proof
               </a>
               <a
                 href="#projects"
@@ -142,6 +143,17 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Section id="featured-proof" eyebrow="Featured Proof" title="Shareable proof for QA, product building, and automation direction.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {featuredProof.map((item) => (
+            <article key={item.title} className={cardClass + " min-h-0"}>
+              <h2 className="text-lg font-semibold text-ink sm:text-xl">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
 
       <Section id="about" eyebrow="About" title="Practical QA experience, now pointed at release quality.">
         <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
@@ -456,24 +468,54 @@ function ProjectCard({
   item: {
     title: string;
     status: string;
-    description: string;
-    proof: string[];
+    problem: string;
+    built: string;
+    proves: string;
     tags: string[];
+    url?: string;
   };
 }>) {
   return (
-    <article className={cardClass + " flex flex-col overflow-hidden"}>
+    <article className={cardClass + " flex min-h-0 flex-col overflow-hidden"}>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <h3 className="max-w-xl break-words text-lg font-semibold text-ink sm:text-xl">{item.title}</h3>
         <StatusBadge label={item.status} />
       </div>
-      <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
-      <div className="mt-6 border-t border-white/10 pt-5">
-        <p className="text-sm font-semibold text-sky-200">What it shows</p>
-        <BulletList items={item.proof} />
+      <div className="mt-5 grid gap-4 text-sm leading-7 text-muted sm:text-base">
+        <EvidenceBlock label="Problem" value={item.problem} />
+        <EvidenceBlock label="What I built" value={item.built} />
+        <EvidenceBlock label="What it proves" value={item.proves} />
       </div>
-      <TagList items={item.tags} />
+      <div className="mt-5 border-t border-white/[0.07] pt-4">
+        <p className="text-sm font-semibold text-sky-200">Stack / tags</p>
+        <TagList items={item.tags} />
+      </div>
+      {item.url ? (
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-5 inline-flex max-w-full break-all rounded-md border border-sky-300/18 px-3 py-2 text-sm font-medium text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.07] focus:outline-none focus:ring-2 focus:ring-sky-300/45"
+        >
+          {item.url.replace(/^https?:\/\//, "")}
+        </a>
+      ) : null}
     </article>
+  );
+}
+
+function EvidenceBlock({
+  label,
+  value,
+}: Readonly<{
+  label: string;
+  value: string;
+}>) {
+  return (
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-200/90">{label}</p>
+      <p className="mt-1">{value}</p>
+    </div>
   );
 }
 
@@ -491,7 +533,7 @@ function WebsiteCard({
   };
 }>) {
   return (
-    <article className="overflow-hidden rounded-lg border border-emerald-200/[0.12] bg-emerald-300/[0.038] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.065] hover:shadow-[0_24px_90px_rgba(16,185,129,0.13)] sm:p-6">
+    <article className="overflow-hidden rounded-lg border border-emerald-200/[0.1] bg-emerald-300/[0.042] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/28 hover:bg-emerald-300/[0.06] hover:shadow-[0_24px_90px_rgba(16,185,129,0.11)] sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-emerald-200">{item.type}</p>
@@ -504,9 +546,9 @@ function WebsiteCard({
         href={item.url}
         target="_blank"
         rel="noreferrer"
-        className="mt-5 inline-flex max-w-full rounded-md border border-emerald-200/20 px-3 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-200/40"
+        className="mt-5 inline-flex max-w-full break-all rounded-md border border-emerald-200/20 px-3 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-200/40"
       >
-        Visit site
+        {item.url.replace(/^https?:\/\//, "")}
       </a>
       <div className="mt-6 border-t border-white/10 pt-5">
         <p className="text-sm font-semibold text-sky-200">What it proves</p>

@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteTitle = "Janko Ďuriš — QA Automation Engineer & Release Quality Builder";
+const siteDescription =
+  "QA Engineer with 4+ years in software testing, focused on QA automation, release quality, QA workflows, CI/CD quality checks and AI-assisted engineering tools.";
+const siteUrl = "https://janduris.vercel.app/";
+
 export const metadata: Metadata = {
-  title: "Janko Ďuriš — QA Automation Engineer & Release Quality Builder",
-  description:
-    "Personal website of Janko Ďuriš, QA Engineer with 4+ years in software testing, focused on QA automation, release quality, QA workflows and AI-assisted engineering tools.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
-    title: "Janko Ďuriš — QA Automation Engineer & Release Quality Builder",
-    description:
-      "Personal website of Janko Ďuriš, QA Engineer with 4+ years in software testing, focused on QA automation, release quality, QA workflows and AI-assisted engineering tools.",
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "Janko Ďuriš",
     type: "website",
   },
 };
