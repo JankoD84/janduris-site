@@ -522,6 +522,31 @@ export const proofOfWork = [
   },
 ];
 
+export const beyondTheWork = {
+  intro: [
+    "I’m not only interested in testing software — I’m interested in understanding systems.",
+    "QA taught me to look for weak spots, edge cases and hidden risks. Product building taught me to turn those observations into tools, workflows and clearer decisions.",
+    "Outside of work, I’m a curious builder who likes learning, simplifying complex problems and creating practical systems that help people work with more confidence.",
+  ],
+  cards: [
+    {
+      title: "Systems thinker",
+      description:
+        "I like understanding how things work, where they break and how to make them more reliable.",
+    },
+    {
+      title: "Practical builder",
+      description:
+        "I prefer useful tools, clear workflows and small improvements that create real value.",
+    },
+    {
+      title: "Continuous learner",
+      description:
+        "My current focus is growing deeper in QA automation, release quality and AI-assisted engineering.",
+    },
+  ],
+};
+
 export const buildingToward = [
   "Stronger automation engineering",
   "Better release quality workflows",
