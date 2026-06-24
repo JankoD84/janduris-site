@@ -88,19 +88,10 @@ export default function Home() {
         id="home"
         className="relative mx-auto w-full max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:min-h-[88vh] md:px-8 lg:px-10 lg:pt-28"
       >
-        <div className="absolute inset-x-4 top-20 h-px sm:inset-x-6 sm:top-24 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-10">
+        <div className="absolute inset-x-4 top-20 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent sm:inset-x-6 sm:top-24" />
+        <ShiftRightQaAnimation />
+        <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-10">
           <div className="max-w-3xl">
-            <div className="mb-5 grid grid-cols-2 gap-2 sm:mb-6 lg:grid-cols-4">
-              {profile.proofItems.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-md border border-sky-300/[0.14] bg-slate-950/45 px-3 py-2 text-xs font-medium leading-5 text-sky-100 sm:text-sm"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/80 sm:text-sm sm:tracking-[0.28em]">
               {profile.name}
             </p>
@@ -112,10 +103,10 @@ export default function Home() {
             </p>
             <div className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:items-center sm:gap-3">
               <a
-                href="#featured-proof"
+                href="#proof"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto"
               >
-                View Featured Proof
+                View Proof of Work
               </a>
               <a
                 href="#projects"
@@ -350,6 +341,45 @@ export default function Home() {
         © 2026 Janko Ďuriš. Built with Next.js and deployed on Vercel.
       </footer>
     </main>
+  );
+}
+
+function ShiftRightQaAnimation() {
+  const blocks = [
+    { label: "PR", tone: "sky", step: "self-end" },
+    { label: "CI", tone: "sky", step: "self-end" },
+    { label: "TEST", tone: "sky", step: "self-center" },
+    { label: "BUG", tone: "amber", step: "self-center" },
+    { label: "RISK", tone: "amber", step: "self-start" },
+    { label: "GO", tone: "emerald", step: "self-start" },
+    { label: "PROD", tone: "emerald", step: "self-start" },
+  ];
+
+  return (
+    <div aria-hidden="true" className="shift-qa-wrap mx-auto w-full max-w-5xl overflow-hidden py-2 sm:py-3">
+      <div className="shift-qa-stage relative flex h-[78px] items-center justify-center rounded-lg border border-white/[0.055] bg-slate-950/[0.24] px-3 sm:h-[112px] sm:px-6">
+        <div className="absolute inset-x-4 top-1/2 h-px bg-gradient-to-r from-transparent via-sky-300/18 to-transparent" />
+        <div className="relative flex h-[54px] max-w-full items-center gap-1.5 sm:h-[78px] sm:gap-2.5">
+          {blocks.map((block) => (
+            <div
+              key={block.label}
+              className={
+                "shift-qa-block " +
+                block.step +
+                " " +
+                (block.tone === "emerald"
+                  ? "shift-qa-block--emerald"
+                  : block.tone === "amber"
+                    ? "shift-qa-block--amber"
+                    : "shift-qa-block--sky")
+              }
+            >
+              {block.label}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -72,3 +72,106 @@ body::after {
     }
   }
 }
+
+.shift-qa-stage {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 18px 70px rgba(8, 47, 73, 0.12);
+}
+
+.shift-qa-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(2.35rem, 8.5vw, 4.2rem);
+  height: clamp(2rem, 7vw, 2.85rem);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  background: rgba(15, 23, 42, 0.68);
+  color: #dff6ff;
+  font-size: clamp(0.63rem, 2.15vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translate3d(-3.5rem, -1.35rem, 0) scale(0.96);
+  animation: qa-shift-right 680ms cubic-bezier(0.2, 0.82, 0.2, 1) forwards;
+}
+
+.shift-qa-block--sky {
+  border-color: rgba(56, 189, 248, 0.18);
+  background: rgba(14, 116, 144, 0.14);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.045);
+}
+
+.shift-qa-block--amber {
+  border-color: rgba(251, 191, 36, 0.18);
+  background: rgba(146, 64, 14, 0.12);
+  color: #fde9b4;
+  box-shadow: 0 0 24px rgba(251, 191, 36, 0.04);
+}
+
+.shift-qa-block--emerald {
+  border-color: rgba(52, 211, 153, 0.2);
+  background: rgba(6, 95, 70, 0.15);
+  color: #c9f9e5;
+  box-shadow: 0 0 28px rgba(52, 211, 153, 0.055);
+}
+
+.shift-qa-block:nth-child(1) {
+  animation-delay: 150ms;
+}
+
+.shift-qa-block:nth-child(2) {
+  animation-delay: 750ms;
+}
+
+.shift-qa-block:nth-child(3) {
+  animation-delay: 1350ms;
+}
+
+.shift-qa-block:nth-child(4) {
+  animation-delay: 1950ms;
+}
+
+.shift-qa-block:nth-child(5) {
+  animation-delay: 2550ms;
+}
+
+.shift-qa-block:nth-child(6) {
+  animation-delay: 3150ms;
+}
+
+.shift-qa-block:nth-child(7) {
+  animation-delay: 3750ms;
+}
+
+@keyframes qa-shift-right {
+  0% {
+    opacity: 0;
+    transform: translate3d(-3.5rem, -1.35rem, 0) scale(0.96);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translate3d(0.35rem, 0.25rem, 0) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (max-width: 420px) {
+  .shift-qa-block {
+    min-width: 2.15rem;
+    height: 1.9rem;
+    font-size: 0.58rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shift-qa-block {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
