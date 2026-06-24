@@ -3,7 +3,7 @@
 import { type FormEvent, useMemo, useState } from "react";
 
 import { profile } from "../content";
-import { Card, ContactLinks, PageHeader, SiteShell } from "../components";
+import { Card, ContactLinks, OpenToSection, PageHeader, SiteShell } from "../components";
 
 type FormState = {
   name: string;
@@ -87,10 +87,14 @@ export default function ContactPage() {
         intro="I’m open to relevant QA automation, release quality, product QA, internal tooling and practical audit conversations."
       />
 
+      <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 md:px-8 lg:px-10">
+        <OpenToSection compact />
+      </div>
+
       <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 pb-14 sm:px-6 sm:pb-20 md:px-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start lg:px-10">
         <Card>
           <h2 className="text-xl font-semibold text-ink">Direct contact</h2>
-          <p className="mt-3 text-sm leading-7 text-muted">For urgent or direct contact, use email or LinkedIn.</p>
+          <p className="mt-3 text-sm leading-7 text-muted">For direct or urgent contact, LinkedIn or email is the best option.</p>
           <div className="mt-5">
             <ContactLinks />
           </div>

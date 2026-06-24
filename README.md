@@ -50,6 +50,7 @@ The site is organized into focused pages:
 | `/websites` | Public websites and live work |
 | `/skills` | Skills matrix and languages |
 | `/contact` | Contact links and contact form |
+| `/cv` | Web CV for recruiters, collaborators and QA/release-quality clients |
 
 ---
 

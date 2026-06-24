@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { buildingToward, featuredProof, proofOfWork } from "../content";
+import { buildingToward, featuredProof, proofExamples, proofOfWork } from "../content";
 import { Card, PageHeader, Section, SiteShell } from "../components";
 
 export const metadata: Metadata = {
@@ -21,6 +21,16 @@ export default function ProofPage() {
           {featuredProof.map((item) => (
             <Card key={item.title} className="min-h-0">
               <h2 className="text-lg font-semibold text-ink sm:text-xl">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+      <Section eyebrow="Proof Examples" title="Concrete examples behind the positioning.">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {proofExamples.map((item) => (
+            <Card key={item.title}>
+              <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
             </Card>
           ))}

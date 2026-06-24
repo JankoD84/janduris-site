@@ -25,6 +25,18 @@ export const navigation = [
   { label: "Contact", href: "/contact" },
 ];
 
+export const mobileOnlyNavigation = [
+  { label: "CV", href: "/cv" },
+];
+
+export const openTo = [
+  "QA Automation Engineer roles",
+  "SDET-oriented QA work",
+  "QA audits and release risk reviews",
+  "Product QA / e-commerce QA",
+  "Internal QA tooling and automation workflows",
+];
+
 export const releaseSignal = {
   repository: "sample-release",
   ciChecks: "Passed",
@@ -46,7 +58,7 @@ export const signalBar = [
   {
     title: "Automation Direction",
     description:
-      "Python, Robot Framework, Selenium, Playwright basics, API testing and CI test workflows.",
+      "Python, Robot Framework, Selenium, Playwright / TypeScript automation focus, API testing and CI test workflows.",
   },
   {
     title: "Release Quality",
@@ -72,7 +84,7 @@ export const featuredProof = [
   {
     title: "Automation Direction",
     description:
-      "Python, Robot Framework, Selenium, Playwright basics, API testing and CI/CD quality checks.",
+      "Python, Robot Framework, Selenium, Playwright / TypeScript automation focus, API testing and CI/CD quality checks.",
   },
 ];
 
@@ -91,7 +103,7 @@ export const capabilities = [
   {
     title: "Test Automation",
     description:
-      "Python, Robot Framework, Selenium, Playwright basics, API testing and maintainable regression automation.",
+      "Python, Robot Framework, Selenium, Playwright / TypeScript automation focus, API testing and maintainable regression automation.",
   },
   {
     title: "Release Risk Analysis",
@@ -291,6 +303,9 @@ export const projects = [
       "QA workflows",
       "Release Control",
     ],
+    role: "Founder, product owner, QA domain designer and builder.",
+    currentStatus: "Beta / in progress.",
+    nextStep: "Public demo, GitHub workflow integration and practical release risk workflows.",
   },
   {
     title: "Dulvarn Tools — Productized QA Workflows",
@@ -309,6 +324,9 @@ export const projects = [
       "Release Risk",
       "Productized Services",
     ],
+    role: "Creator of QA productized workflows and templates.",
+    currentStatus: "Live / in progress.",
+    nextStep: "Add clearer product pages, payment flow and sample outputs.",
   },
   {
     title: "Wildcode Studio — Internal Builder Hub",
@@ -327,6 +345,9 @@ export const projects = [
       "Automation",
       "Product Development",
     ],
+    role: "Builder and maintainer of internal systems, docs and workflows.",
+    currentStatus: "Internal.",
+    nextStep: "Improve documentation, automation and operational structure.",
   },
   {
     title: "Autonomous Agent System / Multi-Agent AI",
@@ -346,6 +367,9 @@ export const projects = [
       "Automation",
       "Governance",
     ],
+    role: "Builder and experiment owner.",
+    currentStatus: "Internal / experimental.",
+    nextStep: "Stabilize workflows, approvals and practical engineering use cases.",
   },
   {
     title: "Automation Portfolio",
@@ -364,6 +388,9 @@ export const projects = [
       "API Testing",
       "Regression",
     ],
+    role: "QA automation learner and builder.",
+    currentStatus: "In progress.",
+    nextStep: "Add public examples with README, test purpose and runnable commands.",
   },
 ];
 
@@ -577,6 +604,29 @@ export const languages = [
   { language: "German", level: "Basics" },
 ];
 
+export const proofExamples = [
+  {
+    title: "Work",
+    description:
+      "Baťa, Flowio and SolarWinds experience across e-commerce, broker web application and enterprise software QA.",
+  },
+  {
+    title: "Product",
+    description:
+      "Dulvarn and Dulvarn Tools show the ability to turn QA problems into product concepts and working web properties.",
+  },
+  {
+    title: "Engineering",
+    description:
+      "Hands-on work with Next.js, FastAPI, PostgreSQL, Redis, Docker, Vercel, Cloudflare, Hetzner VPS and Linux workflows.",
+  },
+  {
+    title: "Automation",
+    description:
+      "Growing automation direction with Python, Robot Framework, Selenium, Playwright, TypeScript, API testing and CI/CD quality checks.",
+  },
+];
+
 export const proofOfWork = [
   {
     title: "Real QA background",
@@ -586,7 +636,7 @@ export const proofOfWork = [
   {
     title: "Automation direction",
     description:
-      "Growing automation practice with Python, Robot Framework, Selenium, Playwright basics, API testing and CI test workflows.",
+      "Growing automation practice with Python, Robot Framework, Selenium, Playwright / TypeScript automation focus, API testing and CI test workflows.",
   },
   {
     title: "Product building",

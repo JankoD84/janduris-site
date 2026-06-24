@@ -4,7 +4,7 @@ import Link from "next/link";
 import { type CSSProperties } from "react";
 
 import { featuredProof, profile, signalBar } from "./content";
-import { Card, ContactIconGroup, ReleaseSignalCard, SiteShell } from "./components";
+import { Card, ContactIconGroup, OpenToSection, ReleaseSignalCard, SiteShell } from "./components";
 
 
 export default function Home() {
@@ -21,6 +21,7 @@ export default function Home() {
             <div className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:items-center sm:gap-3">
               <Link href="/proof" className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto">View Proof of Work</Link>
               <Link href="/projects" className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/16 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:min-h-12 sm:w-auto">Explore Projects</Link>
+              <Link href="/cv" className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-sky-300/18 px-5 py-3 text-sm font-semibold text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.07] focus:outline-none focus:ring-2 focus:ring-sky-300/45 sm:min-h-12 sm:w-auto">View CV</Link>
               <div className="mt-1 flex justify-center sm:ml-2 sm:mt-0"><ContactIconGroup /></div>
             </div>
           </div>
@@ -50,6 +51,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <OpenToSection />
     </SiteShell>
   );
 }

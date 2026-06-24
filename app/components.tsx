@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { navigation, profile, releaseSignal } from "./content";
+import { mobileOnlyNavigation, navigation, openTo, profile, releaseSignal } from "./content";
 
 export const sectionEyebrow =
   "text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]";
@@ -50,7 +50,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
           </div>
           {isMenuOpen ? (
             <div className="absolute left-4 right-4 top-[calc(100%+0.5rem)] rounded-lg border border-white/12 bg-slate-950/95 p-2 shadow-soft backdrop-blur-xl md:hidden">
-              {navigation.map((item) => (
+              {[...navigation, ...mobileOnlyNavigation].map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -211,7 +211,7 @@ export function SkillsMatrix({ groups }: Readonly<{ groups: Array<{ category: st
   );
 }
 
-export function ProjectCard({ item }: Readonly<{ item: { title: string; status: string; problem: string; built: string; proves: string; tags: string[]; url?: string } }>) {
+export function ProjectCard({ item }: Readonly<{ item: { title: string; status: string; problem: string; built: string; proves: string; tags: string[]; url?: string; role: string; currentStatus: string; nextStep: string } }>) {
   return (
     <Card className="flex min-h-0 flex-col overflow-hidden">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -222,6 +222,11 @@ export function ProjectCard({ item }: Readonly<{ item: { title: string; status: 
         <EvidenceBlock label="Problem" value={item.problem} />
         <EvidenceBlock label="What I built" value={item.built} />
         <EvidenceBlock label="What it proves" value={item.proves} />
+      </div>
+      <div className="mt-5 grid gap-3 border-t border-white/[0.07] pt-4 text-sm leading-6 text-muted">
+        <EvidenceBlock label="My role" value={item.role} />
+        <EvidenceBlock label="Current status" value={item.currentStatus} />
+        <EvidenceBlock label="Next step" value={item.nextStep} />
       </div>
       <div className="mt-5 border-t border-white/[0.07] pt-4">
         <p className="text-sm font-semibold text-sky-200">Stack / tags</p>
@@ -244,6 +249,20 @@ function EvidenceBlock({ label, value }: Readonly<{ label: string; value: string
 export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: string; type: string; status: string; description: string; proof: string[]; tags: string[] } }>) {
   return (
     <article className="overflow-hidden rounded-lg border border-emerald-200/[0.1] bg-emerald-300/[0.042] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/28 hover:bg-emerald-300/[0.06] hover:shadow-[0_24px_90px_rgba(16,185,129,0.11)] sm:p-6">
+      <div className="mb-5 overflow-hidden rounded-lg border border-white/[0.08] bg-slate-950/60">
+        <div className="flex items-center gap-1.5 border-b border-white/[0.07] bg-white/[0.035] px-3 py-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-rose-300/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/70" />
+          <span className="ml-2 min-w-0 truncate text-xs text-muted">{item.url.replace(/^https?:\/\//, "")}</span>
+        </div>
+        <div className="grid min-h-32 place-items-center px-4 py-7 text-center">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200/80">Live preview</p>
+            <p className="mt-2 text-xl font-semibold text-ink">{item.title}</p>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-emerald-200">{item.type}</p>
@@ -307,6 +326,27 @@ export function ContactIconGroup() {
         </a>
       ))}
     </div>
+  );
+}
+
+export function OpenToSection({ compact = false }: Readonly<{ compact?: boolean }>) {
+  return (
+    <section className={compact ? "mt-5" : "mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-10"}>
+      <div className={compact ? "" : "mb-6 max-w-3xl sm:mb-9"}>
+        <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]">Availability</p>
+        <h2 className={compact ? "mt-2 text-xl font-semibold text-ink" : sectionTitle}>What I’m open to</h2>
+      </div>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        {openTo.map((item) => (
+          <span key={item} className="rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-2 text-sm text-slate-200">{item}</span>
+        ))}
+      </div>
+      {!compact ? (
+        <div className="mt-6">
+          <Link href="/cv" className="inline-flex min-h-11 items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50">View CV</Link>
+        </div>
+      ) : null}
+    </section>
   );
 }
 
