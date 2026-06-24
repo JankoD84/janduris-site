@@ -5,6 +5,7 @@
 :root {
   color-scheme: dark;
   background: #0e1117;
+  --font-inter: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
