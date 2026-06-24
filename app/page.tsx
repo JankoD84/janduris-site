@@ -9,6 +9,7 @@ import {
   capabilities,
   education,
   featuredProof,
+  languages,
   navigation,
   profile,
   projects,
@@ -238,7 +239,7 @@ export default function Home() {
       </Section>
 
       <Section id="skills" eyebrow="Skills Matrix" title="What these skills are useful for in real work.">
-        <div className="grid gap-4 lg:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((group) => (
             <article key={group.category} className={cardClass + " overflow-hidden lg:p-5"}>
               <h3 className="text-lg font-semibold text-ink">{group.category}</h3>
@@ -314,6 +315,20 @@ export default function Home() {
               <p className="mt-1 text-sm text-slate-300">{item.program}</p>
               <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
               {item.skills.length > 0 ? <TagList items={item.skills} /> : null}
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="languages" eyebrow="Languages" title="Languages">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {languages.map((item) => (
+            <article
+              key={item.language}
+              className="rounded-lg border border-white/[0.07] bg-white/[0.032] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.045] sm:p-5"
+            >
+              <h3 className="text-base font-semibold text-ink sm:text-lg">{item.language}</h3>
+              <p className="mt-2 text-sm font-medium text-sky-200">{item.level}</p>
             </article>
           ))}
         </div>
