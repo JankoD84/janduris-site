@@ -6,14 +6,6 @@ import { type CSSProperties } from "react";
 import { featuredProof, profile, signalBar } from "./content";
 import { Card, ContactIconGroup, ReleaseSignalCard, SiteShell } from "./components";
 
-const previewPages = [
-  { title: "About", href: "/about", description: "Professional story, positioning and the human side behind the work." },
-  { title: "Work", href: "/work", description: "QA experience timeline, education and practical testing background." },
-  { title: "Proof", href: "/proof", description: "Shareable proof for QA, automation direction and product building." },
-  { title: "Projects", href: "/projects", description: "Dulvarn, internal systems, AI workflow experiments and automation portfolio." },
-  { title: "Websites", href: "/websites", description: "Live public work and web properties connected to the builder profile." },
-  { title: "Skills", href: "/skills", description: "QA, automation, business systems, engineering tools and languages." },
-];
 
 export default function Home() {
   return (
@@ -55,22 +47,6 @@ export default function Home() {
               <h2 className="text-lg font-semibold text-ink sm:text-xl">{item.title}</h2>
               <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
             </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-10">
-        <div className="mb-6 max-w-3xl sm:mb-9">
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]">Explore</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl">Focused pages instead of one overloaded scroll.</h2>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {previewPages.map((page) => (
-            <Link key={page.href} href={page.href} className="rounded-lg border border-white/[0.065] bg-slate-950/34 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.045] focus:outline-none focus:ring-2 focus:ring-sky-300/45 sm:p-6">
-              <h3 className="text-lg font-semibold text-ink">{page.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted">{page.description}</p>
-              <span className="mt-5 inline-flex text-sm font-medium text-sky-200">Open {page.title}</span>
-            </Link>
           ))}
         </div>
       </section>
