@@ -345,21 +345,31 @@ export default function Home() {
 }
 
 function HeroWallRevealAnimation() {
-  const columns = 20;
-  const rows = 4;
-  const shots = [38, 43, 48, 53, 58, 63];
-  const fireTimes = [0.82, 1.48, 2.14, 2.8, 3.46, 4.12];
-  const impactOffset = 0.44;
+  const columns = 30;
+  const rows = 5;
+  const shots = [27, 34, 41, 48, 55, 62, 69, 76];
+  const fireTimes = [0.72, 1.3, 1.88, 2.46, 3.04, 3.62, 4.2, 4.78];
+  const impactOffset = 0.48;
   const brickCount = columns * rows;
   const bricks = Array.from({ length: brickCount }, (_, index) => {
     const column = index % columns;
     const row = Math.floor(index / columns);
-    const shot = Math.min(shots.length - 1, Math.max(0, Math.floor((column / columns) * shots.length)));
+    const columnCenter = ((column + 0.5) / columns) * 100;
+    const shot = shots.reduce((nearest, left, shotIndex) => {
+      const currentDistance = Math.abs(left - columnCenter);
+      const nearestDistance = Math.abs(shots[nearest] - columnCenter);
+
+      return currentDistance < nearestDistance ? shotIndex : nearest;
+    }, 0);
+    const distance = Math.abs(shots[shot] - columnCenter);
+    const rowCenterBias = Math.abs(row - (rows - 1) / 2);
 
     return {
       id: index,
       shot,
-      delay: fireTimes[shot] + impactOffset + row * 0.035 + (column % 2) * 0.025,
+      delay: fireTimes[shot] + impactOffset + distance * 0.012 + rowCenterBias * 0.035 + (row % 2) * 0.018,
+      fracture: (column % 5) - 2,
+      lift: row - 2,
     };
   });
 
@@ -376,7 +386,8 @@ function HeroWallRevealAnimation() {
               style={
                 {
                   "--break-delay": `${brick.delay}s`,
-                  "--break-x": `${(brick.shot - 2.5) * 0.22}rem`,
+                  "--break-x": `${brick.fracture * 0.055 + (brick.shot - 3.5) * 0.045}rem`,
+                  "--break-y": `${-0.18 - Math.abs(brick.lift) * 0.05}rem`,
                 } as CSSProperties
               }
             />
