@@ -89,16 +89,16 @@ export default function Home() {
         <div className="absolute inset-x-4 top-20 h-px sm:inset-x-6 sm:top-24 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-10">
           <div className="max-w-3xl">
-            <div className="mb-4 flex flex-wrap gap-2 sm:hidden">
-              {["4+ years in QA", "SolarWinds → Flowio → Baťa", "Building Dulvarn", "Python / Robot Framework"].map((item) => (
-                <span key={item} className="rounded-md border border-sky-300/20 bg-sky-300/10 px-2.5 py-1.5 text-xs font-medium text-sky-100">
+            <div className="mb-5 grid grid-cols-2 gap-2 sm:mb-6 lg:grid-cols-4">
+              {profile.proofItems.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-md border border-sky-300/[0.14] bg-slate-950/45 px-3 py-2 text-xs font-medium leading-5 text-sky-100 sm:text-sm"
+                >
                   {item}
                 </span>
               ))}
             </div>
-            <p className="mb-5 hidden max-w-3xl rounded-full border border-sky-300/20 bg-sky-300/10 px-4 py-2 text-sm font-medium text-sky-100 sm:inline-flex">
-              {profile.proofLine}
-            </p>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/80 sm:text-sm sm:tracking-[0.28em]">
               {profile.name}
             </p>
@@ -347,7 +347,7 @@ function ReleaseSignalCard() {
       <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-sky-300/80 sm:text-xs sm:tracking-[0.24em]">
-            Release quality focus
+            Example Release Signal
           </p>
           <h2 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">{releaseSignal.title}</h2>
         </div>

@@ -3,8 +3,12 @@ export const profile = {
   title: "QA Automation Engineer & Release Quality Builder",
   message:
     "I help teams reduce release risk through QA automation, test strategy, CI/CD quality checks, and AI-assisted engineering tools.",
-  proofLine:
-    "4+ years in QA · SolarWinds → Flowio → Baťa · Building Dulvarn · Python / Robot Framework automation focus",
+  proofItems: [
+    "4+ years in QA",
+    "SolarWinds → Flowio → Baťa",
+    "Building Dulvarn",
+    "Python / Robot Framework focus",
+  ],
   email: "duris.janko@tutanota.com",
   linkedin: "https://www.linkedin.com/in/jduris/",
   github: "https://github.com/JankoD84/",
@@ -21,13 +25,13 @@ export const navigation = [
 ];
 
 export const releaseSignal = {
-  repository: "dulvarn-core",
+  repository: "sample-release",
   ciChecks: "Passed",
   coverage: "84%",
   risk: "Medium",
   decision: "Conditional GO",
   title: "Release Readiness Snapshot",
-  note: "A visual representation of release quality focus, not a production metric.",
+  note: "A visual representation of release quality thinking, not a production metric.",
   pipeline: ["PR", "CI", "Tests", "Risk", "Decision"],
   badges: ["Passed", "Medium Risk", "Conditional GO"],
 };
