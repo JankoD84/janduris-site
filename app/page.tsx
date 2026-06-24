@@ -23,9 +23,9 @@ const sectionEyebrow =
 const sectionTitle =
   "mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl";
 const cardClass =
-  "rounded-lg border border-white/12 bg-slate-950/45 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/25 hover:bg-white/[0.055] hover:shadow-[0_24px_90px_rgba(56,189,248,0.12)] sm:p-6";
+  "rounded-lg border border-white/[0.08] bg-slate-950/38 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.048] hover:shadow-[0_22px_70px_rgba(56,189,248,0.09)] sm:p-6";
 const tagClass =
-  "max-w-full break-words rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-200 transition hover:border-sky-300/20 hover:bg-sky-300/[0.08] sm:px-3 sm:text-sm";
+  "max-w-full break-words rounded-md border border-white/[0.07] bg-white/[0.035] px-2.5 py-1.5 text-xs text-slate-200 transition hover:border-sky-300/18 hover:bg-sky-300/[0.06] sm:px-3 sm:text-sm";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -144,15 +144,18 @@ export default function Home() {
       </section>
 
       <Section id="about" eyebrow="About" title="Practical QA experience, now pointed at release quality.">
-        <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className={cardClass}>
-            <StatusRail labels={["QA", "CI", "RISK", "GO"]} />
-            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
+        <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+          <div className={cardClass + " self-start"}>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
               Positioning
             </p>
-            <p className="mt-4 text-xl font-semibold leading-8 text-ink sm:text-2xl sm:leading-9">
-              QA engineer, automation learner, product builder.
-            </p>
+            <div className="mt-5 grid gap-2 text-sm text-slate-200">
+              {["QA engineer", "Automation learner", "Product builder", "Release quality focus"].map((item) => (
+                <span key={item} className="rounded-md bg-white/[0.045] px-3 py-2">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
           <div className={cardClass}>
             <div className="space-y-4 text-sm leading-7 text-muted sm:space-y-5 sm:text-base sm:leading-8">
@@ -168,8 +171,7 @@ export default function Home() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((capability, index) => (
             <article key={capability.title} className={cardClass + " min-h-48 overflow-hidden"}>
-              <StatusRail labels={["TEST", "CHECK", "READY"]} />
-              <p className="mt-5 text-sm font-semibold text-sky-200">0{index + 1}</p>
+              <p className="text-sm font-semibold text-sky-200">0{index + 1}</p>
               <h3 className="mt-3 text-lg font-semibold text-ink sm:text-xl">{capability.title}</h3>
               <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{capability.description}</p>
             </article>
@@ -188,7 +190,6 @@ export default function Home() {
                 <p className="mt-2 text-sm text-muted sm:mt-3">{item.location}</p>
               </div>
               <div className={cardClass + " relative overflow-hidden"}>
-                <StatusRail labels={["QA", "REGRESSION", "VALIDATE"]} />
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="text-sm font-medium uppercase tracking-[0.18em] text-emerald-200">
@@ -236,8 +237,7 @@ export default function Home() {
         <div className="grid gap-4 lg:grid-cols-5">
           {skills.map((group) => (
             <article key={group.category} className={cardClass + " overflow-hidden lg:p-5"}>
-              <StatusRail labels={["CAPABILITY", "USE"]} />
-              <h3 className="mt-5 text-lg font-semibold text-ink">{group.category}</h3>
+              <h3 className="text-lg font-semibold text-ink">{group.category}</h3>
               <p className="mt-3 text-sm leading-6 text-muted">{group.practicalUse}</p>
               <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
                 {group.capabilities.map((item) => (
@@ -266,7 +266,7 @@ export default function Home() {
       </Section>
 
       <Section id="direction" eyebrow="Current Direction" title="Focused growth, shipped as useful tools.">
-        <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-6 shadow-soft transition duration-200 hover:border-sky-300/35 hover:bg-sky-300/[0.085] sm:p-8">
+        <div className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-6 shadow-soft transition duration-200 hover:border-sky-300/35 hover:bg-sky-300/[0.085] sm:p-8">
           <p className="max-w-3xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             My current focus is becoming stronger as a QA Automation Engineer / SDET-oriented engineer while building practical release quality tools through Dulvarn.
           </p>
@@ -283,7 +283,7 @@ export default function Home() {
       <Section id="education" eyebrow="Education" title="Training and technical foundation.">
         <div className="grid gap-4 md:grid-cols-2">
           {education.map((item) => (
-            <article key={item.school} className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] p-4 sm:p-5">
+            <article key={item.school} className="overflow-hidden rounded-lg border border-white/[0.07] bg-white/[0.032] p-4 sm:p-5">
               <p className="text-sm font-medium text-sky-200">{item.date}</p>
               <h3 className="mt-2 text-xl font-semibold text-ink">{item.school}</h3>
               <p className="mt-1 text-sm text-slate-300">{item.program}</p>
@@ -298,7 +298,7 @@ export default function Home() {
         id="contact"
         className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-8 lg:px-10 lg:py-20"
       >
-        <div className="rounded-lg border border-sky-300/20 bg-sky-300/[0.07] p-5 sm:p-8 lg:p-10">
+        <div className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-5 sm:p-8 lg:p-10">
           <p className={sectionEyebrow}>Contact</p>
           <h2 className={sectionTitle}>
             Interested in QA automation, release quality, or practical QA audits?
@@ -343,20 +343,20 @@ function Section({
 
 function ReleaseSignalCard() {
   return (
-    <aside className="w-full overflow-hidden rounded-lg border border-sky-300/20 bg-slate-950/65 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_24px_90px_rgba(56,189,248,0.14)] sm:p-5">
+    <aside className="w-full overflow-hidden rounded-lg border border-sky-300/[0.16] bg-slate-950/55 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/28 hover:shadow-[0_24px_80px_rgba(56,189,248,0.11)] sm:p-5">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-sky-300/80 sm:text-xs sm:tracking-[0.24em]">
-            Visual concept
+            Release quality focus
           </p>
-          <h2 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">Release Signal</h2>
+          <h2 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">{releaseSignal.title}</h2>
         </div>
         <StatusBadge label={releaseSignal.decision} tone="emerald" />
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-1.5 text-xs font-medium text-slate-300 sm:mt-5 sm:gap-2">
         {releaseSignal.pipeline.map((step, index) => (
           <div key={step} className="flex items-center gap-2">
-            <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1.5 sm:px-2.5">{step}</span>
+            <span className="rounded-md border border-white/[0.07] bg-white/[0.035] px-2 py-1.5 sm:px-2.5">{step}</span>
             {index < releaseSignal.pipeline.length - 1 ? (
               <span className="text-sky-300/60">→</span>
             ) : null}
@@ -370,9 +370,10 @@ function ReleaseSignalCard() {
         <SignalRow label="Risk Level" value={releaseSignal.risk} tone="amber" />
         <SignalRow label="Decision" value={releaseSignal.decision} tone="emerald" />
       </div>
-      <div className="mt-5 flex flex-wrap gap-2">
+      <p className="mt-4 text-xs leading-5 text-muted">{releaseSignal.note}</p>
+      <div className="mt-4 flex flex-wrap gap-2">
         {releaseSignal.badges.map((badge) => (
-          <span key={badge} className="max-w-full break-words rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-200 sm:px-3 sm:text-sm">
+          <span key={badge} className="max-w-full break-words rounded-md border border-white/[0.07] bg-white/[0.035] px-2.5 py-1.5 text-xs text-slate-200 sm:px-3 sm:text-sm">
             {badge}
           </span>
         ))}
@@ -398,21 +399,9 @@ function SignalRow({
         : "text-slate-100";
 
   return (
-    <div className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2">
+    <div className="flex items-center justify-between gap-3 rounded-md border border-white/[0.07] bg-white/[0.032] px-3 py-2">
       <span className="text-muted">{label}</span>
       <span className={"font-medium " + valueClass}>{value}</span>
-    </div>
-  );
-}
-
-function StatusRail({ labels }: Readonly<{ labels: string[] }>) {
-  return (
-    <div className="-mx-1 -mt-1 mb-1 flex flex-wrap gap-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-sky-200/70 sm:-mx-2 sm:-mt-2 sm:text-[0.65rem] sm:tracking-[0.18em]">
-      {labels.map((label) => (
-        <span key={label} className="rounded border border-white/10 bg-black/20 px-2 py-1">
-          {label}
-        </span>
-      ))}
     </div>
   );
 }
@@ -474,7 +463,6 @@ function ProjectCard({
 }>) {
   return (
     <article className={cardClass + " flex flex-col overflow-hidden"}>
-      <StatusRail labels={["PRODUCT", "SYSTEM", "QA"]} />
       <div className="flex flex-wrap items-start justify-between gap-3">
         <h3 className="max-w-xl break-words text-lg font-semibold text-ink sm:text-xl">{item.title}</h3>
         <StatusBadge label={item.status} />
@@ -503,7 +491,7 @@ function WebsiteCard({
   };
 }>) {
   return (
-    <article className="overflow-hidden rounded-lg border border-emerald-200/15 bg-emerald-300/[0.045] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.065] hover:shadow-[0_24px_90px_rgba(16,185,129,0.13)] sm:p-6">
+    <article className="overflow-hidden rounded-lg border border-emerald-200/[0.12] bg-emerald-300/[0.038] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/35 hover:bg-emerald-300/[0.065] hover:shadow-[0_24px_90px_rgba(16,185,129,0.13)] sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-emerald-200">{item.type}</p>

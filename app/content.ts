@@ -26,6 +26,8 @@ export const releaseSignal = {
   coverage: "84%",
   risk: "Medium",
   decision: "Conditional GO",
+  title: "Release Readiness Snapshot",
+  note: "A visual representation of release quality focus, not a production metric.",
   pipeline: ["PR", "CI", "Tests", "Risk", "Decision"],
   badges: ["Passed", "Medium Risk", "Conditional GO"],
 };
@@ -100,7 +102,7 @@ export const workHistory = [
     location: "Zlín, Czechia · Hybrid",
     status: "Current",
     description:
-      "Current QA role focused on the quality and reliability of e-commerce and internal business platforms. Work includes manual testing, QA workflows, release validation, bug reporting and a growing automation focus with Python and Robot Framework.",
+      "Current QA role focused on the quality and reliability of e-commerce and internal business platforms. Work includes manual testing, QA workflows, release validation, bug reporting and growing automation focus with Python and Robot Framework.",
     highlights: [
       "E-commerce QA",
       "Internal business platform testing",
@@ -148,10 +150,16 @@ export const workHistory = [
     location: "Brno, Czechia · Hybrid",
     status: "First QA role",
     description:
-      "First major IT/QA role after completing tester training. Worked in an enterprise software environment and built a strong practical foundation in QA workflows, SQL, test execution, bug reporting and software quality processes.",
+      "First major IT/QA role after completing tester training. Worked in an enterprise software environment and built a practical QA foundation across licensing flows, support-case workflows, tenant management, mobile testing, release process handling, builds and QA validation.",
     highlights: [
-      "First professional IT/QA role",
-      "Enterprise software QA",
+      "NetSuite license creation and testing",
+      "Salesforce Cloud support cases handling and testing",
+      "Tenant creation and editing",
+      "Mobile testing",
+      "Release process handling",
+      "TeamCity builds handling",
+      "VS Code usage",
+      "Automation parameter editing",
       "SQL",
       "Azure DevOps / ADO pipelines",
       "Manual and regression testing",
@@ -159,12 +167,17 @@ export const workHistory = [
       "QA process foundation",
     ],
     skills: [
+      "NetSuite",
+      "Salesforce Cloud",
+      "Mobile testing",
+      "TeamCity",
+      "VS Code",
       "SQL",
       "ADO pipelines",
-      "QA workflows",
       "Manual testing",
       "Regression testing",
       "Bug reporting",
+      "Release process",
     ],
   },
   {
