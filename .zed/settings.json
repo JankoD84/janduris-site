@@ -1,0 +1,21 @@
+{
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/node_modules",
+    "**/.next",
+    "**/out",
+    "**/.vercel",
+    "**/.env",
+    "**/.env.local",
+    "**/.env.*.local",
+    "**/*.log"
+  ]
+}

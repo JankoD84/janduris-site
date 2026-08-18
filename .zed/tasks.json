@@ -1,0 +1,32 @@
+[
+  {
+    "label": "site: lint",
+    "command": "npm run lint",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "site: typecheck",
+    "command": "npx tsc --noEmit",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "site: build",
+    "command": "npm run build",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "standards: validate zed json",
+    "command": "python3 -m json.tool .zed/settings.json >/dev/null && python3 -m json.tool .zed/tasks.json >/dev/null",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "git: diff check",
+    "command": "git diff --check",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  }
+]
