@@ -8,7 +8,7 @@ import { SiteNav } from "./nav";
 export const sectionEyebrow = "text-sm font-medium text-muted";
 export const sectionTitle = "text-2xl font-semibold tracking-tight text-ink sm:text-[1.85rem]";
 export const cardClass = "rounded-lg border border-line bg-surface p-5 sm:p-6";
-export const tagClass = "rounded border border-line bg-paper px-2 py-0.5 text-[0.8rem] text-body";
+export const tagClass = "max-w-full rounded border border-line bg-paper px-2 py-0.5 text-[0.8rem] text-body [overflow-wrap:anywhere]";
 
 export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -32,7 +32,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
 function SiteFooter() {
   return (
     <footer className="border-t border-line bg-surface">
-      <div className="mx-auto grid w-full max-w-page gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid w-full max-w-page gap-8 px-5 py-10 sm:px-8 lg:px-12 2xl:px-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-semibold text-ink">{profile.name}</p>
           <p className="mt-1 text-[0.95rem] text-muted">{profile.title}, {profile.location}</p>
@@ -60,7 +60,7 @@ function SiteFooter() {
 
 export function PageHeader({ title, description, intro }: Readonly<{ eyebrow?: string; title: string; description: string; intro?: string }>) {
   return (
-    <section className="mx-auto w-full max-w-page px-5 pb-6 pt-14 sm:px-8 sm:pt-20">
+    <section className="mx-auto w-full max-w-page px-5 pb-6 pt-14 sm:px-8 lg:px-12 2xl:px-16 sm:pt-20">
       <h1 className="max-w-3xl text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:text-[2.6rem]">{title}</h1>
       <p className="mt-4 max-w-prose text-lg text-body">{description}</p>
       {intro ? <p className="mt-3 max-w-prose text-[0.95rem] text-muted">{intro}</p> : null}
@@ -70,12 +70,12 @@ export function PageHeader({ title, description, intro }: Readonly<{ eyebrow?: s
 
 export function Section({ title, children, id, lead }: Readonly<{ eyebrow?: string; title: string; children: React.ReactNode; id?: string; lead?: string }>) {
   return (
-    <section id={id} className="mx-auto w-full max-w-page px-5 py-12 sm:px-8 sm:py-16">
-      <div className="mb-8 max-w-prose">
+    <section id={id} className="mx-auto w-full max-w-page px-5 py-12 sm:px-8 sm:py-16 lg:px-12 xl:grid xl:grid-cols-[16rem_minmax(0,1fr)] xl:gap-16 2xl:grid-cols-[19rem_minmax(0,1fr)] 2xl:gap-24 2xl:px-16">
+      <div className="mb-8 max-w-prose xl:mb-0">
         <h2 className={sectionTitle}>{title}</h2>
         {lead ? <p className="mt-3 text-body">{lead}</p> : null}
       </div>
-      {children}
+      <div className="min-w-0">{children}</div>
     </section>
   );
 }
@@ -243,9 +243,9 @@ export function ContactLinks() {
     <ul className="divide-y divide-line border-y border-line">
       {links.map((link) => (
         <li key={link.label}>
-          <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="flex items-baseline justify-between gap-4 py-3 hover:text-ink">
-            <span className="font-medium text-ink">{link.label}</span>
-            <span className="truncate text-[0.95rem] text-body">{link.value}</span>
+          <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 py-3 hover:text-ink">
+            <span className="shrink-0 font-medium text-ink">{link.label}</span>
+            <span className="min-w-0 text-[0.95rem] text-body [overflow-wrap:anywhere]">{link.value}</span>
           </a>
         </li>
       ))}

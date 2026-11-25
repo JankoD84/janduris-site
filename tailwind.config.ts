@@ -19,7 +19,7 @@ const config: Config = {
         fail: { DEFAULT: "#B42318", soft: "#FBE8E6" },
       },
       maxWidth: {
-        page: "70rem",
+        page: "90rem",
         prose: "40rem",
       },
     },

@@ -9,7 +9,7 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav aria-label="Main" className="mx-auto flex w-full max-w-page items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
+    <nav aria-label="Main" className="mx-auto flex w-full max-w-page items-center justify-between gap-6 px-5 py-3.5 sm:px-8 lg:px-12 2xl:px-16">
       <Link href="/" className="text-[0.95rem] font-semibold text-ink" onClick={() => setOpen(false)}>
         Ján Ďuriš
       </Link>
@@ -41,7 +41,7 @@ export function SiteNav() {
       </button>
 
       {open ? (
-        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-line bg-surface px-5 pb-4 shadow-sm md:hidden">
+        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-line bg-surface px-5 pb-4 shadow-sm sm:px-8 md:hidden">
           {[...navigation, { label: "CV", href: "/cv" }].map((item) => (
             <Link
               key={item.href}
