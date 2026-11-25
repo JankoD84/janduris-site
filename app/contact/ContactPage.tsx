@@ -27,6 +27,7 @@ export default function ContactPage() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [sentTo, setSentTo] = useState("");
 
   const mailtoHref = useMemo(() => {
     const subject = form.subject || "Portfolio contact";
@@ -54,9 +55,10 @@ export default function ContactPage() {
       const result = (await response.json().catch(() => ({}))) as { message?: string };
 
       if (response.ok) {
-        setSubmitState("success");
-        setStatusMessage("Message sent. Thank you for reaching out.");
+        setSentTo(form.email);
         setForm(initialForm);
+        setStatusMessage("");
+        setSubmitState("success");
         return;
       }
 
@@ -100,10 +102,30 @@ export default function ContactPage() {
           </div>
         </Card>
 
+        {submitState === "success" ? (
+          <div role="status" aria-live="polite" className="rounded-lg border border-line bg-surface p-4 sm:p-6">
+            <div className="flex items-center gap-3">
+              <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-pass-soft text-pass">
+                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 10.5 3.2 3L15 7" /></svg>
+              </span>
+              <h2 className="text-xl font-semibold text-ink">Message sent</h2>
+            </div>
+            <p className="mt-3 text-[0.95rem] text-body">
+              Thanks for reaching out. I&apos;ll reply to <span className="font-medium text-ink">{sentTo}</span> from {profile.email}.
+            </p>
+            <button
+              type="button"
+              onClick={() => setSubmitState("idle")}
+              className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md border border-ink/25 bg-surface px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink focus:outline-none focus:ring-2 focus:ring-pass/40"
+            >
+              Send another message
+            </button>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit} className="rounded-lg border border-line bg-surface p-4 sm:p-6">
           <h2 className="text-xl font-semibold text-ink">Send a message</h2>
           <p className="mt-3 text-sm leading-7 text-muted">
-            The form tries the secure contact endpoint first. If email sending is not configured, it will guide you to direct email.
+            Your message goes straight to my inbox. If sending fails, you can email me directly instead.
           </p>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -138,12 +160,7 @@ export default function ContactPage() {
           {statusMessage ? (
             <p
               role="status"
-              className={
-                "mt-5 rounded-lg border px-3 py-2 text-sm " +
-                (submitState === "success"
-                  ? "border-line bg-surface text-ink"
-                  : "border-warn/30 bg-warn-soft text-warn")
-              }
+              className="mt-5 rounded-lg border border-warn/30 bg-warn-soft px-3 py-2 text-sm text-warn"
             >
               {statusMessage}
             </p>
@@ -162,6 +179,7 @@ export default function ContactPage() {
             </a>
           </div>
         </form>
+        )}
       </section>
     </SiteShell>
   );
