@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { focusAreas, openSource, profile, services, writing } from "./content";
-import { PrimaryLink, ReleaseVerdict, SecondaryLink, Section, SiteShell } from "./components";
+import { allArticles, featuredArticles, focusAreas, openSource, profile, services } from "./content";
+import { ArticleList, PrimaryLink, ReleaseVerdict, SecondaryLink, Section, SiteShell } from "./components";
 
 const repoUrl = (name: string) => `${profile.github}/${name}`;
 
@@ -135,18 +135,13 @@ export default function Home() {
       </Section>
 
       <section className="border-t border-line bg-surface">
-        <Section id="writing" title="Writing">
-          <ul className="border-t border-line">
-            {writing.map((post) => (
-              <li key={post.url} className="border-b border-line py-5">
-                <a href={post.url} target="_blank" rel="noreferrer" className="group block">
-                  <span className="text-lg font-semibold text-ink underline decoration-transparent underline-offset-4 group-hover:decoration-ink">{post.title}</span>
-                  <span className="mt-1 block text-body">{post.summary}</span>
-                  <span className="mt-1 block text-[0.85rem] text-muted">CoderLegion, {post.date}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+        <Section id="writing" title="Writing" lead="Notes on release decisions, on-call and QA, published on CoderLegion.">
+          <ArticleList articles={featuredArticles} />
+          <p className="mt-6">
+            <Link href="/writing" className="font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+              All {allArticles.length} articles
+            </Link>
+          </p>
         </Section>
       </section>
     </SiteShell>

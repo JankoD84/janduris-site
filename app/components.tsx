@@ -216,6 +216,22 @@ function TagRow({ label, items, strong = false, className = "mt-4" }: Readonly<{
   );
 }
 
+export function ArticleList({ articles }: Readonly<{ articles: Array<{ title: string; summary: string; url: string; date?: string }> }>) {
+  return (
+    <ul className="border-t border-line">
+      {articles.map((post) => (
+        <li key={post.url} className="border-b border-line py-5">
+          <a href={post.url} target="_blank" rel="noreferrer" className="group block">
+            <span className="text-lg font-semibold text-ink underline decoration-transparent underline-offset-4 group-hover:decoration-ink">{post.title}</span>
+            <span className="mt-1 block text-body">{post.summary}</span>
+            <span className="mt-1 block text-[0.85rem] text-muted">CoderLegion{post.date ? ", " + post.date : ""}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function SkillsMatrix({ groups }: Readonly<{ groups: Array<{ category: string; practicalUse: string; capabilities: string[] }> }>) {
   return (
     <div className="grid gap-x-10 gap-y-8 border-t border-line pt-8 md:grid-cols-2">

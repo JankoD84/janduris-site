@@ -11,7 +11,7 @@ export const profile = {
   proofItems: [
     { value: "4+ years", label: "in QA, from enterprise software to e-commerce" },
     { value: "7 open-source tools", label: "tests, CI tools and demos on GitHub" },
-    { value: "2 articles", label: "on on-call and release decisions" },
+    { value: "13 articles", label: "on release decisions, on-call and QA" },
     { value: "Dulvarn", label: "a release-control system I'm building" },
   ],
   email: "duris.janko@tutanota.com",
@@ -24,7 +24,7 @@ export const profile = {
 export const navigation = [
   { label: "Projects", href: "/projects" },
   { label: "Experience", href: "/work" },
-  { label: "Writing", href: "/#writing" },
+  { label: "Writing", href: "/writing" },
   { label: "Hire", href: "/#hire" },
   { label: "Contact", href: "/contact" },
 ];
@@ -407,20 +407,103 @@ export const openSource = [
   },
 ];
 
-export const writing = [
+/* Writing on CoderLegion, grouped by topic. Titles reconstructed from URLs; dates only where verified. */
+export type Article = { title: string; summary: string; url: string; date?: string; featured?: boolean };
+
+export const writingGroups: Array<{ topic: string; intro: string; articles: Article[] }> = [
   {
-    title: "A Green Pipeline Is Not a Release Decision",
-    summary: "Why a passing CI run is a pipeline state, not a release decision, and what evidence a release actually needs.",
-    url: "https://coderlegion.com/35947/a-green-pipeline-is-not-a-release-decision",
-    date: "Nov 2026",
+    topic: "Release decisions",
+    intro: "When a green build is enough, when it isn't, and who decides.",
+    articles: [
+      {
+        title: "A Green Pipeline Is Not a Release Decision",
+        summary: "Why a passing CI run is a pipeline state, not a release decision, and what evidence a release actually needs.",
+        url: "https://coderlegion.com/35947/a-green-pipeline-is-not-a-release-decision",
+        date: "Nov 2026",
+        featured: true,
+      },
+      {
+        title: "Release Gates Should Be Risk-Based, Not Checklist-Based",
+        summary: "Why gates should follow the risk of the change instead of a fixed checklist.",
+        url: "https://coderlegion.com/26542/release-gates-should-be-risk-based-not-checklist-based",
+        featured: true,
+      },
+      {
+        title: "Who Actually Owns the Release Decision?",
+        summary: "Separating who runs the pipeline from who is accountable for shipping.",
+        url: "https://coderlegion.com/25600/who-actually-owns-the-release-decision",
+        featured: true,
+      },
+      {
+        title: "Your Tests Passed. That Still Doesn't Mean You Should Release",
+        summary: "Passing tests answer one question; a release decision needs several more.",
+        url: "https://coderlegion.com/25305/your-tests-passed-that-still-doesnt-mean-you-should-release",
+      },
+      {
+        title: "CI Is Green, Your Release May Still Be Risky",
+        summary: "The risks a green CI run does not cover.",
+        url: "https://coderlegion.com/25303/ci-is-green-your-release-may-still-be-risky",
+      },
+      {
+        title: "CI Is Green. What Could Still Go Wrong?",
+        summary: "Failure modes that slip past a green pipeline.",
+        url: "https://coderlegion.com/25304/ci-is-green-what-could-still-go-wrong",
+      },
+      {
+        title: "What Happens After QA Says \"Passed\"",
+        summary: "What a QA pass means for the release, and what it does not.",
+        url: "https://coderlegion.com/25760/what-happens-after-qa-says-passed",
+      },
+    ],
   },
   {
-    title: "The First 5 Minutes of On-call: What I Check Before I Open the Code",
-    summary: "The order I work through when the pager goes off, and why the code comes last.",
-    url: "https://coderlegion.com/35672/the-first-5-minutes-of-on-call-what-i-check-before-i-open-the-code",
-    date: "Nov 2026",
+    topic: "On-call and debugging",
+    intro: "How I investigate failures before reaching for the code.",
+    articles: [
+      {
+        title: "The First 5 Minutes of On-call: What I Check Before I Open the Code",
+        summary: "The order I work through when the pager goes off, and why the code comes last.",
+        url: "https://coderlegion.com/35672/the-first-5-minutes-of-on-call-what-i-check-before-i-open-the-code",
+        date: "Nov 2026",
+        featured: true,
+      },
+      {
+        title: "A Failed Test Is a Clue, Not a Diagnosis",
+        summary: "Treating a red test as the start of an investigation, not its conclusion.",
+        url: "https://coderlegion.com/26540/a-failed-test-is-a-clue-not-a-diagnosis",
+      },
+    ],
+  },
+  {
+    topic: "QA career and building a SaaS",
+    intro: "How I got into QA, what I learned, and the product that came out of it.",
+    articles: [
+      {
+        title: "How I Got Into QA and Why I Stayed",
+        summary: "From sales and technical roles to software testing.",
+        url: "https://coderlegion.com/25759/how-i-got-into-qa-and-why-i-stayed",
+      },
+      {
+        title: "What I Wish I Knew When I Started in QA",
+        summary: "Lessons I would give myself on day one as a tester.",
+        url: "https://coderlegion.com/26539/what-i-wish-i-knew-when-i-started-in-qa",
+      },
+      {
+        title: "How a QA Problem Turned Into the SaaS I'm Building",
+        summary: "The release-decision problem behind Dulvarn.",
+        url: "https://coderlegion.com/25761/how-a-qa-problem-turned-into-the-saas-im-building",
+      },
+      {
+        title: "The Unseen Work Behind Building a SaaS",
+        summary: "What building a product alone actually involves beyond the code.",
+        url: "https://coderlegion.com/26541/the-unseen-work-behind-building-a-saas",
+      },
+    ],
   },
 ];
+
+export const allArticles = writingGroups.flatMap((group) => group.articles);
+export const featuredArticles = allArticles.filter((article) => article.featured);
 
 export const services = [
   {
