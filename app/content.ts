@@ -407,96 +407,136 @@ export const openSource = [
   },
 ];
 
-/* Writing on CoderLegion, grouped by topic. Titles reconstructed from URLs; dates only where verified. */
-export type Article = { title: string; summary: string; url: string; date?: string; featured?: boolean };
+/* Writing on CoderLegion, grouped by series in reading order. Titles and dates as published. */
+export type Article = { title: string; summary: string; url: string; date: string; part?: number; featured?: boolean };
 
 export const writingGroups: Array<{ topic: string; intro: string; articles: Article[] }> = [
   {
-    topic: "Release decisions",
-    intro: "When a green build is enough, when it isn't, and who decides.",
+    topic: "Release Decisions",
+    intro: "Green is a pipeline state. Evidence is a release decision.",
     articles: [
       {
         title: "A Green Pipeline Is Not a Release Decision",
         summary: "Why a passing CI run is a pipeline state, not a release decision, and what evidence a release actually needs.",
         url: "https://coderlegion.com/35947/a-green-pipeline-is-not-a-release-decision",
-        date: "Nov 2026",
+        date: "24 Nov 2026",
+        featured: true,
+      },
+    ],
+  },
+  {
+    topic: "Beyond Green CI",
+    intro: "Release readiness, evidence, risk, ownership, and the decisions that happen after the pipeline turns green.",
+    articles: [
+      {
+        title: "CI is green. Your release may still be risky.",
+        summary: "The risks a green CI run does not cover.",
+        url: "https://coderlegion.com/25303/ci-is-green-your-release-may-still-be-risky",
+        date: "24 Aug 2026",
+        part: 1,
+      },
+      {
+        title: "CI Is Green. What Could Still Go Wrong?",
+        summary: "Failure modes that slip past a green pipeline.",
+        url: "https://coderlegion.com/25304/ci-is-green-what-could-still-go-wrong",
+        date: "24 Aug 2026",
+        part: 2,
+      },
+      {
+        title: "Your Tests Passed. That Still Doesn't Mean You Should Release.",
+        summary: "Passing tests answer one question; a release decision needs several more.",
+        url: "https://coderlegion.com/25305/your-tests-passed-that-still-doesnt-mean-you-should-release",
+        date: "24 Aug 2026",
+        part: 3,
+      },
+      {
+        title: "Who Actually Owns the Release Decision?",
+        summary: "Separating who runs the pipeline from who is accountable for shipping.",
+        url: "https://coderlegion.com/25600/who-actually-owns-the-release-decision",
+        date: "28 Aug 2026",
+        part: 4,
         featured: true,
       },
       {
         title: "Release Gates Should Be Risk-Based, Not Checklist-Based",
         summary: "Why gates should follow the risk of the change instead of a fixed checklist.",
         url: "https://coderlegion.com/26542/release-gates-should-be-risk-based-not-checklist-based",
+        date: "9 Sep 2026",
+        part: 5,
         featured: true,
-      },
-      {
-        title: "Who Actually Owns the Release Decision?",
-        summary: "Separating who runs the pipeline from who is accountable for shipping.",
-        url: "https://coderlegion.com/25600/who-actually-owns-the-release-decision",
-        featured: true,
-      },
-      {
-        title: "Your Tests Passed. That Still Doesn't Mean You Should Release",
-        summary: "Passing tests answer one question; a release decision needs several more.",
-        url: "https://coderlegion.com/25305/your-tests-passed-that-still-doesnt-mean-you-should-release",
-      },
-      {
-        title: "CI Is Green, Your Release May Still Be Risky",
-        summary: "The risks a green CI run does not cover.",
-        url: "https://coderlegion.com/25303/ci-is-green-your-release-may-still-be-risky",
-      },
-      {
-        title: "CI Is Green. What Could Still Go Wrong?",
-        summary: "Failure modes that slip past a green pipeline.",
-        url: "https://coderlegion.com/25304/ci-is-green-what-could-still-go-wrong",
-      },
-      {
-        title: "What Happens After QA Says \"Passed\"",
-        summary: "What a QA pass means for the release, and what it does not.",
-        url: "https://coderlegion.com/25760/what-happens-after-qa-says-passed",
       },
     ],
   },
   {
-    topic: "On-call and debugging",
-    intro: "How I investigate failures before reaching for the code.",
+    topic: "On-call Without Panic",
+    intro: "For developers new to on-call: triage without guessing, updates people read, and templates for your runbooks.",
     articles: [
       {
         title: "The First 5 Minutes of On-call: What I Check Before I Open the Code",
         summary: "The order I work through when the pager goes off, and why the code comes last.",
         url: "https://coderlegion.com/35672/the-first-5-minutes-of-on-call-what-i-check-before-i-open-the-code",
-        date: "Nov 2026",
+        date: "22 Nov 2026",
         featured: true,
+      },
+    ],
+  },
+  {
+    topic: "From QA to DevOps / Release Engineering",
+    intro: "Going beyond testing: how software moves from CI/CD and environments to deployment, observability and production.",
+    articles: [
+      {
+        title: "What Happens After QA Says 'Passed'?",
+        summary: "What a QA pass means for the release, and what it does not.",
+        url: "https://coderlegion.com/25760/what-happens-after-qa-says-passed",
+        date: "29 Aug 2026",
+        part: 1,
       },
       {
         title: "A Failed Test Is a Clue, Not a Diagnosis",
         summary: "Treating a red test as the start of an investigation, not its conclusion.",
         url: "https://coderlegion.com/26540/a-failed-test-is-a-clue-not-a-diagnosis",
+        date: "8 Sep 2026",
+        part: 2,
       },
     ],
   },
   {
-    topic: "QA career and building a SaaS",
-    intro: "How I got into QA, what I learned, and the product that came out of it.",
+    topic: "How I'm Building a SaaS",
+    intro: "Building Dulvarn in public alongside a full-time job: product decisions, architecture, pricing, mistakes and trade-offs.",
     articles: [
-      {
-        title: "How I Got Into QA and Why I Stayed",
-        summary: "From sales and technical roles to software testing.",
-        url: "https://coderlegion.com/25759/how-i-got-into-qa-and-why-i-stayed",
-      },
-      {
-        title: "What I Wish I Knew When I Started in QA",
-        summary: "Lessons I would give myself on day one as a tester.",
-        url: "https://coderlegion.com/26539/what-i-wish-i-knew-when-i-started-in-qa",
-      },
       {
         title: "How a QA Problem Turned Into the SaaS I'm Building",
         summary: "The release-decision problem behind Dulvarn.",
         url: "https://coderlegion.com/25761/how-a-qa-problem-turned-into-the-saas-im-building",
+        date: "29 Aug 2026",
+        part: 1,
       },
       {
         title: "The Unseen Work Behind Building a SaaS",
         summary: "What building a product alone actually involves beyond the code.",
         url: "https://coderlegion.com/26541/the-unseen-work-behind-building-a-saas",
+        date: "9 Sep 2026",
+        part: 2,
+      },
+    ],
+  },
+  {
+    topic: "My QA Journey",
+    intro: "From early curiosity to QA engineering, automation, CI/CD and release engineering, including the mistakes along the way.",
+    articles: [
+      {
+        title: "How I Got Into QA — And Why I Stayed",
+        summary: "From sales and technical roles to software testing.",
+        url: "https://coderlegion.com/25759/how-i-got-into-qa-and-why-i-stayed",
+        date: "29 Aug 2026",
+        part: 1,
+      },
+      {
+        title: "What I Wish I Knew When I Started in QA",
+        summary: "Lessons I would give myself on day one as a tester.",
+        url: "https://coderlegion.com/26539/what-i-wish-i-knew-when-i-started-in-qa",
+        date: "8 Sep 2026",
+        part: 2,
       },
     ],
   },

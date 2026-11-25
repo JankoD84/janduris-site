@@ -216,7 +216,7 @@ function TagRow({ label, items, strong = false, className = "mt-4" }: Readonly<{
   );
 }
 
-export function ArticleList({ articles }: Readonly<{ articles: Array<{ title: string; summary: string; url: string; date?: string }> }>) {
+export function ArticleList({ articles }: Readonly<{ articles: Array<{ title: string; summary: string; url: string; date: string; part?: number }> }>) {
   return (
     <ul className="border-t border-line">
       {articles.map((post) => (
@@ -224,7 +224,7 @@ export function ArticleList({ articles }: Readonly<{ articles: Array<{ title: st
           <a href={post.url} target="_blank" rel="noreferrer" className="group block">
             <span className="text-lg font-semibold text-ink underline decoration-transparent underline-offset-4 group-hover:decoration-ink">{post.title}</span>
             <span className="mt-1 block text-body">{post.summary}</span>
-            <span className="mt-1 block text-[0.85rem] text-muted">CoderLegion{post.date ? ", " + post.date : ""}</span>
+            <span className="mt-1 block text-[0.85rem] text-muted">{post.part ? "Part " + post.part + ", " : ""}{post.date}</span>
           </a>
         </li>
       ))}
