@@ -16,14 +16,18 @@ export const profile = {
 };
 
 export const navigation = [
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/work" },
-  { label: "Proof", href: "/proof" },
   { label: "Projects", href: "/projects" },
-  { label: "Websites", href: "/websites" },
-  { label: "Skills", href: "/skills" },
+  { label: "Experience", href: "/work" },
+  { label: "Writing", href: "/#writing" },
   { label: "Hire", href: "/#hire" },
   { label: "Contact", href: "/contact" },
+];
+
+export const footerNavigation = [
+  { label: "About", href: "/about" },
+  { label: "Proof", href: "/proof" },
+  { label: "Websites", href: "/websites" },
+  { label: "Skills", href: "/skills" },
 ];
 
 export const mobileOnlyNavigation = [
