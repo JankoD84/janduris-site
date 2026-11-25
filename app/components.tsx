@@ -8,7 +8,9 @@ import { SiteNav } from "./nav";
 export const sectionEyebrow = "text-sm font-medium text-muted";
 export const sectionTitle = "text-2xl font-semibold tracking-tight text-ink sm:text-[1.85rem]";
 export const cardClass = "rounded-lg border border-line bg-surface p-5 sm:p-6";
-export const tagClass = "max-w-full rounded border border-line bg-paper px-2 py-0.5 text-[0.8rem] text-body [overflow-wrap:anywhere]";
+const tagBase = "inline-flex max-w-full items-center rounded-md border px-2.5 py-1 text-[0.8rem] leading-5 [overflow-wrap:anywhere]";
+export const tagClass = tagBase + " border-line bg-paper text-body";
+export const tagStrongClass = tagBase + " border-ink/25 bg-surface font-medium text-ink";
 
 export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -138,7 +140,7 @@ export function BulletList({ items }: Readonly<{ items: string[]; color?: string
 
 export function TagList({ items }: Readonly<{ items: string[]; tone?: string }>) {
   return (
-    <div className="mt-3 flex flex-wrap gap-1.5">
+    <div className="mt-3 flex flex-wrap content-start items-start gap-1.5">
       {items.map((item) => (
         <span key={item} className={tagClass}>{item}</span>
       ))}
@@ -146,7 +148,21 @@ export function TagList({ items }: Readonly<{ items: string[]; tone?: string }>)
   );
 }
 
-export function WorkTimeline({ items }: Readonly<{ items: Array<{ title: string; company: string; date: string; location: string; status: string; description: string; highlights: string[]; skills: string[] }> }>) {
+type WorkItem = {
+  title: string;
+  company: string;
+  date: string;
+  location: string;
+  status: string;
+  description: string;
+  highlights: string[];
+  tools: { core: string[]; also: string[] };
+};
+
+/* Lists arrive ordered by priority. The first highlights and the core tools carry the visual weight. */
+const TOP_HIGHLIGHTS = 3;
+
+export function WorkTimeline({ items }: Readonly<{ items: WorkItem[] }>) {
   return (
     <ol className="border-t border-line">
       {items.map((item) => (
@@ -155,22 +171,48 @@ export function WorkTimeline({ items }: Readonly<{ items: Array<{ title: string;
             <p className="font-medium text-ink">{item.date}</p>
             <p className="mt-1 text-muted">{item.location}</p>
           </div>
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <h3 className="text-xl font-semibold text-ink">{item.title}, {item.company}</h3>
             <p className="mt-3 text-body">{item.description}</p>
-            <details className="group mt-4">
+
+            <TagRow label="Core tools" items={item.tools.core} strong />
+
+            <details className="group mt-5">
               <summary className="cursor-pointer text-[0.95rem] font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
-                Highlights and tools
+                Highlights and all tools
               </summary>
-              <div className="mt-3 grid gap-6 lg:grid-cols-2">
-                <BulletList items={item.highlights} />
-                <TagList items={item.skills} />
+              <div className="mt-4 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+                <div>
+                  <h4 className="text-sm font-medium text-muted">Highlights</h4>
+                  <ul className="mt-2 space-y-1.5 text-[0.95rem]">
+                    {item.highlights.map((highlight, i) => (
+                      <li key={highlight} className="flex gap-2.5">
+                        <span aria-hidden="true" className={"mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full " + (i < TOP_HIGHLIGHTS ? "bg-pass" : "bg-muted/60")} />
+                        <span className={i < TOP_HIGHLIGHTS ? "font-medium text-ink" : "text-body"}>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {item.tools.also.length > 0 ? <TagRow label="Also used" items={item.tools.also} className="mt-0" /> : null}
               </div>
             </details>
           </div>
         </li>
       ))}
     </ol>
+  );
+}
+
+function TagRow({ label, items, strong = false, className = "mt-4" }: Readonly<{ label: string; items: string[]; strong?: boolean; className?: string }>) {
+  return (
+    <div className={className}>
+      <h4 className="text-sm font-medium text-muted">{label}</h4>
+      <ul className="mt-2 flex flex-wrap content-start items-start gap-1.5">
+        {items.map((item) => (
+          <li key={item} className={strong ? tagStrongClass : tagClass}>{item}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
