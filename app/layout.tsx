@@ -1,25 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { pageMetadata, siteUrl } from "./seo";
 
 const siteTitle = "Ján Ďuriš — QA Automation & Playwright Engineer";
 const siteDescription =
   "I fix flaky tests and release-critical QA problems. QA Automation Engineer working with Playwright, TypeScript, Python, API testing and CI/CD. Available for freelance projects and remote roles.";
-const siteUrl = "https://janduris.vercel.app/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: siteTitle,
-  description: siteDescription,
-  alternates: {
-    canonical: siteUrl,
-  },
-  openGraph: {
-    title: siteTitle,
-    description: siteDescription,
-    url: siteUrl,
-    siteName: "Ján Ďuriš",
-    type: "website",
-  },
+  ...pageMetadata("/", siteTitle, siteDescription),
+  authors: [{ name: "Ján Ďuriš", url: siteUrl }],
 };
 
 export const viewport: Viewport = {

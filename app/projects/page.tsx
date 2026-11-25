@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-
 import { openSource, profile, projects } from "../content";
 import { PageHeader, ProjectCard, Section, SiteShell } from "../components";
+import { pageMetadata } from "../seo";
 
-export const metadata: Metadata = {
-  title: "Projects — Ján Ďuriš",
-  description: "Open-source QA, CI/CD and ops tools by Ján Ďuriš, plus Dulvarn and other products.",
-};
+export const metadata = pageMetadata("/projects", "Projects — Ján Ďuriš", "Open-source QA, CI/CD and ops tools by Ján Ďuriš, plus Dulvarn and other products.");
 
 const groups = ["Test automation", "CI/CD and release quality", "Ops tooling"];
 

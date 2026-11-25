@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-
 import { allArticles, writingGroups } from "../content";
 import { ArticleList, PageHeader, Section, SiteShell } from "../components";
+import { pageMetadata } from "../seo";
 
-export const metadata: Metadata = {
-  title: "Writing — Ján Ďuriš",
-  description: "Articles by Ján Ďuriš on release decisions, on-call, debugging and QA careers, published on CoderLegion.",
-};
+export const metadata = pageMetadata("/writing", "Writing — Ján Ďuriš", "Articles by Ján Ďuriš on release decisions, on-call, debugging and QA careers, published on CoderLegion.");
 
 export default function WritingPage() {
   return (

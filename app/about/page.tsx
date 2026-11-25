@@ -1,54 +1,29 @@
-import type { Metadata } from "next";
+import { about } from "../content";
+import { PageHeader, Section, SiteShell } from "../components";
+import { pageMetadata } from "../seo";
 
-import { about, beyondTheWork } from "../content";
-import { Card, PageHeader, Section, SiteShell } from "../components";
+export const metadata = pageMetadata("/about", "About — Ján Ďuriš", "About Ján Ďuriš, QA automation engineer and product builder focused on release quality.");
 
-export const metadata: Metadata = {
-  title: "About — Ján Ďuriš",
-  description: "About Ján Ďuriš, QA engineer, product builder and release quality-focused founder.",
-};
+const facts = [
+  "4+ years in QA: SolarWinds, Flowio, Baťa",
+  "Focus: QA automation, CI/CD and release quality",
+  "Building Dulvarn, a release-control system",
+  "16 years in sales and technical roles before IT",
+  "Based in Zlín, Czechia",
+];
 
 export default function AboutPage() {
   return (
     <SiteShell>
-      <PageHeader
-        eyebrow="About"
-        title="About me"
-        description="Practical QA experience, now pointed at release quality, automation and useful internal tools."
-        intro="A short professional story about the path from tester training to enterprise QA, e-commerce quality and product building."
-      />
-
-      <Section eyebrow="Positioning" title="QA automation engineer and product builder.">
-        <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-          <Card className="self-start">
-            <p className="text-sm font-semibold text-ink">Positioning</p>
-            <div className="mt-5 grid gap-2 text-sm text-body">
-              {["QA automation", "CI/CD and release quality", "Product builder", "16 years in sales and technical roles before IT"].map((item) => (
-                <span key={item} className="rounded-md bg-surface px-3 py-2">{item}</span>
-              ))}
-            </div>
-          </Card>
-          <Card>
-            <div className="space-y-4 text-sm leading-7 text-muted sm:space-y-5 sm:text-base sm:leading-8">
-              {about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-          </Card>
-        </div>
-      </Section>
-
-      <Section eyebrow="Human Side" title="Beyond the Work">
-        <div className="rounded-lg border border-line bg-surface p-5 sm:p-7 lg:p-8">
-          <div className="max-w-3xl space-y-4 text-sm leading-7 text-body sm:text-base sm:leading-8">
-            {beyondTheWork.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+      <PageHeader title="About me" description="QA automation engineer and product builder. Practical QA experience, now pointed at release quality and automation." />
+      <Section title="The short version">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+          <div className="space-y-4 text-body">
+            {about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
-          <div className="mt-7 grid gap-3 md:grid-cols-3">
-            {beyondTheWork.cards.map((item) => (
-              <article key={item.title} className="rounded-lg border border-line bg-surface p-4 transition duration-200 hover:border-line hover:bg-surface sm:p-5">
-                <h3 className="text-base font-semibold text-ink sm:text-lg">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{item.description}</p>
-              </article>
-            ))}
-          </div>
+          <ul className="space-y-2 border-t border-line pt-4 text-[0.95rem] text-body lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+            {facts.map((fact) => <li key={fact}>{fact}</li>)}
+          </ul>
         </div>
       </Section>
     </SiteShell>

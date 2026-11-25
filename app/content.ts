@@ -33,8 +33,6 @@ export const footerNavigation = [
   { label: "About", href: "/about" },
   { label: "CV", href: "/cv" },
   { label: "Skills", href: "/skills" },
-  { label: "Proof of work", href: "/proof" },
-  { label: "Websites", href: "/websites" },
 ];
 
 export const mobileOnlyNavigation = [
@@ -749,8 +747,6 @@ export const skills = [
       "Mobile testing",
       "Bug reporting",
       "Test cases",
-      "Jira",
-      "Confluence",
       "Acceptance criteria",
       "QA workflows",
       "Risk-based testing",
@@ -769,7 +765,6 @@ export const skills = [
       "Robot Framework",
       "Selenium",
       "Automation testing",
-      "C#",
       "API testing",
       "Test data handling",
       "Regression automation",
@@ -825,6 +820,7 @@ export const skills = [
       "VS Code",
       "SQL",
       "PostgreSQL",
+      "C# (QA exposure)",
       "Linux / Fedora / Ubuntu",
     ],
   },
