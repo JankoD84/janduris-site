@@ -1,36 +1,55 @@
 import type { Metadata } from "next";
 
-import { education, workHistory } from "../content";
-import { BeforeITSection, Card, PageHeader, Section, SiteShell, TagList, WorkTimeline } from "../components";
+import { beforeIt, certifications, education, workHistory } from "../content";
+import { PageHeader, Section, SiteShell, TagList, WorkTimeline } from "../components";
 
 export const metadata: Metadata = {
-  title: "Work Experience — Ján Ďuriš",
-  description: "Work experience timeline and education for Ján Ďuriš, QA engineer.",
+  title: "Experience — Ján Ďuriš",
+  description: "Work experience, education and certifications of Ján Ďuriš, QA Automation & Playwright Engineer.",
 };
 
 export default function WorkPage() {
   return (
     <SiteShell>
       <PageHeader
-        eyebrow="Work Experience"
-        title="A QA path from enterprise software to e-commerce release quality."
-        description="Work experience timeline, education and practical QA foundation."
+        title="Experience"
+        description="Four years in QA across enterprise software, a broker web application and e-commerce, after sixteen years in sales and technical roles."
       />
-      <Section eyebrow="Timeline" title="Work Experience">
+      <Section title="QA and engineering">
         <WorkTimeline items={workHistory} />
       </Section>
-      <BeforeITSection />
-      <Section eyebrow="Education" title="Training and technical foundation.">
-        <div className="grid gap-4 md:grid-cols-2">
-          {education.map((item) => (
-            <Card key={item.school} className="overflow-hidden">
-              <p className="text-sm font-medium text-sky-200">{item.date}</p>
-              <h3 className="mt-2 text-xl font-semibold text-ink">{item.school}</h3>
-              <p className="mt-1 text-sm text-slate-300">{item.program}</p>
-              <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
-              {item.skills.length > 0 ? <TagList items={item.skills} /> : null}
-            </Card>
-          ))}
+      <section className="border-t border-line bg-surface">
+        <Section title="Before IT" lead={beforeIt.intro}>
+          <ul className="border-t border-line">
+            {beforeIt.roles.map((role) => (
+              <li key={role.company + role.date} className="grid gap-1 border-b border-line py-3 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-10">
+                <span className="text-[0.95rem] text-muted">{role.date}</span>
+                <span className="text-ink">{role.title}, {role.company}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      </section>
+      <Section title="Education and certifications">
+        <div className="grid gap-10 md:grid-cols-2">
+          <ul className="border-t border-line">
+            {education.map((item) => (
+              <li key={item.school} className="border-b border-line py-4">
+                <p className="font-semibold text-ink">{item.school}</p>
+                <p className="text-body">{item.program}</p>
+                <p className="text-[0.9rem] text-muted">{item.date}</p>
+                {item.skills.length > 0 ? <TagList items={item.skills} /> : null}
+              </li>
+            ))}
+          </ul>
+          <ul className="border-t border-line">
+            {certifications.map((cert) => (
+              <li key={cert.title} className="border-b border-line py-4">
+                <p className="font-semibold text-ink">{cert.title}</p>
+                <p className="text-[0.9rem] text-muted">{cert.issuer}, {cert.year}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
     </SiteShell>

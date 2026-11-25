@@ -2,92 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-  background: #0e1117;
-  --font-inter: Inter, ui-sans-serif, system-ui, sans-serif;
-}
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
 
-* {
-  box-sizing: border-box;
+:root {
+  color-scheme: light;
 }
 
 html {
-  overflow-x: hidden;
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  min-width: 0;
   margin: 0;
-  overflow-x: hidden;
-  background:
-    radial-gradient(circle at 18% 8%, rgba(56, 189, 248, 0.16), transparent 30rem),
-    radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.1), transparent 28rem),
-    linear-gradient(180deg, #0b1018 0%, #111721 48%, #0c1017 100%);
-  color: #f4f7fb;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -20;
-  pointer-events: none;
-  content: "";
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px);
-  background-position: 0 0, 0 0, 12px 12px;
-  background-size: 44px 44px, 44px 44px, 24px 24px;
-  opacity: 0.22;
-}
-
-body::after {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  pointer-events: none;
-  content: "";
-  background: linear-gradient(180deg, rgba(11, 16, 24, 0.1), rgba(11, 16, 24, 0.8));
+  background: #f6f7f9;
+  color: #3a4357;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(99, 179, 237, 0.32);
+  background: #cfe6da;
+  color: #13203a;
 }
 
-:where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid #7dd3fc;
-  outline-offset: 4px;
+:focus-visible {
+  outline: 2px solid #1f7a52;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
+/* The one orchestrated moment: release checks resolve, then the verdict lands. */
 @media (prefers-reduced-motion: no-preference) {
-  body::after {
-    animation: command-glow 18s ease-in-out infinite alternate;
+  .verdict-step {
+    opacity: 0;
+    transform: translateY(4px);
+    animation: verdict-in 260ms ease-out forwards;
+    animation-delay: calc(var(--step, 0) * 110ms + 150ms);
   }
 
-  @keyframes command-glow {
-    from {
-      opacity: 0.72;
-    }
-
+  @keyframes verdict-in {
     to {
-      opacity: 0.96;
+      opacity: 1;
+      transform: none;
     }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
   }
 }

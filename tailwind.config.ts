@@ -1,20 +1,26 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
-      colors: {
-        surface: "#0e1117",
-        ink: "#f4f7fb",
-        muted: "#9aa4b2",
-        line: "rgba(255, 255, 255, 0.11)",
+      fontFamily: {
+        sans: ['"IBM Plex Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
-      boxShadow: {
-        soft: "0 24px 80px rgba(0, 0, 0, 0.22)",
+      colors: {
+        paper: "#F6F7F9",
+        surface: "#FFFFFF",
+        ink: "#13203A",
+        body: "#3A4357",
+        muted: "#687185",
+        line: "#DCE1E8",
+        pass: { DEFAULT: "#1F7A52", soft: "#E6F2EC" },
+        warn: { DEFAULT: "#8A5A00", soft: "#FBF0DA" },
+        fail: { DEFAULT: "#B42318", soft: "#FBE8E6" },
+      },
+      maxWidth: {
+        page: "70rem",
+        prose: "40rem",
       },
     },
   },
