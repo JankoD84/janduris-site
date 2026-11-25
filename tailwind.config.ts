@@ -24,7 +24,7 @@ const config: Config = {
         fail: { DEFAULT: v("fail"), soft: v("fail-soft") },
       },
       maxWidth: {
-        page: "90rem",
+        page: "120rem",
         prose: "40rem",
       },
     },
