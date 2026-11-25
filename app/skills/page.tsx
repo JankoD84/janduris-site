@@ -26,7 +26,7 @@ export default function SkillsPage() {
           {languages.map((item) => (
             <Card key={item.language} className="p-4 sm:p-5">
               <h3 className="text-base font-semibold text-ink sm:text-lg">{item.language}</h3>
-              <p className="mt-2 text-sm font-medium text-sky-200">{item.level}</p>
+              <p className="mt-2 text-sm font-medium text-ink">{item.level}</p>
             </Card>
           ))}
         </div>

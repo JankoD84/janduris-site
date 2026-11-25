@@ -2,92 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
+
 :root {
-  color-scheme: dark;
-  background: #0e1117;
-  --font-inter: Inter, ui-sans-serif, system-ui, sans-serif;
+  color-scheme: light;
+  --c-paper: 246 247 249;
+  --c-surface: 255 255 255;
+  --c-ink: 19 32 58;
+  --c-ink-hover: 11 20 39;
+  --c-on-ink: 255 255 255;
+  --c-body: 58 67 87;
+  --c-muted: 104 113 133;
+  --c-line: 220 225 232;
+  --c-pass: 31 122 82;
+  --c-pass-soft: 230 242 236;
+  --c-warn: 138 90 0;
+  --c-warn-soft: 251 240 218;
+  --c-fail: 180 35 24;
+  --c-fail-soft: 251 232 230;
+  --c-selection: 207 230 218;
 }
 
-* {
-  box-sizing: border-box;
+/* Dark: deep navy, not black. Same hues, lifted for contrast on dark surfaces. */
+.dark {
+  color-scheme: dark;
+  --c-paper: 13 19 31;
+  --c-surface: 21 29 44;
+  --c-ink: 236 240 246;
+  --c-ink-hover: 255 255 255;
+  --c-on-ink: 13 19 31;
+  --c-body: 189 197 211;
+  --c-muted: 140 150 168;
+  --c-line: 40 50 70;
+  --c-pass: 86 199 142;
+  --c-pass-soft: 18 46 34;
+  --c-warn: 232 176 72;
+  --c-warn-soft: 52 39 14;
+  --c-fail: 240 120 108;
+  --c-fail-soft: 58 26 24;
+  --c-selection: 30 72 54;
 }
 
 html {
-  overflow-x: hidden;
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  min-width: 0;
   margin: 0;
-  overflow-x: hidden;
-  background:
-    radial-gradient(circle at 18% 8%, rgba(56, 189, 248, 0.16), transparent 30rem),
-    radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.1), transparent 28rem),
-    linear-gradient(180deg, #0b1018 0%, #111721 48%, #0c1017 100%);
-  color: #f4f7fb;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -20;
-  pointer-events: none;
-  content: "";
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px);
-  background-position: 0 0, 0 0, 12px 12px;
-  background-size: 44px 44px, 44px 44px, 24px 24px;
-  opacity: 0.22;
-}
-
-body::after {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  pointer-events: none;
-  content: "";
-  background: linear-gradient(180deg, rgba(11, 16, 24, 0.1), rgba(11, 16, 24, 0.8));
+  background: rgb(var(--c-paper));
+  color: rgb(var(--c-body));
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(99, 179, 237, 0.32);
+  background: rgb(var(--c-selection));
+  color: rgb(var(--c-ink));
 }
 
-:where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid #7dd3fc;
-  outline-offset: 4px;
+:focus-visible {
+  outline: 2px solid rgb(var(--c-pass));
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
+/* The one orchestrated moment: release checks resolve, then the verdict lands. */
 @media (prefers-reduced-motion: no-preference) {
-  body::after {
-    animation: command-glow 18s ease-in-out infinite alternate;
+  .verdict-step {
+    opacity: 0;
+    transform: translateY(4px);
+    animation: verdict-in 260ms ease-out forwards;
+    animation-delay: calc(var(--step, 0) * 110ms + 150ms);
   }
 
-  @keyframes command-glow {
-    from {
-      opacity: 0.72;
-    }
-
+  @keyframes verdict-in {
     to {
-      opacity: 0.96;
+      opacity: 1;
+      transform: none;
     }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
   }
 }

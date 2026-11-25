@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { buildingToward, featuredProof, proofExamples, proofOfWork } from "../content";
-import { Card, PageHeader, Section, SiteShell, WritingSection } from "../components";
+import { Card, PageHeader, Section, SiteShell } from "../components";
 
 export const metadata: Metadata = {
   title: "Proof of Work — Ján Ďuriš",
@@ -46,14 +46,13 @@ export default function ProofPage() {
           ))}
         </div>
       </Section>
-      <WritingSection />
       <Section eyebrow="Current Direction" title="Focused growth, shipped as useful tools.">
-        <div className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-6 shadow-soft transition duration-200 hover:border-sky-300/35 hover:bg-sky-300/[0.085] sm:p-8">
+        <div className="rounded-lg border border-line bg-surface p-6 transition duration-200 hover:border-line hover:bg-surface sm:p-8">
           <p className="max-w-3xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             My current focus is becoming stronger as a QA Automation Engineer / SDET-oriented engineer while building practical release quality tools through Dulvarn.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {buildingToward.map((item) => <span key={item} className="rounded-md border border-sky-200/15 bg-black/15 px-3 py-2 text-sm text-sky-100">{item}</span>)}
+            {buildingToward.map((item) => <span key={item} className="rounded-md border border-line bg-surface px-3 py-2 text-sm text-ink">{item}</span>)}
           </div>
         </div>
       </Section>

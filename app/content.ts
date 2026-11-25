@@ -1,18 +1,24 @@
 export const profile = {
   name: "Ján Ďuriš",
-  title: "QA Automation & Playwright Engineer · CI/CD & Release Engineering",
-  location: "Zlín, Czechia",
+  shortName: "Janko",
+  title: "QA Automation & Playwright Engineer",
+  headline: "I fix flaky tests and release-critical QA problems.",
   message:
     "I help engineering teams make their test automation and release pipelines more reliable: flaky E2E tests, tests that pass locally but fail in CI, missing critical-path coverage, and deciding what should actually block a release.",
+  stack: "Playwright, TypeScript, Python, API testing and CI/CD",
+  location: "Zlín, Czechia",
+  availability: "Available for freelance projects and remote QA automation roles",
   proofItems: [
-    "4+ years in QA",
-    "SolarWinds → Flowio → Baťa",
-    "8 public repos on GitHub",
-    "Building Dulvarn",
+    { value: "4+ years", label: "in QA, from enterprise software to e-commerce" },
+    { value: "7 open-source tools", label: "tests, CI tools and demos on GitHub" },
+    { value: "2 articles", label: "on on-call and release decisions" },
+    { value: "Dulvarn", label: "a release-control system I'm building" },
   ],
   email: "duris.janko@tutanota.com",
   linkedin: "https://www.linkedin.com/in/jduris/",
-  github: "https://github.com/JankoD84/",
+  github: "https://github.com/JankoD84",
+  upwork: "https://www.upwork.com/freelancers/~0198692795e824559b",
+  payhip: "https://payhip.com/dulvarn",
 };
 
 export const navigation = [
@@ -25,9 +31,10 @@ export const navigation = [
 
 export const footerNavigation = [
   { label: "About", href: "/about" },
-  { label: "Proof", href: "/proof" },
-  { label: "Websites", href: "/websites" },
+  { label: "CV", href: "/cv" },
   { label: "Skills", href: "/skills" },
+  { label: "Proof of work", href: "/proof" },
+  { label: "Websites", href: "/websites" },
 ];
 
 export const mobileOnlyNavigation = [
@@ -35,13 +42,11 @@ export const mobileOnlyNavigation = [
 ];
 
 export const openTo = [
-  "QA Automation Engineer roles",
-  "SDET-oriented QA work",
-  "QA audits and release risk reviews",
-  "Product QA / e-commerce QA",
-  "Internal QA tooling and automation workflows",
   "Freelance and contract projects (remote, or hybrid Zlín / Brno)",
-  "Release engineering / CI/CD quality roles",
+  "QA Automation Engineer and SDET roles",
+  "Release engineering and CI/CD quality roles",
+  "QA audits and release risk reviews",
+  "Product QA and e-commerce QA",
 ];
 
 export const releaseSignal = {
@@ -264,23 +269,6 @@ export const workHistory = [
   },
 ];
 
-export const beforeIT = {
-  intro: "Before moving into IT in 2021 I spent 16 years in sales and technical roles, which is why I'm comfortable talking to business stakeholders, not just engineers.",
-  roles: [
-    "Lignofer s.r.o. — Technology Specialist — Jun 2017 – Dec 2021",
-    "JK Logistika a.s. — Sales Manager — Oct 2016 – Apr 2017",
-    "Schmachtl SK spol. s r.o. — Sales Manager — Jan 2016 – Oct 2016",
-    "Lignofer s.r.o. — Sales Manager — Jun 2005 – Jan 2016",
-  ],
-};
-
-export const certifications = [
-  "Software Tester – course certificate, Software Development Academy (2022)",
-  "Python AI Developer, Mimo (2024)",
-  "Python, Mimo (2024)",
-  "Cybersecurity, Simplilearn (2024)",
-];
-
 export const education = [
   {
     school: "Software Development Academy",
@@ -306,6 +294,140 @@ export const education = [
   },
 ];
 
+
+export const beforeIt = {
+  intro:
+    "Before moving into IT in 2021 I spent 16 years in sales and technical roles, which is why I'm comfortable talking to business stakeholders, not just engineers.",
+  roles: [
+    { title: "Technology Specialist", company: "Lignofer s.r.o.", date: "Jun 2017 – Dec 2021" },
+    { title: "Sales Manager", company: "JK Logistika a.s.", date: "Oct 2016 – Apr 2017" },
+    { title: "Sales Manager", company: "Schmachtl SK spol. s r.o.", date: "Jan 2016 – Oct 2016" },
+    { title: "Sales Manager", company: "Lignofer s.r.o.", date: "Jun 2005 – Jan 2016" },
+  ],
+};
+
+export const certifications = [
+  { title: "Software Tester – course certificate", issuer: "Software Development Academy", year: "2022" },
+  { title: "Python AI Developer", issuer: "Mimo", year: "2024" },
+  { title: "Python", issuer: "Mimo", year: "2024" },
+  { title: "Cybersecurity", issuer: "Simplilearn", year: "2024" },
+];
+
+export const focusAreas = [
+  {
+    title: "Test automation",
+    description:
+      "Playwright and API suites a team can trust: no fixed sleeps, isolated test data, contracts checked on every response.",
+    repos: ["flaky-playwright-lab", "api-tests-pytest-demo"],
+  },
+  {
+    title: "CI/CD and release quality",
+    description:
+      "Quality gates that block what matters, pipelines that don't lie, and an explicit GO / CONDITIONAL GO / NO-GO for each release.",
+    repos: ["release-ready", "gates-doctor", "dependabot-tamer"],
+  },
+  {
+    title: "Ops tooling",
+    description:
+      "Small, boring tools that keep on-call calm: fair rotas, expiry warnings, scripts that run in CI every day.",
+    repos: ["oncall-rota", "expiry-radar"],
+  },
+];
+
+export const openSource = [
+  {
+    name: "flaky-playwright-lab",
+    group: "Test automation",
+    description: "Three classic flaky Playwright patterns, how to reproduce them under load, and the fix for each.",
+    tags: ["Playwright", "TypeScript", "GitHub Actions"],
+    featured: true,
+  },
+  {
+    name: "api-tests-pytest-demo",
+    group: "Test automation",
+    description: "Production-style API tests in Python and pytest: JSON Schema contracts, auth, negative cases, idempotency and timeouts. Runs locally or in Docker.",
+    tags: ["Python", "pytest", "FastAPI", "Docker"],
+    featured: true,
+  },
+  {
+    name: "release-ready",
+    group: "CI/CD and release quality",
+    description: "GitHub Action that gives every pull request a GO, CONDITIONAL GO or NO-GO verdict, plus release notes.",
+    tags: ["GitHub Actions", "Python"],
+    featured: true,
+  },
+  {
+    name: "gates-doctor",
+    group: "CI/CD and release quality",
+    description: "Audits a GitHub repository's quality gates in one command: branch protection, required checks, CODEOWNERS.",
+    tags: ["GitHub", "Python", "CLI"],
+    featured: false,
+  },
+  {
+    name: "dependabot-tamer",
+    group: "CI/CD and release quality",
+    description: "Turns a flood of Dependabot pull requests into grouped, scheduled updates.",
+    tags: ["Dependabot", "Python"],
+    featured: false,
+  },
+  {
+    name: "oncall-rota",
+    group: "Ops tooling",
+    description: "Fair on-call schedule that respects PTO and holidays, with iCal and JSON output.",
+    tags: ["SRE", "Python"],
+    featured: false,
+  },
+  {
+    name: "expiry-radar",
+    group: "Ops tooling",
+    description: "Warns before TLS certificates, domains and tokens expire. Runs daily in CI.",
+    tags: ["SRE", "Python"],
+    featured: false,
+  },
+];
+
+export const writing = [
+  {
+    title: "A Green Pipeline Is Not a Release Decision",
+    summary: "Why a passing CI run is a pipeline state, not a release decision, and what evidence a release actually needs.",
+    url: "https://coderlegion.com/35947/a-green-pipeline-is-not-a-release-decision",
+    date: "Nov 2026",
+  },
+  {
+    title: "The First 5 Minutes of On-call: What I Check Before I Open the Code",
+    summary: "The order I work through when the pager goes off, and why the code comes last.",
+    url: "https://coderlegion.com/35672/the-first-5-minutes-of-on-call-what-i-check-before-i-open-the-code",
+    date: "Nov 2026",
+  },
+];
+
+export const services = [
+  {
+    title: "Flaky Playwright & CI fix",
+    price: "from €490",
+    duration: "about 5 working days",
+    description: "For suites that fail randomly or only in CI.",
+    includes: [
+      "Diagnosis of your flakiest tests, with the cause for each",
+      "Fixes delivered as small pull requests",
+      "CI tuned: workers, shards, timeouts, retries",
+      "A short report so the problems don't come back",
+    ],
+  },
+  {
+    title: "Release readiness audit",
+    price: "from €490",
+    duration: "about 1 week",
+    description: "For teams that ship on a green build and hope.",
+    includes: [
+      "Review of quality gates, CI cost and release process",
+      "Rollback and migration safety check",
+      "PDF with the top 5 actions, ranked by risk",
+      "45-minute walkthrough call",
+    ],
+  },
+];
+
 export const projects = [
   {
     title: "Dulvarn — Release Control & QA Intelligence",
@@ -328,18 +450,17 @@ export const projects = [
       "Release Control",
     ],
     role: "Founder, product owner, QA domain designer and builder.",
-    currentStatus: "Beta (invite-only).",
+    currentStatus: "Beta / in progress.",
     nextStep: "Public demo, GitHub workflow integration and practical release risk workflows.",
   },
   {
     title: "Dulvarn Tools — Productized QA Workflows",
     status: "Beta",
     url: "https://tools.dulvarn.com/",
-    shopUrl: "https://payhip.com/dulvarn",
     problem:
       "QA improvements are often useful but hard to package into repeatable audits, templates and lightweight workflows.",
     built:
-      "Practical QA checklists, kits and developer tools, sold via Payhip",
+      "Practical QA tools and templates for release risk scoring, GitHub QA gates, audit workflows and QA process improvement.",
     proves:
       "The ability to turn QA knowledge into products, practical deliverables, monetizable workflows and useful tooling.",
     tags: [
@@ -351,7 +472,7 @@ export const projects = [
     ],
     role: "Creator of QA productized workflows and templates.",
     currentStatus: "Live / in progress.",
-    nextStep: "Add clearer product pages and sample outputs.",
+    nextStep: "Add clearer product pages, payment flow and sample outputs.",
   },
   {
     title: "Wildcode Studio — Internal Builder Hub",
@@ -396,47 +517,6 @@ export const projects = [
     currentStatus: "Internal / experimental.",
     nextStep: "Stabilize workflows, approvals and practical engineering use cases.",
   },
-
-];
-
-export const openSourceGroups = [
-  {
-    title: "QA automation",
-    repos: [
-      { name: "flaky-playwright-lab", description: "Three classic flaky Playwright patterns, how to reproduce them under load, and the fix for each.", tags: ["Playwright", "TypeScript", "GitHub Actions"] },
-      { name: "api-tests-pytest-demo", description: "Production-style API tests in Python + pytest: JSON Schema contracts, auth, negative cases, idempotency, timeouts; runs locally or in Docker.", tags: ["Python", "pytest", "FastAPI", "Docker"] },
-    ],
-  },
-  {
-    title: "CI/CD & release engineering",
-    repos: [
-      { name: "release-ready", description: "GitHub Action: GO / CONDITIONAL GO / NO-GO verdict on every pull request, plus release notes.", tags: ["GitHub Actions", "Python"] },
-      { name: "gates-doctor", description: "Audit a GitHub repository's quality gates in one command.", tags: ["GitHub", "Python", "CLI"] },
-      { name: "dependabot-tamer", description: "Turns a flood of Dependabot PRs into grouped, scheduled updates.", tags: ["Dependabot", "Python"] },
-    ],
-  },
-  {
-    title: "SRE & ops tooling",
-    repos: [
-      { name: "oncall-rota", description: "Fair on-call schedule that respects PTO and holidays (CLI, iCal, JSON).", tags: ["SRE", "Python"] },
-      { name: "expiry-radar", description: "Warns before TLS certificates, domains and tokens expire; runs daily in CI.", tags: ["SRE", "Python"] },
-    ],
-  },
-];
-
-export const writing = [
-  { title: "A Green Pipeline Is Not a Release Decision", url: "https://coderlegion.com/35947/a-green-pipeline-is-not-a-release-decision" },
-  { title: "The First 5 Minutes of On-call: What I Check Before I Open the Code", url: "https://coderlegion.com/35672/the-first-5-minutes-of-on-call-what-i-check-before-i-open-the-code" },
-];
-
-export const services = [
-  { title: "Flaky Playwright & CI Fix", terms: "from €490, about 5 working days", description: "Diagnose the flakiest tests, fix them in PRs, tune CI (workers, shards, timeouts), short report." },
-  { title: "Release Readiness Audit", terms: "from €490, about 1 week", description: "Quality gates, CI cost and release process review, PDF with top 5 actions and a 45-minute call." },
-];
-
-export const hireLinks = [
-  { label: "Hire me on Upwork", href: "https://www.upwork.com/freelancers/~0198692795e824559b" },
-  { label: "Message me on LinkedIn", href: profile.linkedin },
 ];
 
 export const websites = [
@@ -458,11 +538,10 @@ export const websites = [
   {
     title: "Dulvarn Tools",
     url: "https://tools.dulvarn.com/",
-    shopUrl: "https://payhip.com/dulvarn",
     type: "QA tools / Templates / Productized workflows",
     status: "Beta",
     description:
-      "Practical QA checklists, kits and developer tools, sold via Payhip",
+      "Practical QA checklists, kits and developer tools, sold via Payhip at payhip.com/dulvarn.",
     proof: [
       "Ability to productize QA knowledge",
       "Practical tooling mindset",
@@ -495,10 +574,10 @@ export const websites = [
   {
     title: "Personal Website",
     url: "https://janduris.vercel.app/",
-    type: "Personal portfolio / QA founder profile",
+    type: "Personal portfolio",
     status: "Live",
     description:
-      "A focused personal website presenting QA experience, open-source repos, services, projects, websites and release engineering work.",
+      "This site: experience, open-source tools, writing and services, built with Next.js and deployed on Vercel.",
     proof: [
       "Personal positioning",
       "Frontend deployment",
@@ -545,14 +624,32 @@ export const skills = [
       "pytest",
       "Robot Framework",
       "Selenium",
-      "API testing",
       "Automation testing",
       "C#",
+      "API testing",
       "Test data handling",
       "Regression automation",
       "CI test runs",
       "Test stability",
       "Maintainable test suites",
+    ],
+  },
+  {
+    category: "CI/CD & DevOps",
+    practicalUse:
+      "Pipelines that tell the truth: quality gates that block what matters, containerised test runs and release automation.",
+    capabilities: [
+      "GitHub Actions",
+      "CI/CD",
+      "GitHub",
+      "Docker",
+      "docker compose",
+      "Quality gates",
+      "Release automation",
+      "TeamCity",
+      "Azure DevOps pipelines",
+      "Bash",
+      "Linux",
     ],
   },
   {
@@ -575,29 +672,16 @@ export const skills = [
     ],
   },
   {
-    category: "CI/CD & DevOps",
-    practicalUse: "Making test automation and release pipelines more reliable.",
-    capabilities: [
-      "GitHub Actions",
-      "Docker",
-      "docker compose",
-      "quality gates",
-      "release automation",
-      "TeamCity",
-      "Azure DevOps pipelines",
-      "Bash",
-      "Linux",
-      "GitHub",
-      "CI/CD",
-    ],
-  },
-  {
     category: "Engineering Tools",
     practicalUse:
       "Working with everyday engineering, release, build and delivery tools used around QA workflows.",
     capabilities: [
+      "Jira",
+      "Confluence",
       "VS Code",
       "SQL",
+      "PostgreSQL",
+      "Linux / Fedora / Ubuntu",
     ],
   },
   {
@@ -609,6 +693,8 @@ export const skills = [
       "Next.js",
       "PostgreSQL",
       "Redis",
+      "Docker",
+      "GitHub",
       "Vercel",
       "Cloudflare",
       "Hetzner VPS",

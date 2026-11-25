@@ -1,102 +1,81 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 
-import { beforeIT, footerNavigation, mobileOnlyNavigation, navigation, openTo, profile, releaseSignal, writing } from "./content";
+import { footerNavigation, openTo, profile } from "./content";
+import { SiteNav } from "./nav";
 
-export const sectionEyebrow =
-  "text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]";
-export const sectionTitle =
-  "mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl";
-export const cardClass =
-  "rounded-lg border border-white/[0.065] bg-slate-950/34 p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.045] hover:shadow-[0_22px_70px_rgba(56,189,248,0.08)] sm:p-6";
-export const tagClass =
-  "max-w-full break-words rounded-md border border-white/[0.07] bg-white/[0.035] px-2.5 py-1.5 text-xs text-slate-200 transition hover:border-sky-300/18 hover:bg-sky-300/[0.06] sm:px-3 sm:text-sm";
+/* Shared building blocks. Light, quiet surfaces; one accent (pass green) for state. */
+
+export const sectionEyebrow = "text-sm font-medium text-muted";
+export const sectionTitle = "text-2xl font-semibold tracking-tight text-ink sm:text-[1.85rem]";
+export const cardClass = "rounded-lg border border-line bg-surface p-5 sm:p-6";
+export const tagClass = "max-w-full rounded border border-line bg-paper px-2 py-0.5 text-[0.8rem] text-body [overflow-wrap:anywhere]";
 
 export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.14),transparent_28rem),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.1),transparent_26rem)]" />
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px] sm:opacity-[0.18] sm:[background-size:44px_44px]" />
-      <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-slate-950/82 backdrop-blur-xl">
-        <nav className="relative mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 md:px-8 lg:px-10">
-          <Link href="/" className="text-sm font-semibold tracking-wide text-ink focus:outline-none focus:ring-2 focus:ring-sky-300/50" onClick={() => setIsMenuOpen(false)}>
-            <span className="sm:hidden">JD</span>
-            <span className="hidden sm:inline">Ján Ďuriš</span>
-          </Link>
-          <button
-            type="button"
-            aria-label="Open navigation menu"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] focus:outline-none focus:ring-2 focus:ring-sky-300/50 md:hidden"
-          >
-            <span className="sr-only">Menu</span>
-            <span className="flex h-5 w-5 flex-col justify-center gap-1.5" aria-hidden="true">
-              <span className="h-0.5 w-5 rounded bg-current" />
-              <span className="h-0.5 w-5 rounded bg-current" />
-              <span className="h-0.5 w-5 rounded bg-current" />
-            </span>
-          </button>
-          <div className="hidden items-center justify-end gap-x-6 text-sm text-muted md:flex">
-            {navigation.map((item) => (
-              <Link key={item.href} href={item.href} className="transition hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300/50">
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/cv" className="inline-flex min-h-9 items-center rounded-md border border-sky-300/40 px-3 text-xs font-semibold text-sky-100 transition hover:bg-sky-300/10">CV</Link>
-          </div>
-          {isMenuOpen ? (
-            <div className="absolute left-4 right-4 top-[calc(100%+0.5rem)] rounded-lg border border-white/12 bg-slate-950/95 p-2 shadow-soft backdrop-blur-xl md:hidden">
-              {[...navigation, ...mobileOnlyNavigation].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block rounded-md px-3 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.06] hover:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300/50"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          ) : null}
-        </nav>
+    <div className="flex min-h-screen flex-col">
+      <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-on-ink">
+        Skip to content
+      </a>
+      <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
+        <div className="relative">
+          <SiteNav />
+        </div>
       </header>
-      {children}
-      <footer className="border-t border-line px-6 py-8 text-center text-sm text-muted">
-        <nav aria-label="Footer" className="mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          {footerNavigation.map((item) => <Link key={item.href} href={item.href} className="inline-flex min-h-11 items-center text-slate-200 hover:text-sky-100">{item.label}</Link>)}
-        </nav>
-        © 2026 Ján Ďuriš. Built with Next.js and deployed on Vercel.
-      </footer>
-    </main>
+      <main id="content" className="flex-1">
+        {children}
+      </main>
+      <SiteFooter />
+    </div>
   );
 }
 
-export function PageHeader({ eyebrow, title, description, intro }: Readonly<{ eyebrow: string; title: string; description: string; intro?: string }>) {
+function SiteFooter() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 pb-8 pt-24 sm:px-6 sm:pb-10 sm:pt-28 md:px-8 lg:px-10">
-      <div className="max-w-3xl">
-        <p className={sectionEyebrow}>{eyebrow}</p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-5xl">{title}</h1>
-        <p className="mt-5 text-base leading-7 text-muted sm:text-lg sm:leading-8">{description}</p>
-        {intro ? <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">{intro}</p> : null}
+    <footer className="border-t border-line bg-surface">
+      <div className="mx-auto grid w-full max-w-page gap-8 px-5 py-10 sm:px-8 lg:px-12 2xl:px-16 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <p className="font-semibold text-ink">{profile.name}</p>
+          <p className="mt-1 text-[0.95rem] text-muted">{profile.title}, {profile.location}</p>
+          <p className="mt-4 text-[0.95rem]">
+            <a className="text-ink underline decoration-line underline-offset-4 hover:decoration-ink" href={"mailto:" + profile.email}>{profile.email}</a>
+          </p>
+        </div>
+        <ul className="space-y-1.5 text-[0.95rem]">
+          {footerNavigation.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className="text-body hover:text-ink">{item.label}</Link>
+            </li>
+          ))}
+        </ul>
+        <ul className="space-y-1.5 text-[0.95rem]">
+          <li><a href={profile.github} className="text-body hover:text-ink" target="_blank" rel="noreferrer">GitHub</a></li>
+          <li><a href={profile.linkedin} className="text-body hover:text-ink" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          <li><a href={profile.upwork} className="text-body hover:text-ink" target="_blank" rel="noreferrer">Upwork</a></li>
+          <li><a href={profile.payhip} className="text-body hover:text-ink" target="_blank" rel="noreferrer">Checklists and kits</a></li>
+        </ul>
       </div>
+    </footer>
+  );
+}
+
+export function PageHeader({ title, description, intro }: Readonly<{ eyebrow?: string; title: string; description: string; intro?: string }>) {
+  return (
+    <section className="mx-auto w-full max-w-page px-5 pb-6 pt-14 sm:px-8 lg:px-12 2xl:px-16 sm:pt-20">
+      <h1 className="max-w-3xl text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:text-[2.6rem]">{title}</h1>
+      <p className="mt-4 max-w-prose text-lg text-body">{description}</p>
+      {intro ? <p className="mt-3 max-w-prose text-[0.95rem] text-muted">{intro}</p> : null}
     </section>
   );
 }
 
-export function Section({ eyebrow, title, children, id }: Readonly<{ eyebrow: string; title: string; children: React.ReactNode; id?: string }>) {
+export function Section({ title, children, id, lead }: Readonly<{ eyebrow?: string; title: string; children: React.ReactNode; id?: string; lead?: string }>) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-10 lg:py-16">
-      <div className="mb-6 max-w-3xl sm:mb-9">
-        <p className={sectionEyebrow}>{eyebrow}</p>
+    <section id={id} className="mx-auto w-full max-w-page px-5 py-12 sm:px-8 sm:py-16 lg:px-12 xl:grid xl:grid-cols-[16rem_minmax(0,1fr)] xl:gap-16 2xl:grid-cols-[19rem_minmax(0,1fr)] 2xl:gap-24 2xl:px-16">
+      <div className="mb-8 max-w-prose xl:mb-0">
         <h2 className={sectionTitle}>{title}</h2>
+        {lead ? <p className="mt-3 text-body">{lead}</p> : null}
       </div>
-      {children}
+      <div className="min-w-0">{children}</div>
     </section>
   );
 }
@@ -105,53 +84,51 @@ export function Card({ children, className = "" }: Readonly<{ children: React.Re
   return <article className={cardClass + " " + className}>{children}</article>;
 }
 
-export function ReleaseSignalCard() {
+/* Signature element: an example release decision. Checks resolve in order, then the verdict. */
+export function ReleaseVerdict() {
+  const checks: Array<{ label: string; state: "Passed" | "Not executed" | "Unknown"; tone: "pass" | "warn" }> = [
+    { label: "Build", state: "Passed", tone: "pass" },
+    { label: "Unit and API tests", state: "Passed", tone: "pass" },
+    { label: "Checkout E2E", state: "Not executed", tone: "warn" },
+    { label: "Rollback with new schema", state: "Unknown", tone: "warn" },
+  ];
   return (
-    <aside className="min-h-[460px] w-full overflow-hidden rounded-lg border border-sky-300/[0.16] bg-slate-950/55 p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/28 hover:shadow-[0_24px_80px_rgba(56,189,248,0.11)] sm:p-5">
-      <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
-        <div>
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-sky-300/80 sm:text-xs sm:tracking-[0.24em]">Example Release Signal</p>
-          <h2 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">{releaseSignal.title}</h2>
-        </div>
-        <StatusBadge label={releaseSignal.decision} tone="emerald" />
-      </div>
-      <div className="mt-4 flex flex-wrap items-center gap-1.5 text-xs font-medium text-slate-300 sm:mt-5 sm:gap-2">
-        {releaseSignal.pipeline.map((step, index) => (
-          <div key={step} className="flex items-center gap-2">
-            <span className="rounded-md border border-white/[0.07] bg-white/[0.035] px-2 py-1.5 sm:px-2.5">{step}</span>
-            {index < releaseSignal.pipeline.length - 1 ? <span className="text-sky-300/60">→</span> : null}
-          </div>
+    <figure className="rounded-xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(19,32,58,0.06)] dark:shadow-none sm:p-6">
+      <figcaption className="flex items-baseline justify-between gap-3">
+        <span className="font-semibold text-ink">Release 2026.11.24</span>
+        <span className="text-sm text-muted">example</span>
+      </figcaption>
+      <p className="mt-1 text-sm text-muted">Pipeline status: green</p>
+      <ul className="mt-5 divide-y divide-line border-y border-line">
+        {checks.map((check, i) => (
+          <li key={check.label} className="verdict-step flex items-center justify-between gap-4 py-2.5 text-[0.95rem]" style={{ "--step": i } as React.CSSProperties}>
+            <span className="text-body">{check.label}</span>
+            <span className={"inline-flex items-center gap-2 font-medium " + (check.tone === "pass" ? "text-pass" : "text-warn")}>
+              <span aria-hidden="true" className={"h-2 w-2 rounded-full " + (check.tone === "pass" ? "bg-pass" : "bg-warn")} />
+              {check.state}
+            </span>
+          </li>
         ))}
+      </ul>
+      <div className="verdict-step mt-5 rounded-lg bg-warn-soft px-4 py-3" style={{ "--step": checks.length } as React.CSSProperties}>
+        <p className="text-sm text-warn">Decision</p>
+        <p className="text-xl font-semibold text-ink">Conditional GO</p>
+        <p className="mt-1 text-sm text-body">10% rollout first. Rollback gate must pass before 100%.</p>
       </div>
-      <div className="mt-4 space-y-2.5 text-sm sm:mt-6 sm:space-y-3">
-        <SignalRow label="Repository" value={releaseSignal.repository} />
-        <SignalRow label="CI Checks" value={releaseSignal.ciChecks} tone="emerald" />
-        <SignalRow label="Test Coverage" value={releaseSignal.coverage} />
-        <SignalRow label="Risk Level" value={releaseSignal.risk} tone="amber" />
-        <SignalRow label="Decision" value={releaseSignal.decision} tone="emerald" />
-      </div>
-      <p className="mt-4 text-xs leading-5 text-muted">{releaseSignal.note}</p>
-    </aside>
+      <p className="mt-4 text-sm text-muted">A green pipeline is not a release decision. Evidence is.</p>
+    </figure>
   );
 }
 
-function SignalRow({ label, value, tone = "default" }: Readonly<{ label: string; value: string; tone?: "default" | "emerald" | "amber" }>) {
-  const valueClass = tone === "emerald" ? "text-emerald-200" : tone === "amber" ? "text-amber-200" : "text-slate-100";
-  return (
-    <div className="flex items-center justify-between gap-3 rounded-md border border-white/[0.07] bg-white/[0.032] px-3 py-2">
-      <span className="text-muted">{label}</span>
-      <span className={"font-medium " + valueClass}>{value}</span>
-    </div>
-  );
-}
+/* Kept for pages that still import it. */
+export const ReleaseSignalCard = ReleaseVerdict;
 
-export function BulletList({ items, color = "emerald" }: Readonly<{ items: string[]; color?: "emerald" | "sky" }>) {
-  const dot = color === "sky" ? "bg-sky-300" : "bg-emerald-300";
+export function BulletList({ items }: Readonly<{ items: string[]; color?: string }>) {
   return (
-    <ul className="mt-3 space-y-2 text-sm text-slate-200">
+    <ul className="mt-3 space-y-1.5 text-[0.95rem] text-body">
       {items.map((item) => (
-        <li key={item} className="flex gap-2">
-          <span className={"mt-2 h-1.5 w-1.5 shrink-0 rounded-full " + dot} />
+        <li key={item} className="flex gap-2.5">
+          <span aria-hidden="true" className="mt-[0.6rem] h-1 w-1 shrink-0 rounded-full bg-muted" />
           <span>{item}</span>
         </li>
       ))}
@@ -159,12 +136,11 @@ export function BulletList({ items, color = "emerald" }: Readonly<{ items: strin
   );
 }
 
-export function TagList({ items, tone = "default" }: Readonly<{ items: string[]; tone?: "default" | "emerald" }>) {
-  const className = tone === "emerald" ? "rounded-md bg-emerald-300/10 px-3 py-1.5 text-sm text-emerald-100" : tagClass;
+export function TagList({ items }: Readonly<{ items: string[]; tone?: string }>) {
   return (
-    <div className="mt-4 flex flex-wrap gap-2">
+    <div className="mt-3 flex flex-wrap gap-1.5">
       {items.map((item) => (
-        <span key={item} className={className}>{item}</span>
+        <span key={item} className={tagClass}>{item}</span>
       ))}
     </div>
   );
@@ -172,234 +148,158 @@ export function TagList({ items, tone = "default" }: Readonly<{ items: string[];
 
 export function WorkTimeline({ items }: Readonly<{ items: Array<{ title: string; company: string; date: string; location: string; status: string; description: string; highlights: string[]; skills: string[] }> }>) {
   return (
-    <div className="space-y-5 sm:space-y-6">
+    <ol className="border-t border-line">
       {items.map((item) => (
-        <article key={item.company + item.date} className="grid gap-3 md:grid-cols-[15rem_minmax(0,1fr)] lg:grid-cols-[17rem_minmax(0,1fr)]">
-          <div className="md:pr-8 md:text-right lg:pr-10">
-            <p className="inline-flex rounded-md border border-sky-300/20 bg-sky-300/10 px-3 py-1.5 text-sm font-medium text-sky-100">{item.date}</p>
-            <p className="mt-2 text-sm text-muted sm:mt-3">{item.location}</p>
+        <li key={item.company + item.date} className="grid gap-3 border-b border-line py-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
+          <div className="text-[0.95rem]">
+            <p className="font-medium text-ink">{item.date}</p>
+            <p className="mt-1 text-muted">{item.location}</p>
           </div>
-          <Card className="relative overflow-hidden">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-emerald-200">{item.status}</p>
-            <h3 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">{item.title} — {item.company}</h3>
-            <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
-            <div className="mt-5 grid gap-5 lg:mt-6 lg:grid-cols-2">
-              <div>
-                <p className="text-sm font-semibold text-sky-200">Highlights</p>
-                <BulletList items={item.highlights} color="sky" />
+          <div className="max-w-3xl">
+            <h3 className="text-xl font-semibold text-ink">{item.title}, {item.company}</h3>
+            <p className="mt-3 text-body">{item.description}</p>
+            <details className="group mt-4">
+              <summary className="cursor-pointer text-[0.95rem] font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+                Highlights and tools
+              </summary>
+              <div className="mt-3 grid gap-6 lg:grid-cols-2">
+                <BulletList items={item.highlights} />
+                <TagList items={item.skills} />
               </div>
-              <div>
-                <p className="text-sm font-semibold text-emerald-200">Skills used</p>
-                <TagList items={item.skills} tone="emerald" />
-              </div>
-            </div>
-          </Card>
-        </article>
+            </details>
+          </div>
+        </li>
       ))}
-    </div>
+    </ol>
   );
 }
 
 export function SkillsMatrix({ groups }: Readonly<{ groups: Array<{ category: string; practicalUse: string; capabilities: string[] }> }>) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-x-10 gap-y-8 border-t border-line pt-8 md:grid-cols-2">
       {groups.map((group) => (
-        <Card key={group.category} className="overflow-hidden lg:p-5">
+        <div key={group.category}>
           <h3 className="text-lg font-semibold text-ink">{group.category}</h3>
-          <p className="mt-3 text-sm leading-6 text-muted">{group.practicalUse}</p>
+          <p className="mt-1.5 text-[0.95rem] text-body">{group.practicalUse}</p>
           <TagList items={group.capabilities} />
-        </Card>
+        </div>
       ))}
     </div>
   );
 }
 
-export function ProjectCard({ item }: Readonly<{ item: { title: string; status: string; problem: string; built: string; proves: string; tags: string[]; url?: string; shopUrl?: string; role: string; currentStatus: string; nextStep: string } }>) {
+export function ProjectCard({ item }: Readonly<{ item: { title: string; status: string; problem: string; built: string; proves: string; tags: string[]; url?: string; role: string; currentStatus: string; nextStep: string } }>) {
   return (
-    <Card className="flex min-h-0 flex-col overflow-hidden">
+    <Card className="flex flex-col">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <h3 className="max-w-xl break-words text-lg font-semibold text-ink sm:text-xl">{item.title}</h3>
+        <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
         <StatusBadge label={item.status} />
       </div>
-      <div className="mt-5 grid gap-4 text-sm leading-7 text-muted sm:text-base">
-        <EvidenceBlock label="Problem" value={item.problem} />
-        <EvidenceBlock label="What I built" value={item.built} />
-        <EvidenceBlock label="What it proves" value={item.proves} />
-      </div>
-      <div className="mt-5 grid gap-3 border-t border-white/[0.07] pt-4 text-sm leading-6 text-muted">
-        <EvidenceBlock label="My role" value={item.role} />
-        <EvidenceBlock label="Current status" value={item.currentStatus} />
-        <EvidenceBlock label="Next step" value={item.nextStep} />
-      </div>
-      <div className="mt-5 border-t border-white/[0.07] pt-4">
-        <p className="text-sm font-semibold text-sky-200">Stack / tags</p>
-        <TagList items={item.tags} />
-      </div>
+      <p className="mt-3 text-[0.95rem] text-body">{item.built}</p>
+      <dl className="mt-4 space-y-2 text-[0.95rem]">
+        <div><dt className="inline font-medium text-ink">Problem: </dt><dd className="inline text-body">{item.problem}</dd></div>
+        <div><dt className="inline font-medium text-ink">My role: </dt><dd className="inline text-body">{item.role}</dd></div>
+        <div><dt className="inline font-medium text-ink">Next: </dt><dd className="inline text-body">{item.nextStep}</dd></div>
+      </dl>
+      <TagList items={item.tags} />
       {item.url ? <ExternalTextLink href={item.url} /> : null}
-      {item.shopUrl ? <ExternalTextLink href={item.shopUrl} /> : null}
     </Card>
   );
 }
 
-function EvidenceBlock({ label, value }: Readonly<{ label: string; value: string }>) {
+export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: string; type: string; status: string; description: string; proof: string[]; tags: string[] } }>) {
   return (
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-200/90">{label}</p>
-      <p className="mt-1">{value}</p>
-    </div>
-  );
-}
-
-export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: string; shopUrl?: string; type: string; status: string; description: string; proof: string[]; tags: string[] } }>) {
-  return (
-    <article className="overflow-hidden rounded-lg border border-emerald-200/[0.1] bg-emerald-300/[0.042] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/28 hover:bg-emerald-300/[0.06] hover:shadow-[0_24px_90px_rgba(16,185,129,0.11)] sm:p-6">
-      <div className="mb-5 overflow-hidden rounded-lg border border-white/[0.08] bg-slate-950/60">
-        <div className="flex items-center gap-1.5 border-b border-white/[0.07] bg-white/[0.035] px-3 py-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-rose-300/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/70" />
-          <span className="ml-2 min-w-0 truncate text-xs text-muted">{item.url.replace(/^https?:\/\//, "")}</span>
-        </div>
-        <div className="grid min-h-32 place-items-center px-4 py-7 text-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200/80">Live preview</p>
-            <p className="mt-2 text-xl font-semibold text-ink">{item.title}</p>
-          </div>
-        </div>
-      </div>
+    <Card className="flex flex-col">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-medium text-emerald-200">{item.type}</p>
-          <h3 className="mt-2 break-words text-xl font-semibold text-ink sm:text-2xl">{item.title}</h3>
+          <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
+          <p className="text-[0.95rem] text-muted">{item.type}</p>
         </div>
-        <StatusBadge label={item.status} tone="emerald" />
+        <StatusBadge label={item.status} />
       </div>
-      <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
-      <ExternalTextLink href={item.url} tone="emerald" />
-      {item.shopUrl ? <ExternalTextLink href={item.shopUrl} tone="emerald" /> : null}
-      <div className="mt-6 border-t border-white/10 pt-5">
-        <p className="text-sm font-semibold text-sky-200">What it proves</p>
-        <BulletList items={item.proof} />
-      </div>
-      <TagList items={item.tags} tone="emerald" />
-    </article>
+      <p className="mt-3 text-[0.95rem] text-body">{item.description}</p>
+      <BulletList items={item.proof} />
+      <ExternalTextLink href={item.url} />
+    </Card>
   );
 }
 
-export function ExternalTextLink({ href, tone = "sky", label }: Readonly<{ href: string; tone?: "sky" | "emerald"; label?: string }>) {
-  const className = tone === "emerald"
-    ? "mt-5 inline-flex max-w-full break-all rounded-md border border-emerald-200/20 px-3 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-200/40"
-    : "mt-5 inline-flex max-w-full break-all rounded-md border border-sky-300/18 px-3 py-2 text-sm font-medium text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.07] focus:outline-none focus:ring-2 focus:ring-sky-300/45";
-  return <a href={href} target="_blank" rel="noreferrer" className={className}>{label ?? href.replace(/^https?:\/\//, "")}</a>;
+function ExternalTextLink({ href }: Readonly<{ href: string; tone?: string }>) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="mt-4 inline-block break-all text-[0.95rem] font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+      {href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+    </a>
+  );
 }
 
 export function ContactLinks() {
   const links = [
-    { label: "Email", value: profile.email, href: "mailto:" + profile.email, ariaLabel: "Email Janko", icon: <EmailIcon /> },
-    { label: "LinkedIn", value: "linkedin.com/in/jduris", href: profile.linkedin, ariaLabel: "Open LinkedIn profile", icon: <LinkedInIcon />, external: true },
-    { label: "GitHub", value: "github.com/JankoD84", href: profile.github, ariaLabel: "Open GitHub profile", icon: <GitHubIcon />, external: true },
+    { label: "Email", value: profile.email, href: "mailto:" + profile.email },
+    { label: "LinkedIn", value: "linkedin.com/in/jduris", href: profile.linkedin, external: true },
+    { label: "GitHub", value: "github.com/JankoD84", href: profile.github, external: true },
+    { label: "Upwork", value: "Hire me for a fixed-scope project", href: profile.upwork, external: true },
   ];
-
   return (
-    <div className="grid gap-3">
+    <ul className="divide-y divide-line border-y border-line">
       {links.map((link) => (
-        <a key={link.label} href={link.href} aria-label={link.ariaLabel} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="flex min-h-16 items-center gap-3 rounded-lg border border-white/[0.07] bg-white/[0.035] p-3 text-left transition hover:border-sky-300/22 hover:bg-sky-300/[0.065] focus:outline-none focus:ring-2 focus:ring-sky-300/50 sm:p-4">
-          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-sky-300/18 bg-sky-300/[0.08] text-sky-100">{link.icon}</span>
-          <span className="min-w-0">
-            <span className="block text-sm font-semibold text-ink">{link.label}</span>
-            <span className="mt-1 block break-words text-sm text-muted">{link.value}</span>
-          </span>
-        </a>
+        <li key={link.label}>
+          <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 py-3 hover:text-ink">
+            <span className="shrink-0 font-medium text-ink">{link.label}</span>
+            <span className="min-w-0 text-[0.95rem] text-body [overflow-wrap:anywhere]">{link.value}</span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
 export function ContactIconGroup() {
-  const links = [
-    { label: "Email Janko", href: "mailto:" + profile.email, icon: <EmailIcon /> },
-    { label: "Open LinkedIn profile", href: profile.linkedin, icon: <LinkedInIcon />, external: true },
-    { label: "Open GitHub profile", href: profile.github, icon: <GitHubIcon />, external: true },
-  ];
   return (
-    <div className="grid grid-cols-3 items-center justify-center gap-2.5 sm:gap-3">
-      {links.map((link) => (
-        <a key={link.label} href={link.href} aria-label={link.label} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50">
-          {link.icon}
-        </a>
-      ))}
-    </div>
+    <p className="text-[0.95rem] text-body">
+      <a className="underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink" href={"mailto:" + profile.email}>Email</a>
+      <span className="mx-2 text-line">/</span>
+      <a className="underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+      <span className="mx-2 text-line">/</span>
+      <a className="underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+    </p>
   );
 }
 
 export function OpenToSection({ compact = false }: Readonly<{ compact?: boolean }>) {
-  return (
-    <section className={compact ? "mt-5" : "mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-10"}>
-      <div className={compact ? "" : "mb-6 max-w-3xl sm:mb-9"}>
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]">Availability</p>
-        <h2 className={compact ? "mt-2 text-xl font-semibold text-ink" : sectionTitle}>What I’m open to</h2>
-      </div>
-      <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
-        {openTo.map((item) => (
-          <span key={item} className="rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-2 text-sm text-slate-200">{item}</span>
-        ))}
-      </div>
-      {!compact ? (
-        <div className="mt-6">
-          <Link href="/cv" className="inline-flex min-h-11 items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50">View CV</Link>
-        </div>
-      ) : null}
-    </section>
+  const list = (
+    <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+      {openTo.map((item) => (
+        <li key={item} className="flex gap-2.5 text-body">
+          <span aria-hidden="true" className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-pass" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
   );
-}
-
-export function StatusBadge({ label, tone = "sky" }: Readonly<{ label: string; tone?: "sky" | "emerald" }>) {
-  const className = tone === "emerald" ? "border-emerald-200/20 bg-emerald-300/10 text-emerald-100" : "border-sky-300/20 bg-sky-300/10 text-sky-100";
-  return <span className={"rounded-md border px-3 py-1.5 text-sm font-medium " + className}>{label}</span>;
-}
-
-function IconSvg({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{children}</svg>;
-}
-
-function EmailIcon() {
-  return <IconSvg><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></IconSvg>;
-}
-
-function LinkedInIcon() {
-  return <IconSvg><path d="M8 11v7" /><path d="M8 8v.01" /><path d="M12 18v-7" /><path d="M12 14.5c0-2 1-3.5 3-3.5s3 1.5 3 3.5V18" /><rect x="3" y="3" width="18" height="18" rx="3" /></IconSvg>;
-}
-
-function GitHubIcon() {
-  return <IconSvg><path d="M12 2.8a9.2 9.2 0 0 0-2.9 17.9c.46.08.62-.2.62-.44v-1.6c-2.52.55-3.05-1.08-3.05-1.08-.42-1.04-1.02-1.32-1.02-1.32-.83-.56.06-.55.06-.55.92.06 1.4.94 1.4.94.82 1.4 2.14 1 2.66.76.08-.6.32-1 .58-1.23-2.01-.23-4.12-1-4.12-4.47 0-.99.35-1.8.94-2.43-.1-.23-.41-1.16.09-2.4 0 0 .77-.25 2.52.93A8.6 8.6 0 0 1 12 6.5c.78 0 1.55.1 2.28.31 1.75-1.18 2.52-.93 2.52-.93.5 1.24.19 2.17.1 2.4.58.63.93 1.44.93 2.43 0 3.48-2.11 4.24-4.13 4.46.33.28.62.83.62 1.68v2.5c0 .24.16.52.63.44A9.2 9.2 0 0 0 12 2.8Z" /></IconSvg>;
-}
-
-export function BeforeITSection() {
+  if (compact) return <div className="mt-6">{list}</div>;
   return (
-    <Section eyebrow="Earlier career" title="Before IT">
-      <p className="text-sm leading-7 text-muted sm:text-base">{beforeIT.intro}</p>
-      <BulletList items={beforeIT.roles} />
+    <Section title="What I'm open to">
+      {list}
     </Section>
   );
 }
 
-export function RepositoryCard({ item }: Readonly<{ item: { name: string; description: string; tags: string[] } }>) {
+export function StatusBadge({ label }: Readonly<{ label: string; tone?: string }>) {
+  return <span className="shrink-0 rounded border border-line bg-paper px-2 py-0.5 text-[0.8rem] font-medium text-body">{label}</span>;
+}
+
+export function PrimaryLink({ href, children }: Readonly<{ href: string; children: React.ReactNode }>) {
   return (
-    <Card>
-      <h3 className="break-words text-lg font-semibold text-ink">{item.name}</h3>
-      <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
-      <TagList items={item.tags} />
-      <ExternalTextLink href={"https://github.com/JankoD84/" + item.name} />
-    </Card>
+    <Link href={href} className="inline-flex items-center justify-center rounded-md bg-ink px-5 py-2.5 font-medium text-on-ink hover:bg-ink-hover">
+      {children}
+    </Link>
   );
 }
 
-export function WritingSection() {
+export function SecondaryLink({ href, children }: Readonly<{ href: string; children: React.ReactNode }>) {
   return (
-    <Section id="writing" eyebrow="Writing" title="Notes on releases and on-call.">
-      <ul className="space-y-2">
-        {writing.map((item) => <li key={item.url}><ExternalTextLink href={item.url} label={item.title} /></li>)}
-      </ul>
-    </Section>
+    <Link href={href} className="inline-flex items-center justify-center rounded-md border border-ink/25 bg-surface px-5 py-2.5 font-medium text-ink hover:border-ink">
+      {children}
+    </Link>
   );
 }

@@ -1,77 +1,96 @@
 import type { Metadata } from "next";
 
-import { certifications, languages, openTo, profile, projects, skills, workHistory } from "../content";
-import { BeforeITSection, BulletList, Card, ContactLinks, PageHeader, ProjectCard, Section, SiteShell, SkillsMatrix, TagList, WorkTimeline } from "../components";
+import { beforeIt, certifications, education, languages, openSource, profile, skills, workHistory } from "../content";
+import { ContactLinks, PageHeader, Section, SiteShell, SkillsMatrix, TagList, WorkTimeline } from "../components";
 
 export const metadata: Metadata = {
   title: "CV — Ján Ďuriš",
-  description: `${profile.name} — ${profile.title}`,
+  description: "CV of Ján Ďuriš, QA Automation & Playwright Engineer: Playwright, TypeScript, Python, API testing and CI/CD.",
 };
 
-const cvSkills = skills.filter((group) => ["QA & Testing", "Automation", "E-commerce / Business Systems", "Engineering Tools", "CI/CD & DevOps", "AI / Internal Tools", "Product / Founder"].includes(group.category));
+const cvSkills = skills.filter((group) => ["QA & Testing", "Automation", "CI/CD & DevOps", "Engineering Tools", "AI / Internal Tools"].includes(group.category));
 
 export default function CvPage() {
   return (
     <SiteShell>
       <PageHeader
-        eyebrow="CV"
-        title="CV — Ján Ďuriš"
-        description={profile.title}
-        intro="A web CV for recruiters, collaborators and QA/release-quality clients. No PDF download is available yet."
+        title={`${profile.name}, ${profile.title}`}
+        description={profile.message}
+        intro={`${profile.location}. ${profile.availability}.`}
       />
 
-      <Section eyebrow="Summary" title="Professional summary">
-        <Card>
-          <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">
-            QA Engineer with 4+ years in software testing across enterprise software, broker web applications and e-commerce/internal business platforms. Current direction combines practical manual QA, regression testing, release validation, growing automation work, product QA and internal tooling through Dulvarn and Wildcode systems.
-          </p>
-        </Card>
-      </Section>
-
-      <Section eyebrow="Experience" title="Work experience">
+      <Section title="Experience">
         <WorkTimeline items={workHistory} />
       </Section>
 
-      <BeforeITSection />
+      <section className="border-t border-line bg-surface">
+        <Section title="Before IT" lead={beforeIt.intro}>
+          <ul className="border-t border-line">
+            {beforeIt.roles.map((role) => (
+              <li key={role.company + role.date} className="grid gap-1 border-b border-line py-3 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-10">
+                <span className="text-[0.95rem] text-muted">{role.date}</span>
+                <span className="text-ink">{role.title}, {role.company}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      </section>
 
-      <Section eyebrow="Certifications" title="Courses and certificates">
-        <Card><BulletList items={certifications} /></Card>
-      </Section>
-
-      <Section eyebrow="Skills" title="Skills">
+      <Section title="Skills">
         <SkillsMatrix groups={cvSkills} />
       </Section>
 
-      <Section eyebrow="Languages" title="Languages">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {languages.map((item) => (
-            <Card key={item.language} className="p-4 sm:p-5">
-              <h3 className="text-base font-semibold text-ink sm:text-lg">{item.language}</h3>
-              <p className="mt-2 text-sm font-medium text-sky-200">{item.level}</p>
-            </Card>
-          ))}
+      <section className="border-y border-line bg-surface">
+        <Section title="Open source">
+          <ul className="border-t border-line">
+            {openSource.map((repo) => (
+              <li key={repo.name} className="grid gap-1 border-b border-line py-3 md:grid-cols-[15rem_minmax(0,1fr)] md:gap-8">
+                <a href={`${profile.github}/${repo.name}`} target="_blank" rel="noreferrer" className="font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-ink">{repo.name}</a>
+                <span className="text-body">{repo.description}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      </section>
+
+      <Section title="Education, certifications and languages">
+        <div className="grid gap-10 md:grid-cols-3">
+          <ul className="border-t border-line">
+            {education.map((item) => (
+              <li key={item.school} className="border-b border-line py-4">
+                <p className="font-semibold text-ink">{item.school}</p>
+                <p className="text-body">{item.program}</p>
+                <p className="text-[0.9rem] text-muted">{item.date}</p>
+                {item.skills.length > 0 ? <TagList items={item.skills} /> : null}
+              </li>
+            ))}
+          </ul>
+          <ul className="border-t border-line">
+            {certifications.map((cert) => (
+              <li key={cert.title} className="border-b border-line py-4">
+                <p className="font-semibold text-ink">{cert.title}</p>
+                <p className="text-[0.9rem] text-muted">{cert.issuer}, {cert.year}</p>
+              </li>
+            ))}
+          </ul>
+          <ul className="border-t border-line">
+            {languages.map((item) => (
+              <li key={item.language} className="flex justify-between border-b border-line py-4">
+                <span className="font-semibold text-ink">{item.language}</span>
+                <span className="text-body">{item.level}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
 
-      <Section eyebrow="Projects" title="Selected projects">
-        <div className="grid gap-4 md:grid-cols-2">
-          {projects.map((project) => <ProjectCard key={project.title} item={project} />)}
-        </div>
-      </Section>
-
-      <Section eyebrow="Contact" title="Contact">
-        <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
-          <Card>
-            <h3 className="text-xl font-semibold text-ink">Direct contact</h3>
-            <p className="mt-3 text-sm leading-7 text-muted">For direct or urgent contact, LinkedIn or email is the best option.</p>
-            <div className="mt-5"><ContactLinks /></div>
-          </Card>
-          <Card>
-            <h3 className="text-xl font-semibold text-ink">Current fit</h3>
-            <TagList items={openTo} />
-          </Card>
-        </div>
-      </Section>
+      <section className="border-t border-line bg-surface">
+        <Section title="Contact">
+          <div className="max-w-xl">
+            <ContactLinks />
+          </div>
+        </Section>
+      </section>
     </SiteShell>
   );
 }

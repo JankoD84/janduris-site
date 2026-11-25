@@ -87,11 +87,11 @@ export default function ContactPage() {
         intro="I’m open to relevant QA automation, release quality, product QA, internal tooling and practical audit conversations."
       />
 
-      <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="mx-auto w-full max-w-page px-5 pb-4 sm:px-8 lg:px-12 2xl:px-16">
         <OpenToSection compact />
       </div>
 
-      <section className="mx-auto grid w-full max-w-6xl gap-5 px-4 pb-14 sm:px-6 sm:pb-20 md:px-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start lg:px-10">
+      <section className="mx-auto grid w-full max-w-page gap-6 px-5 pb-16 pt-6 sm:px-8 lg:px-12 2xl:px-16 sm:pb-20 lg:grid-cols-[0.86fr_1.14fr] lg:items-start [&>*]:min-w-0">
         <Card>
           <h2 className="text-xl font-semibold text-ink">Direct contact</h2>
           <p className="mt-3 text-sm leading-7 text-muted">For direct or urgent contact, LinkedIn or email is the best option.</p>
@@ -100,7 +100,7 @@ export default function ContactPage() {
           </div>
         </Card>
 
-        <form onSubmit={handleSubmit} className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-4 shadow-soft sm:p-6">
+        <form onSubmit={handleSubmit} className="rounded-lg border border-line bg-surface p-4 sm:p-6">
           <h2 className="text-xl font-semibold text-ink">Send a message</h2>
           <p className="mt-3 text-sm leading-7 text-muted">
             The form tries the secure contact endpoint first. If email sending is not configured, it will guide you to direct email.
@@ -117,8 +117,8 @@ export default function ContactPage() {
               <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => setForm((current) => ({ ...current, website: event.target.value }))} />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="message" className="block text-sm font-medium text-slate-200">
-                Message <span className="text-sky-200">*</span>
+              <label htmlFor="message" className="block text-sm font-medium text-body">
+                Message <span className="text-ink">*</span>
               </label>
               <textarea
                 id="message"
@@ -129,7 +129,7 @@ export default function ContactPage() {
                 disabled={isSending}
                 value={form.message}
                 onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-                className="mt-2 min-h-36 w-full resize-y rounded-lg border border-white/12 bg-slate-950/55 px-3 py-3 text-sm text-ink outline-none transition placeholder:text-slate-500 invalid:border-rose-300/40 focus:border-sky-300/55 focus:ring-2 focus:ring-sky-300/20 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-2 min-h-36 w-full resize-y rounded-lg border border-line bg-surface px-3 py-3 text-sm text-ink outline-none transition placeholder:text-muted [&:user-invalid]:border-fail focus:border-ink focus:ring-2 focus:ring-pass/40 disabled:cursor-not-allowed disabled:opacity-60"
               />
               <p className="mt-2 text-xs text-muted">Maximum 3000 characters.</p>
             </div>
@@ -141,8 +141,8 @@ export default function ContactPage() {
               className={
                 "mt-5 rounded-lg border px-3 py-2 text-sm " +
                 (submitState === "success"
-                  ? "border-emerald-200/20 bg-emerald-300/10 text-emerald-100"
-                  : "border-amber-200/20 bg-amber-300/10 text-amber-100")
+                  ? "border-line bg-surface text-ink"
+                  : "border-warn/30 bg-warn-soft text-warn")
               }
             >
               {statusMessage}
@@ -153,11 +153,11 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={isSending}
-              className="inline-flex min-h-11 items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50 disabled:cursor-not-allowed disabled:opacity-70"
+              className="inline-flex min-h-11 items-center justify-center rounded-md bg-ink px-5 py-3 text-sm font-semibold text-on-ink transition hover:bg-ink-hover focus:outline-none focus:ring-2 focus:ring-pass/40 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isSending ? "Sending..." : "Send message"}
             </button>
-            <a href={mailtoHref} className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/16 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-sky-300/50">
+            <a href={mailtoHref} className="inline-flex min-h-11 items-center justify-center rounded-md border border-ink/25 bg-surface px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink focus:outline-none focus:ring-2 focus:ring-pass/40">
               Email directly
             </a>
           </div>
@@ -188,8 +188,8 @@ function TextField({
 }>) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-slate-200">
-        {label} {required ? <span className="text-sky-200">*</span> : null}
+      <label htmlFor={id} className="block text-sm font-medium text-body">
+        {label} {required ? <span className="text-ink">*</span> : null}
       </label>
       <input
         id={id}
@@ -200,7 +200,7 @@ function TextField({
         disabled={disabled}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 min-h-11 w-full rounded-lg border border-white/12 bg-slate-950/55 px-3 py-2.5 text-sm text-ink outline-none transition placeholder:text-slate-500 invalid:border-rose-300/40 focus:border-sky-300/55 focus:ring-2 focus:ring-sky-300/20 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-2 min-h-11 w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-sm text-ink outline-none transition placeholder:text-muted [&:user-invalid]:border-fail focus:border-ink focus:ring-2 focus:ring-pass/40 disabled:cursor-not-allowed disabled:opacity-60"
       />
     </div>
   );
