@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { mobileOnlyNavigation, navigation, openTo, profile, releaseSignal } from "./content";
+import { beforeIT, mobileOnlyNavigation, navigation, openTo, profile, releaseSignal, writing } from "./content";
 
 export const sectionEyebrow =
   "text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]";
@@ -25,7 +25,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
         <nav className="relative mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 md:px-8 lg:px-10">
           <Link href="/" className="text-sm font-semibold tracking-wide text-ink focus:outline-none focus:ring-2 focus:ring-sky-300/50" onClick={() => setIsMenuOpen(false)}>
             <span className="sm:hidden">JD</span>
-            <span className="hidden sm:inline">Janko Ďuriš</span>
+            <span className="hidden sm:inline">Ján Ďuriš</span>
           </Link>
           <button
             type="button"
@@ -66,7 +66,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
       </header>
       {children}
       <footer className="border-t border-line px-6 py-8 text-center text-sm text-muted">
-        © 2026 Janko Ďuriš. Built with Next.js and deployed on Vercel.
+        © 2026 Ján Ďuriš. Built with Next.js and deployed on Vercel.
       </footer>
     </main>
   );
@@ -85,9 +85,9 @@ export function PageHeader({ eyebrow, title, description, intro }: Readonly<{ ey
   );
 }
 
-export function Section({ eyebrow, title, children }: Readonly<{ eyebrow: string; title: string; children: React.ReactNode }>) {
+export function Section({ eyebrow, title, children, id }: Readonly<{ eyebrow: string; title: string; children: React.ReactNode; id?: string }>) {
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-10 lg:py-16">
+    <section id={id} className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 lg:px-10 lg:py-16">
       <div className="mb-6 max-w-3xl sm:mb-9">
         <p className={sectionEyebrow}>{eyebrow}</p>
         <h2 className={sectionTitle}>{title}</h2>
@@ -211,7 +211,7 @@ export function SkillsMatrix({ groups }: Readonly<{ groups: Array<{ category: st
   );
 }
 
-export function ProjectCard({ item }: Readonly<{ item: { title: string; status: string; problem: string; built: string; proves: string; tags: string[]; url?: string; role: string; currentStatus: string; nextStep: string } }>) {
+export function ProjectCard({ item }: Readonly<{ item: { title: string; status: string; problem: string; built: string; proves: string; tags: string[]; url?: string; shopUrl?: string; role: string; currentStatus: string; nextStep: string } }>) {
   return (
     <Card className="flex min-h-0 flex-col overflow-hidden">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -233,6 +233,7 @@ export function ProjectCard({ item }: Readonly<{ item: { title: string; status: 
         <TagList items={item.tags} />
       </div>
       {item.url ? <ExternalTextLink href={item.url} /> : null}
+      {item.shopUrl ? <ExternalTextLink href={item.shopUrl} /> : null}
     </Card>
   );
 }
@@ -246,7 +247,7 @@ function EvidenceBlock({ label, value }: Readonly<{ label: string; value: string
   );
 }
 
-export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: string; type: string; status: string; description: string; proof: string[]; tags: string[] } }>) {
+export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: string; shopUrl?: string; type: string; status: string; description: string; proof: string[]; tags: string[] } }>) {
   return (
     <article className="overflow-hidden rounded-lg border border-emerald-200/[0.1] bg-emerald-300/[0.042] p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200/28 hover:bg-emerald-300/[0.06] hover:shadow-[0_24px_90px_rgba(16,185,129,0.11)] sm:p-6">
       <div className="mb-5 overflow-hidden rounded-lg border border-white/[0.08] bg-slate-950/60">
@@ -272,6 +273,7 @@ export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: str
       </div>
       <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
       <ExternalTextLink href={item.url} tone="emerald" />
+      {item.shopUrl ? <ExternalTextLink href={item.shopUrl} tone="emerald" /> : null}
       <div className="mt-6 border-t border-white/10 pt-5">
         <p className="text-sm font-semibold text-sky-200">What it proves</p>
         <BulletList items={item.proof} />
@@ -281,11 +283,11 @@ export function WebsiteCard({ item }: Readonly<{ item: { title: string; url: str
   );
 }
 
-function ExternalTextLink({ href, tone = "sky" }: Readonly<{ href: string; tone?: "sky" | "emerald" }>) {
+export function ExternalTextLink({ href, tone = "sky", label }: Readonly<{ href: string; tone?: "sky" | "emerald"; label?: string }>) {
   const className = tone === "emerald"
     ? "mt-5 inline-flex max-w-full break-all rounded-md border border-emerald-200/20 px-3 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-200/40 hover:bg-emerald-300/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-200/40"
     : "mt-5 inline-flex max-w-full break-all rounded-md border border-sky-300/18 px-3 py-2 text-sm font-medium text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.07] focus:outline-none focus:ring-2 focus:ring-sky-300/45";
-  return <a href={href} target="_blank" rel="noreferrer" className={className}>{href.replace(/^https?:\/\//, "")}</a>;
+  return <a href={href} target="_blank" rel="noreferrer" className={className}>{label ?? href.replace(/^https?:\/\//, "")}</a>;
 }
 
 export function ContactLinks() {
@@ -293,7 +295,6 @@ export function ContactLinks() {
     { label: "Email", value: profile.email, href: "mailto:" + profile.email, ariaLabel: "Email Janko", icon: <EmailIcon /> },
     { label: "LinkedIn", value: "linkedin.com/in/jduris", href: profile.linkedin, ariaLabel: "Open LinkedIn profile", icon: <LinkedInIcon />, external: true },
     { label: "GitHub", value: "github.com/JankoD84", href: profile.github, ariaLabel: "Open GitHub profile", icon: <GitHubIcon />, external: true },
-    { label: "Phone", value: profile.phone, href: "tel:" + profile.phone, ariaLabel: "Call Janko", icon: <PhoneIcon /> },
   ];
 
   return (
@@ -316,10 +317,9 @@ export function ContactIconGroup() {
     { label: "Email Janko", href: "mailto:" + profile.email, icon: <EmailIcon /> },
     { label: "Open LinkedIn profile", href: profile.linkedin, icon: <LinkedInIcon />, external: true },
     { label: "Open GitHub profile", href: profile.github, icon: <GitHubIcon />, external: true },
-    { label: "Call Janko", href: "tel:" + profile.phone, icon: <PhoneIcon /> },
   ];
   return (
-    <div className="grid grid-cols-4 items-center justify-center gap-2.5 sm:gap-3">
+    <div className="grid grid-cols-3 items-center justify-center gap-2.5 sm:gap-3">
       {links.map((link) => (
         <a key={link.label} href={link.href} aria-label={link.label} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined} className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-white/12 bg-white/[0.045] text-sky-100 transition hover:border-sky-300/35 hover:bg-sky-300/[0.1] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-300/50">
           {link.icon}
@@ -371,6 +371,32 @@ function GitHubIcon() {
   return <IconSvg><path d="M12 2.8a9.2 9.2 0 0 0-2.9 17.9c.46.08.62-.2.62-.44v-1.6c-2.52.55-3.05-1.08-3.05-1.08-.42-1.04-1.02-1.32-1.02-1.32-.83-.56.06-.55.06-.55.92.06 1.4.94 1.4.94.82 1.4 2.14 1 2.66.76.08-.6.32-1 .58-1.23-2.01-.23-4.12-1-4.12-4.47 0-.99.35-1.8.94-2.43-.1-.23-.41-1.16.09-2.4 0 0 .77-.25 2.52.93A8.6 8.6 0 0 1 12 6.5c.78 0 1.55.1 2.28.31 1.75-1.18 2.52-.93 2.52-.93.5 1.24.19 2.17.1 2.4.58.63.93 1.44.93 2.43 0 3.48-2.11 4.24-4.13 4.46.33.28.62.83.62 1.68v2.5c0 .24.16.52.63.44A9.2 9.2 0 0 0 12 2.8Z" /></IconSvg>;
 }
 
-function PhoneIcon() {
-  return <IconSvg><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.32 1.78.6 2.63a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.26-1.26a2 2 0 0 1 2.11-.45c.85.28 1.73.48 2.63.6A2 2 0 0 1 22 16.92Z" /></IconSvg>;
+export function BeforeITSection() {
+  return (
+    <Section eyebrow="Earlier career" title="Before IT">
+      <p className="text-sm leading-7 text-muted sm:text-base">{beforeIT.intro}</p>
+      <BulletList items={beforeIT.roles} />
+    </Section>
+  );
+}
+
+export function RepositoryCard({ item }: Readonly<{ item: { name: string; description: string; tags: string[] } }>) {
+  return (
+    <Card>
+      <h3 className="break-words text-lg font-semibold text-ink">{item.name}</h3>
+      <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
+      <TagList items={item.tags} />
+      <ExternalTextLink href={"https://github.com/JankoD84/" + item.name} />
+    </Card>
+  );
+}
+
+export function WritingSection() {
+  return (
+    <Section eyebrow="Writing" title="Notes on releases and on-call.">
+      <ul className="space-y-2">
+        {writing.map((item) => <li key={item.url}><ExternalTextLink href={item.url} label={item.title} /></li>)}
+      </ul>
+    </Section>
+  );
 }

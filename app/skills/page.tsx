@@ -4,8 +4,8 @@ import { languages, skills } from "../content";
 import { Card, PageHeader, Section, SiteShell, SkillsMatrix } from "../components";
 
 export const metadata: Metadata = {
-  title: "Skills — Janko Ďuriš",
-  description: "Skills matrix and languages for Janko Ďuriš.",
+  title: "Skills — Ján Ďuriš",
+  description: "Skills matrix and languages for Ján Ďuriš.",
 };
 
 const visibleSkillGroups = skills.filter((group) => group.category !== "Engineering Stack");

@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 
-import { languages, projects, skills, workHistory } from "../content";
-import { Card, ContactLinks, PageHeader, ProjectCard, Section, SiteShell, SkillsMatrix, TagList, WorkTimeline } from "../components";
+import { certifications, languages, openTo, profile, projects, skills, workHistory } from "../content";
+import { BeforeITSection, BulletList, Card, ContactLinks, PageHeader, ProjectCard, Section, SiteShell, SkillsMatrix, TagList, WorkTimeline } from "../components";
 
 export const metadata: Metadata = {
-  title: "CV — Janko Ďuriš",
-  description: "CV of Janko Ďuriš, QA Automation Engineer focused on QA automation, release quality, e-commerce QA and AI-assisted engineering tools.",
+  title: "CV — Ján Ďuriš",
+  description: `${profile.name} — ${profile.title}`,
 };
 
-const cvSkills = skills.filter((group) => ["QA & Testing", "Automation", "E-commerce / Business Systems", "Engineering Tools", "AI / Internal Tools", "Product / Founder"].includes(group.category));
+const cvSkills = skills.filter((group) => ["QA & Testing", "Automation", "E-commerce / Business Systems", "Engineering Tools", "CI/CD & DevOps", "AI / Internal Tools", "Product / Founder"].includes(group.category));
 
 export default function CvPage() {
   return (
     <SiteShell>
       <PageHeader
         eyebrow="CV"
-        title="CV — Janko Ďuriš"
-        description="QA Automation Engineer focused on QA automation, release quality, e-commerce QA and AI-assisted engineering tools."
+        title="CV — Ján Ďuriš"
+        description={profile.title}
         intro="A web CV for recruiters, collaborators and QA/release-quality clients. No PDF download is available yet."
       />
 
@@ -30,6 +30,12 @@ export default function CvPage() {
 
       <Section eyebrow="Experience" title="Work experience">
         <WorkTimeline items={workHistory} />
+      </Section>
+
+      <BeforeITSection />
+
+      <Section eyebrow="Certifications" title="Courses and certificates">
+        <Card><BulletList items={certifications} /></Card>
       </Section>
 
       <Section eyebrow="Skills" title="Skills">
@@ -62,7 +68,7 @@ export default function CvPage() {
           </Card>
           <Card>
             <h3 className="text-xl font-semibold text-ink">Current fit</h3>
-            <TagList items={["QA Automation Engineer roles", "SDET-oriented QA work", "QA audits", "Product QA", "Internal QA tooling"]} />
+            <TagList items={openTo} />
           </Card>
         </div>
       </Section>
