@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-
 import { beforeIt, certifications, education, languages, openSource, profile, skills, workHistory } from "../content";
 import { ContactLinks, PageHeader, Section, SiteShell, SkillsMatrix, TagList, WorkTimeline } from "../components";
+import { pageMetadata } from "../seo";
 
-export const metadata: Metadata = {
-  title: "CV — Ján Ďuriš",
-  description: "CV of Ján Ďuriš, QA Automation & Playwright Engineer: Playwright, TypeScript, Python, API testing and CI/CD.",
-};
+export const metadata = pageMetadata("/cv", "CV — Ján Ďuriš", "CV of Ján Ďuriš, QA Automation & Playwright Engineer: Playwright, TypeScript, Python, API testing and CI/CD.");
 
 const cvSkills = skills.filter((group) => ["QA & Testing", "Automation", "CI/CD & DevOps", "Engineering Tools", "AI / Internal Tools"].includes(group.category));
 

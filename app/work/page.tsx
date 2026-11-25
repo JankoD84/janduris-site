@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-
 import { beforeIt, certifications, education, workHistory } from "../content";
 import { PageHeader, Section, SiteShell, TagList, WorkTimeline } from "../components";
+import { pageMetadata } from "../seo";
 
-export const metadata: Metadata = {
-  title: "Experience — Ján Ďuriš",
-  description: "Work experience, education and certifications of Ján Ďuriš, QA Automation & Playwright Engineer.",
-};
+export const metadata = pageMetadata("/work", "Experience — Ján Ďuriš", "Work experience, education and certifications of Ján Ďuriš, QA Automation & Playwright Engineer.");
 
 export default function WorkPage() {
   return (

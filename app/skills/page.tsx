@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-
 import { languages, skills } from "../content";
 import { Card, PageHeader, Section, SiteShell, SkillsMatrix } from "../components";
+import { pageMetadata } from "../seo";
 
-export const metadata: Metadata = {
-  title: "Skills — Ján Ďuriš",
-  description: "Skills matrix and languages for Ján Ďuriš.",
-};
+export const metadata = pageMetadata("/skills", "Skills — Ján Ďuriš", "Skills matrix and languages for Ján Ďuriš.");
 
 const visibleSkillGroups = skills.filter((group) => group.category !== "Engineering Stack");
 
