@@ -333,7 +333,6 @@ Direct contacts:
 - Email: [duris.janko@tutanota.com](mailto:duris.janko@tutanota.com)
 - LinkedIn: [https://www.linkedin.com/in/jduris/](https://www.linkedin.com/in/jduris/)
 - GitHub: [https://github.com/JankoD84/](https://github.com/JankoD84/)
-- Phone: [+420608118364](tel:+420608118364)
 
 If email sending is enabled through Resend, the following environment variables are required:
 

@@ -4,8 +4,8 @@ import { websites } from "../content";
 import { PageHeader, Section, SiteShell, WebsiteCard } from "../components";
 
 export const metadata: Metadata = {
-  title: "Websites & Live Work — Janko Ďuriš",
-  description: "Websites and live work by Janko Ďuriš, including Dulvarn, Dulvarn Tools and Wildcode docs.",
+  title: "Websites & Live Work — Ján Ďuriš",
+  description: "Websites and live work by Ján Ďuriš, including Dulvarn, Dulvarn Tools and Wildcode docs.",
 };
 
 export default function WebsitesPage() {

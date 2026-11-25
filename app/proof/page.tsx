@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 import { buildingToward, featuredProof, proofExamples, proofOfWork } from "../content";
-import { Card, PageHeader, Section, SiteShell } from "../components";
+import { Card, PageHeader, Section, SiteShell, WritingSection } from "../components";
 
 export const metadata: Metadata = {
-  title: "Proof of Work — Janko Ďuriš",
+  title: "Proof of Work — Ján Ďuriš",
   description: "Proof of work for QA practice, automation direction, release quality and product building.",
 };
 
@@ -46,6 +46,7 @@ export default function ProofPage() {
           ))}
         </div>
       </Section>
+      <WritingSection />
       <Section eyebrow="Current Direction" title="Focused growth, shipped as useful tools.">
         <div className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-6 shadow-soft transition duration-200 hover:border-sky-300/35 hover:bg-sky-300/[0.085] sm:p-8">
           <p className="max-w-3xl text-base leading-7 text-muted sm:text-lg sm:leading-8">

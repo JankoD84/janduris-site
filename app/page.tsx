@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { type CSSProperties } from "react";
 
-import { featuredProof, profile, signalBar } from "./content";
-import { Card, ContactIconGroup, OpenToSection, ReleaseSignalCard, SiteShell } from "./components";
+import { featuredProof, hireLinks, openSourceGroups, profile, services, signalBar } from "./content";
+import { Card, ContactIconGroup, ExternalTextLink, OpenToSection, ReleaseSignalCard, RepositoryCard, Section, SiteShell, TagList, WritingSection } from "./components";
 
 
 export default function Home() {
@@ -18,6 +18,8 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/80 sm:text-sm sm:tracking-[0.28em]">{profile.name}</p>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.04] tracking-tight text-ink sm:mt-5 sm:text-5xl lg:text-7xl">{profile.title}</h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:mt-7 sm:text-lg sm:leading-8 lg:text-xl">{profile.message}</p>
+            <p className="mt-3 text-sm text-muted">{profile.location}</p>
+            <TagList items={profile.proofItems} />
             <div className="mt-7 flex max-w-3xl flex-col gap-3 sm:mt-10 lg:flex-row lg:items-start">
               <div className="grid w-full gap-2.5 sm:grid-cols-3 lg:flex-1">
                 <Link href="/proof" className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-center text-sm font-semibold leading-tight text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50">View Proof of Work</Link>
@@ -55,6 +57,32 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Section eyebrow="Open source" title="QA automation and release engineering repos.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {openSourceGroups.flatMap((group) => group.repos).slice(0, 3).map((item) => <RepositoryCard key={item.name} item={item} />)}
+        </div>
+        <ExternalTextLink href={profile.github} />
+      </Section>
+
+      <WritingSection />
+
+      <Section id="hire" eyebrow="Hire" title="Practical help for tests and releases.">
+        <div className="grid gap-4 md:grid-cols-2">
+          {services.map((item) => (
+            <Card key={item.title}>
+              <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
+              <p className="mt-2 text-sm font-medium text-sky-200">{item.terms}</p>
+              <p className="mt-3 text-sm leading-7 text-muted sm:text-base">{item.description}</p>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          {hireLinks.map((item) => <ExternalTextLink key={item.href} href={item.href} label={item.label} />)}
+          <Link href="/contact" className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-300/50">Contact form</Link>
+        </div>
+        <p className="mt-6 text-sm leading-7 text-muted">Free checklists and kits for engineering teams: <ExternalTextLink href="https://payhip.com/dulvarn" /></p>
+      </Section>
 
       <OpenToSection />
     </SiteShell>

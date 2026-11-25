@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { profile } from "./content";
 import "./globals.css";
 
-const siteTitle = "Janko Ďuriš — QA Automation Engineer & Release Quality Builder";
-const siteDescription =
-  "QA Engineer with 4+ years in software testing, focused on QA automation, release quality, QA workflows, CI/CD quality checks and AI-assisted engineering tools.";
+const siteTitle = `${profile.name} — ${profile.title}`;
+const siteDescription = profile.message;
 const siteUrl = "https://janduris.vercel.app/";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     url: siteUrl,
-    siteName: "Janko Ďuriš",
+    siteName: profile.name,
     type: "website",
   },
 };

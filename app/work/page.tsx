@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 import { education, workHistory } from "../content";
-import { Card, PageHeader, Section, SiteShell, TagList, WorkTimeline } from "../components";
+import { BeforeITSection, Card, PageHeader, Section, SiteShell, TagList, WorkTimeline } from "../components";
 
 export const metadata: Metadata = {
-  title: "Work Experience — Janko Ďuriš",
-  description: "Work experience timeline and education for Janko Ďuriš, QA engineer.",
+  title: "Work Experience — Ján Ďuriš",
+  description: "Work experience timeline and education for Ján Ďuriš, QA engineer.",
 };
 
 export default function WorkPage() {
@@ -19,6 +19,7 @@ export default function WorkPage() {
       <Section eyebrow="Timeline" title="Work Experience">
         <WorkTimeline items={workHistory} />
       </Section>
+      <BeforeITSection />
       <Section eyebrow="Education" title="Training and technical foundation.">
         <div className="grid gap-4 md:grid-cols-2">
           {education.map((item) => (

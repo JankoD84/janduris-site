@@ -4,8 +4,8 @@ import { about, beyondTheWork } from "../content";
 import { Card, PageHeader, Section, SiteShell } from "../components";
 
 export const metadata: Metadata = {
-  title: "About — Janko Ďuriš",
-  description: "About Janko Ďuriš, QA engineer, product builder and release quality-focused founder.",
+  title: "About — Ján Ďuriš",
+  description: "About Ján Ďuriš, QA engineer, product builder and release quality-focused founder.",
 };
 
 export default function AboutPage() {
