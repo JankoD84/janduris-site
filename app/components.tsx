@@ -32,7 +32,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
 function SiteFooter() {
   return (
     <footer className="border-t border-line bg-surface">
-      <div className="mx-auto grid w-full max-w-page gap-8 px-5 py-10 sm:px-8 lg:px-12 2xl:px-16 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid w-full max-w-page gap-8 px-5 py-10 sm:px-8 lg:px-12 2xl:px-16 min-[1920px]:px-24 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-semibold text-ink">{profile.name}</p>
           <p className="mt-1 text-[0.95rem] text-muted">{profile.title}, {profile.location}</p>
@@ -60,7 +60,7 @@ function SiteFooter() {
 
 export function PageHeader({ title, description, intro }: Readonly<{ eyebrow?: string; title: string; description: string; intro?: string }>) {
   return (
-    <section className="mx-auto w-full max-w-page px-5 pb-6 pt-14 sm:px-8 lg:px-12 2xl:px-16 sm:pt-20">
+    <section className="mx-auto w-full max-w-page px-5 pb-6 pt-14 sm:px-8 lg:px-12 2xl:px-16 min-[1920px]:px-24 sm:pt-20">
       <h1 className="max-w-3xl text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:text-[2.6rem]">{title}</h1>
       <p className="mt-4 max-w-prose text-lg text-body">{description}</p>
       {intro ? <p className="mt-3 max-w-prose text-[0.95rem] text-muted">{intro}</p> : null}
@@ -70,12 +70,12 @@ export function PageHeader({ title, description, intro }: Readonly<{ eyebrow?: s
 
 export function Section({ title, children, id, lead }: Readonly<{ eyebrow?: string; title: string; children: React.ReactNode; id?: string; lead?: string }>) {
   return (
-    <section id={id} className="mx-auto w-full max-w-page px-5 py-12 sm:px-8 sm:py-16 lg:px-12 xl:grid xl:grid-cols-[16rem_minmax(0,1fr)] xl:gap-16 2xl:grid-cols-[19rem_minmax(0,1fr)] 2xl:gap-24 2xl:px-16">
+    <section id={id} className="mx-auto w-full max-w-page px-5 py-12 sm:px-8 sm:py-16 lg:px-12 xl:grid xl:grid-cols-[16rem_minmax(0,1fr)] xl:gap-16 2xl:grid-cols-[19rem_minmax(0,1fr)] 2xl:gap-24 min-[1920px]:grid-cols-[22rem_minmax(0,1fr)] min-[1920px]:gap-32 2xl:px-16 min-[1920px]:px-24">
       <div className="mb-8 max-w-prose xl:mb-0">
         <h2 className={sectionTitle}>{title}</h2>
         {lead ? <p className="mt-3 text-body">{lead}</p> : null}
       </div>
-      <div className="min-w-0">{children}</div>
+      <div className="min-w-0 [&_p]:max-w-[75ch]">{children}</div>
     </section>
   );
 }

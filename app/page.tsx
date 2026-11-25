@@ -11,16 +11,16 @@ export default function Home() {
   return (
     <SiteShell>
       {/* Hero: who, what, how to hire — readable in five seconds */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid w-full max-w-page gap-12 px-5 pb-14 pt-12 sm:px-8 lg:px-12 2xl:px-16 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-center lg:gap-16 xl:grid-cols-[minmax(0,1fr)_29rem] xl:gap-24 2xl:grid-cols-[minmax(0,1fr)_32rem] lg:pb-20 lg:pt-20">
+      <section>
+        <div className="mx-auto grid w-full max-w-page gap-12 px-5 pb-14 pt-12 sm:px-8 lg:px-12 2xl:px-16 min-[1920px]:px-24 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-center lg:gap-16 xl:grid-cols-[minmax(0,1fr)_29rem] xl:gap-24 2xl:grid-cols-[minmax(0,1fr)_32rem] min-[1920px]:grid-cols-[minmax(0,1fr)_36rem] lg:pb-20 lg:pt-20">
           <div>
             <p className="text-[0.95rem] text-muted">
               {profile.name}, {profile.title}
             </p>
-            <h1 className="mt-4 max-w-[17ch] text-[2.4rem] font-semibold leading-[1.08] tracking-[-0.02em] text-ink sm:text-[3.25rem] lg:text-[3.6rem] 2xl:text-[4.2rem]">
+            <h1 className="mt-4 max-w-[17ch] text-[2.4rem] font-semibold leading-[1.08] tracking-[-0.02em] text-ink sm:text-[3.25rem] lg:text-[3.6rem] 2xl:text-[4.2rem] min-[1920px]:text-[4.8rem]">
               {profile.headline}
             </h1>
-            <p className="mt-6 max-w-[38rem] text-lg leading-relaxed text-body">{profile.message}</p>
+            <p className="mt-6 max-w-[38rem] text-lg min-[1920px]:max-w-[44rem] min-[1920px]:text-xl leading-relaxed text-body">{profile.message}</p>
             <p className="mt-3 max-w-[38rem] text-[0.95rem] text-muted">Hands-on with {profile.stack}.</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -42,10 +42,11 @@ export default function Home() {
       </section>
 
       {/* Proof: four facts, read as one line */}
-      <section aria-label="At a glance" className="border-b border-line bg-surface">
-        <dl className="mx-auto grid w-full max-w-page grid-cols-2 px-5 sm:px-8 lg:px-12 2xl:px-16 lg:grid-cols-4">
-          {profile.proofItems.map((item, i) => (
-            <div key={item.value} className={"py-6 pr-4 " + (i % 2 === 1 ? "pl-4 border-l border-line lg:pl-6 " : "") + (i >= 2 ? "border-t border-line lg:border-t-0 " : "") + (i === 2 ? "lg:border-l lg:pl-6 " : "") + (i === 3 ? "lg:pl-6 " : "")}>
+      <section aria-label="At a glance" className="mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12 2xl:px-16 min-[1920px]:px-24">
+        {/* gap-px over a line-coloured grid draws even dividers at every column count */}
+        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-4">
+          {profile.proofItems.map((item) => (
+            <div key={item.value} className="bg-surface px-5 py-5 sm:px-6">
               <dt className="sr-only">{item.label}</dt>
               <dd>
                 <span className="block text-xl font-semibold text-ink">{item.value}</span>

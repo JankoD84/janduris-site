@@ -87,11 +87,11 @@ export default function ContactPage() {
         intro="I’m open to relevant QA automation, release quality, product QA, internal tooling and practical audit conversations."
       />
 
-      <div className="mx-auto w-full max-w-page px-5 pb-4 sm:px-8 lg:px-12 2xl:px-16">
+      <div className="mx-auto w-full max-w-page px-5 pb-4 sm:px-8 lg:px-12 2xl:px-16 min-[1920px]:px-24">
         <OpenToSection compact />
       </div>
 
-      <section className="mx-auto grid w-full max-w-page gap-6 px-5 pb-16 pt-6 sm:px-8 lg:px-12 2xl:px-16 sm:pb-20 lg:grid-cols-[0.86fr_1.14fr] lg:items-start [&>*]:min-w-0">
+      <section className="mx-auto grid w-full max-w-page gap-6 px-5 pb-16 pt-6 sm:px-8 lg:px-12 2xl:px-16 min-[1920px]:px-24 sm:pb-20 lg:grid-cols-[0.86fr_1.14fr] lg:items-start [&>*]:min-w-0">
         <Card>
           <h2 className="text-xl font-semibold text-ink">Direct contact</h2>
           <p className="mt-3 text-sm leading-7 text-muted">For direct or urgent contact, LinkedIn or email is the best option.</p>
