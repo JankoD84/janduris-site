@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { beforeIT, mobileOnlyNavigation, navigation, openTo, profile, releaseSignal, writing } from "./content";
+import { beforeIT, footerNavigation, mobileOnlyNavigation, navigation, openTo, profile, releaseSignal, writing } from "./content";
 
 export const sectionEyebrow =
   "text-xs font-medium uppercase tracking-[0.18em] text-sky-300/80 sm:text-sm sm:tracking-[0.22em]";
 export const sectionTitle =
   "mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl";
 export const cardClass =
-  "rounded-lg border border-white/[0.065] bg-slate-950/34 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.045] hover:shadow-[0_22px_70px_rgba(56,189,248,0.08)] sm:p-6";
+  "rounded-lg border border-white/[0.065] bg-slate-950/34 p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/18 hover:bg-white/[0.045] hover:shadow-[0_22px_70px_rgba(56,189,248,0.08)] sm:p-6";
 export const tagClass =
   "max-w-full break-words rounded-md border border-white/[0.07] bg-white/[0.035] px-2.5 py-1.5 text-xs text-slate-200 transition hover:border-sky-300/18 hover:bg-sky-300/[0.06] sm:px-3 sm:text-sm";
 
@@ -47,6 +47,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
                 {item.label}
               </Link>
             ))}
+            <Link href="/cv" className="inline-flex min-h-9 items-center rounded-md border border-sky-300/40 px-3 text-xs font-semibold text-sky-100 transition hover:bg-sky-300/10">CV</Link>
           </div>
           {isMenuOpen ? (
             <div className="absolute left-4 right-4 top-[calc(100%+0.5rem)] rounded-lg border border-white/12 bg-slate-950/95 p-2 shadow-soft backdrop-blur-xl md:hidden">
@@ -66,6 +67,9 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
       </header>
       {children}
       <footer className="border-t border-line px-6 py-8 text-center text-sm text-muted">
+        <nav aria-label="Footer" className="mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          {footerNavigation.map((item) => <Link key={item.href} href={item.href} className="inline-flex min-h-11 items-center text-slate-200 hover:text-sky-100">{item.label}</Link>)}
+        </nav>
         © 2026 Ján Ďuriš. Built with Next.js and deployed on Vercel.
       </footer>
     </main>
@@ -103,7 +107,7 @@ export function Card({ children, className = "" }: Readonly<{ children: React.Re
 
 export function ReleaseSignalCard() {
   return (
-    <aside className="w-full overflow-hidden rounded-lg border border-sky-300/[0.16] bg-slate-950/55 p-4 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/28 hover:shadow-[0_24px_80px_rgba(56,189,248,0.11)] sm:p-5">
+    <aside className="min-h-[460px] w-full overflow-hidden rounded-lg border border-sky-300/[0.16] bg-slate-950/55 p-4 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/28 hover:shadow-[0_24px_80px_rgba(56,189,248,0.11)] sm:p-5">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-sky-300/80 sm:text-xs sm:tracking-[0.24em]">Example Release Signal</p>
@@ -127,7 +131,6 @@ export function ReleaseSignalCard() {
         <SignalRow label="Decision" value={releaseSignal.decision} tone="emerald" />
       </div>
       <p className="mt-4 text-xs leading-5 text-muted">{releaseSignal.note}</p>
-      <TagList items={releaseSignal.badges} />
     </aside>
   );
 }
@@ -393,7 +396,7 @@ export function RepositoryCard({ item }: Readonly<{ item: { name: string; descri
 
 export function WritingSection() {
   return (
-    <Section eyebrow="Writing" title="Notes on releases and on-call.">
+    <Section id="writing" eyebrow="Writing" title="Notes on releases and on-call.">
       <ul className="space-y-2">
         {writing.map((item) => <li key={item.url}><ExternalTextLink href={item.url} label={item.title} /></li>)}
       </ul>

@@ -100,7 +100,7 @@ export default function ContactPage() {
           </div>
         </Card>
 
-        <form onSubmit={handleSubmit} className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-4 shadow-soft backdrop-blur sm:p-6">
+        <form onSubmit={handleSubmit} className="rounded-lg border border-sky-300/[0.14] bg-sky-300/[0.055] p-4 shadow-soft sm:p-6">
           <h2 className="text-xl font-semibold text-ink">Send a message</h2>
           <p className="mt-3 text-sm leading-7 text-muted">
             The form tries the secure contact endpoint first. If email sending is not configured, it will guide you to direct email.

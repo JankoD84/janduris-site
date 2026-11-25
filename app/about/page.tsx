@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { about, beyondTheWork } from "../content";
+import { about, beyondTheWork, featuredProof, signalBar } from "../content";
 import { Card, PageHeader, Section, SiteShell } from "../components";
 
 export const metadata: Metadata = {
@@ -36,8 +36,27 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Overview" title="Proof, projects and experience at a glance.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {featuredProof.map((item) => (
+            <Card key={item.title}>
+              <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {signalBar.map((item) => (
+            <Card key={item.title}>
+              <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Human Side" title="Beyond the Work">
-        <div className="rounded-lg border border-emerald-200/[0.09] bg-[linear-gradient(135deg,rgba(16,185,129,0.052),rgba(56,189,248,0.035))] p-5 shadow-soft backdrop-blur sm:p-7 lg:p-8">
+        <div className="rounded-lg border border-emerald-200/[0.09] bg-[linear-gradient(135deg,rgba(16,185,129,0.052),rgba(56,189,248,0.035))] p-5 shadow-soft sm:p-7 lg:p-8">
           <div className="max-w-3xl space-y-4 text-sm leading-7 text-slate-200 sm:text-base sm:leading-8">
             {beyondTheWork.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
