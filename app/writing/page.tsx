@@ -13,7 +13,7 @@ export default function WritingPage() {
     <SiteShell>
       <PageHeader
         title="Writing"
-        description={`${allArticles.length} articles on release decisions, on-call and QA, published on CoderLegion.`}
+        description={`${allArticles.length} articles in ${writingGroups.length} series on release decisions, on-call and QA, published on CoderLegion.`}
       />
       {writingGroups.map((group) => (
         <Section key={group.topic} title={group.topic} lead={group.intro}>
